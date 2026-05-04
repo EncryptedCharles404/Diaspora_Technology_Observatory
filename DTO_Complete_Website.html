@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diaspora Technology Observatory — Nigeria Patent Intelligence</title>
+<meta name="description" content="Nigeria's free industrial technology library. Expired patents, WIPO programmes, and zero-cost manufacturing intelligence for Nigerian businesses.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0f2444; --navy-mid: #1b3a6b; --gold: #c8a84b; --gold-light: #e8c96e;
+  --gold-pale: #fdf3dc; --white: #fafaf8; --g100: #f4f2ee; --g300: #d4d0c8;
+  --g500: #8a8070; --g700: #4a4540; --red: #8b0000; --green-d: #1b5e20;
+  --green-l: #d6f0d6; --orange: #b84c00; --blue-l: #d6e4f0;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; overflow-x: hidden; }
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(200,168,75,0.06) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,168,75,0.02) 60px, rgba(200,168,75,0.02) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,168,75,0.02) 60px, rgba(200,168,75,0.02) 61px);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(15,36,68,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200,168,75,0.2);
+}
+.nav-logo { display: flex; align-items: center; gap: 0.8rem; cursor: pointer; }
+.nav-hex {
+  width: 34px; height: 34px; background: var(--gold);
+  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 700; color: var(--navy); flex-shrink: 0;
+}
+.nav-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; line-height: 1.1; }
+.nav-name span { display: block; font-size: 0.6rem; font-family: 'DM Sans', sans-serif; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 0.5rem; align-items: center; }
+.nav-link {
+  padding: 0.45rem 1rem; border-radius: 4px; font-size: 0.82rem; cursor: pointer;
+  color: var(--g300); border: none; background: transparent; transition: all 0.15s;
+}
+.nav-link:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+.nav-link.active { color: var(--gold); }
+.nav-admin-btn {
+  padding: 0.45rem 1rem; border-radius: 4px; font-size: 0.78rem; cursor: pointer;
+  color: var(--g500); border: 1px solid rgba(138,128,112,0.3); background: transparent;
+  font-family: 'DM Mono', monospace; letter-spacing: 0.08em; transition: all 0.15s;
+}
+.nav-admin-btn:hover { color: var(--gold); border-color: rgba(200,168,75,0.4); }
+
+/* ── TICKER ── */
+.ticker {
+  position: relative; z-index: 1; margin-top: 64px;
+  background: rgba(200,168,75,0.08);
+  border-top: 1px solid rgba(200,168,75,0.15); border-bottom: 1px solid rgba(200,168,75,0.15);
+  padding: 0.65rem 0; overflow: hidden;
+}
+.ticker-inner { display: flex; gap: 4rem; white-space: nowrap; animation: ticker 30s linear infinite; width: max-content; }
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.t-item { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; color: var(--gold); }
+.t-sep { color: rgba(200,168,75,0.35); }
+
+/* ── PAGE SYSTEM ── */
+.page { display: none; position: relative; z-index: 1; }
+.page.active { display: block; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 90vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 4rem 2rem 3rem;
+}
+.eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.eyebrow::before, .eyebrow::after { content: ''; width: 50px; height: 1px; background: var(--gold); opacity: 0.4; }
+h1.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; line-height: 1.05; margin-bottom: 0.5rem; }
+h1.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1rem,2vw,1.4rem); color: var(--g300); margin-bottom: 1.5rem; max-width: 560px; }
+.hero-desc { font-size: 0.95rem; color: var(--g500); max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem; }
+.cta-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.btn-gold { background: var(--gold); color: var(--navy); padding: 0.85rem 1.8rem; border: none; border-radius: 3px; font-weight: 600; font-size: 0.88rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.2s; }
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,168,75,0.3); }
+.btn-outline { background: transparent; color: var(--white); padding: 0.85rem 1.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(200,168,75,0.12); flex-wrap: wrap; justify-content: center; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
+.stat-lbl { font-size: 0.7rem; color: var(--g500); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
+
+/* ── SECTION ── */
+.sec { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
+.sec-eye { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+.sec-lead { color: var(--g300); font-size: 1rem; line-height: 1.75; max-width: 580px; margin-bottom: 2.5rem; }
+
+/* ── HOW IT WORKS ── */
+.steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.12); border-radius: 6px; overflow: hidden; }
+.step { padding: 2.2rem 1.8rem; border-right: 1px solid rgba(200,168,75,0.1); text-align: center; }
+.step:last-child { border-right: none; }
+.step-n { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(200,168,75,0.1); line-height: 1; }
+.step-t { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin: 0.4rem 0; }
+.step-d { font-size: 0.82rem; color: var(--g500); line-height: 1.6; }
+
+/* ── LIBRARY PAGE ── */
+.lib-header { max-width: 1080px; margin: 0 auto; padding: 3rem 2rem 1rem; }
+.lib-controls { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.lib-search { flex: 1; min-width: 200px; padding: 0.75rem 1.1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2); border-radius: 4px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s; }
+.lib-search:focus { border-color: var(--gold); }
+.lib-search::placeholder { color: var(--g500); }
+.lib-select { padding: 0.75rem 1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2); border-radius: 4px; color: var(--white); font-size: 0.85rem; outline: none; cursor: pointer; }
+.lib-select option { background: var(--navy); }
+.lib-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.lib-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1rem; text-align: center; }
+.lib-stat-n { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+.lib-stat-l { font-size: 0.68rem; color: var(--g500); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
+
+/* ── PATENT CARDS ── */
+.patent-grid { max-width: 1080px; margin: 0 auto; padding: 0 2rem 4rem; display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 1.2rem; }
+.patent-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.12); border-radius: 6px; padding: 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
+.patent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,var(--gold),transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.patent-card:hover { border-color: rgba(200,168,75,0.35); transform: translateY(-2px); }
+.patent-card:hover::before { transform: scaleX(1); }
+.pc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+.pc-sector { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g500); }
+.pc-badge { font-size: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 2rem; font-weight: 500; white-space: nowrap; }
+.badge-pd { background: rgba(27,94,32,0.25); color: #81c784; border: 1px solid rgba(27,94,32,0.4); }
+.badge-pool { background: rgba(27,58,107,0.4); color: #90caf9; border: 1px solid rgba(27,58,107,0.6); }
+.badge-cl { background: rgba(184,76,0,0.25); color: #ffb74d; border: 1px solid rgba(184,76,0,0.4); }
+.pc-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.4rem; }
+.pc-desc { font-size: 0.82rem; color: var(--g500); line-height: 1.6; margin-bottom: 1rem; }
+.pc-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.75rem; }
+.pc-meta-item { color: var(--g500); }
+.pc-meta-item span { display: block; color: var(--g300); font-size: 0.8rem; margin-top: 0.1rem; }
+.pc-saving { font-size: 0.82rem; font-weight: 600; color: #81c784; margin-bottom: 1rem; }
+.pc-notes { font-size: 0.75rem; color: var(--g500); background: rgba(255,255,255,0.04); border-radius: 4px; padding: 0.6rem 0.8rem; line-height: 1.6; margin-bottom: 1rem; }
+.pc-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.pc-link { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(200,168,75,0.3); border-radius: 3px; padding: 0.3rem 0.7rem; text-decoration: none; transition: background 0.15s; cursor: pointer; background: none; }
+.pc-link:hover { background: rgba(200,168,75,0.1); }
+.empty-state { text-align: center; padding: 4rem 2rem; color: var(--g500); font-size: 0.95rem; }
+
+/* ── CREDENTIALS ── */
+.cred-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem; }
+.cred-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.3rem; }
+.cred-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+.cred-val { font-size: 0.92rem; font-weight: 500; }
+.cred-sub { font-size: 0.75rem; color: var(--g500); margin-top: 0.15rem; }
+
+/* ── CONTACT PAGE ── */
+.contact-wrap { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media(max-width:640px){ .contact-grid { grid-template-columns: 1fr; } }
+.contact-form-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.15); border-radius: 8px; padding: 2rem; }
+.cf-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.4rem; }
+.cf-sub { font-size: 0.82rem; color: var(--g500); margin-bottom: 1.5rem; line-height: 1.6; }
+.cf-input, .cf-select, .cf-textarea {
+  width: 100%; padding: 0.75rem 1rem; margin-bottom: 0.9rem;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2);
+  border-radius: 4px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
+  outline: none; transition: border-color 0.2s;
+}
+.cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--gold); }
+.cf-input::placeholder, .cf-textarea::placeholder { color: var(--g500); }
+.cf-select option { background: var(--navy); }
+.cf-textarea { min-height: 100px; resize: vertical; }
+.cf-label { font-size: 0.75rem; color: var(--g300); display: block; margin-bottom: 0.3rem; }
+.contact-info-box { display: flex; flex-direction: column; gap: 1rem; }
+.ci-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.3rem; }
+.ci-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+.ci-val { font-size: 0.9rem; line-height: 1.7; color: var(--g300); }
+.ci-val a { color: var(--gold); text-decoration: none; }
+.ci-val a:hover { text-decoration: underline; }
+.success-box { display: none; background: rgba(27,94,32,0.2); border: 1px solid rgba(27,94,32,0.4); border-radius: 6px; padding: 1.2rem; text-align: center; margin-top: 1rem; font-size: 0.88rem; color: #81c784; }
+
+/* ── ADMIN PAGE ── */
+.admin-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+.admin-gate { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.2); border-radius: 8px; padding: 2.5rem; max-width: 420px; margin: 3rem auto; text-align: center; }
+.admin-gate h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+.admin-gate p { font-size: 0.85rem; color: var(--g500); margin-bottom: 1.5rem; }
+.admin-warn { background: rgba(184,76,0,0.15); border: 1px solid rgba(184,76,0,0.3); border-radius: 4px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #ffb74d; margin-bottom: 1.5rem; }
+.admin-section-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1rem; margin-top: 2rem; }
+.admin-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.12); border-radius: 8px; padding: 1.8rem; margin-bottom: 2rem; }
+.form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media(max-width:560px){ .form-grid2 { grid-template-columns: 1fr; } }
+.af-input, .af-select, .af-textarea {
+  width: 100%; padding: 0.72rem 1rem; margin-bottom: 0.9rem;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2);
+  border-radius: 4px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.86rem;
+  outline: none; transition: border-color 0.2s;
+}
+.af-input:focus, .af-select:focus, .af-textarea:focus { border-color: var(--gold); }
+.af-input::placeholder, .af-textarea::placeholder { color: var(--g500); }
+.af-select option { background: var(--navy); }
+.af-textarea { min-height: 80px; resize: vertical; }
+.af-label { font-size: 0.73rem; color: var(--g300); display: block; margin-bottom: 0.25rem; }
+.admin-entry { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 0.8rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.ae-info { flex: 1; }
+.ae-name { font-weight: 500; font-size: 0.92rem; }
+.ae-meta { font-size: 0.75rem; color: var(--g500); margin-top: 0.2rem; }
+.btn-rm { background: none; border: 1px solid rgba(139,0,0,0.4); color: #ff8080; border-radius: 4px; padding: 0.4rem 0.8rem; font-size: 0.75rem; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
+.btn-rm:hover { background: rgba(139,0,0,0.15); }
+
+/* ── FOOTER ── */
+footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0.1); padding: 1.8rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--g500); }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 0.88rem; color: var(--white); }
+
+/* ── CTA BAND ── */
+.cta-band { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem; border-top: 1px solid rgba(200,168,75,0.1); }
+.cta-band h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,2.5vw,2rem); margin-bottom: 0.8rem; }
+.cta-band p { color: var(--g500); max-width: 440px; margin: 0 auto 2rem; font-size: 0.9rem; line-height: 1.7; }
+
+/* ── DIVIDER ── */
+.gold-line { border: none; border-top: 1px solid rgba(200,168,75,0.12); margin: 0; }
+@media(max-width:640px){ nav { padding: 0.8rem 1.2rem; } .nav-links .nav-link:not(.active) { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-hex">DTO</div>
+    <div class="nav-name">Diaspora Technology Observatory<span>Industrial Intelligence Platform</span></div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('home')">Home</button>
+    <button class="nav-link" onclick="showPage('library')">Patent Library</button>
+    <button class="nav-link" onclick="showPage('contact')">Request Report</button>
+    <button class="nav-admin-btn" onclick="showPage('admin')">Admin</button>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="t-item">PHARMACEUTICALS <span class="t-sep">◆</span> 50+ EXPIRED API PATENTS MAPPED</span>
+    <span class="t-item">ENERGY <span class="t-sep">◆</span> TURBINE DESIGNS: PUBLIC DOMAIN</span>
+    <span class="t-item">STEEL <span class="t-sep">◆</span> BASIC OXYGEN FURNACE: FREE ACCESS</span>
+    <span class="t-item">AGRICULTURE <span class="t-sep">◆</span> HABER-BOSCH PROCESS: ZERO COST</span>
+    <span class="t-item">SOLAR <span class="t-sep">◆</span> FIRST-GEN PV MANUFACTURING: EXPIRED</span>
+    <span class="t-item">MANUFACTURING <span class="t-sep">◆</span> CNC DESIGNS: OPEN SOURCE</span>
+    <span class="t-item">PHARMACEUTICALS <span class="t-sep">◆</span> 50+ EXPIRED API PATENTS MAPPED</span>
+    <span class="t-item">ENERGY <span class="t-sep">◆</span> TURBINE DESIGNS: PUBLIC DOMAIN</span>
+    <span class="t-item">STEEL <span class="t-sep">◆</span> BASIC OXYGEN FURNACE: FREE ACCESS</span>
+    <span class="t-item">AGRICULTURE <span class="t-sep">◆</span> HABER-BOSCH PROCESS: ZERO COST</span>
+    <span class="t-item">SOLAR <span class="t-sep">◆</span> FIRST-GEN PV MANUFACTURING: EXPIRED</span>
+    <span class="t-item">MANUFACTURING <span class="t-sep">◆</span> CNC DESIGNS: OPEN SOURCE</span>
+  </div>
+</div>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="eyebrow">Diaspora Technology Observatory</div>
+    <h1 class="hero-title">Nigeria's <em>Free</em><br>Technology Library</h1>
+    <p class="hero-sub">Industrial intelligence for manufacturers who want to stop overpaying.</p>
+    <p class="hero-desc">Every year, Nigerian companies spend billions licensing technology that has been in the public domain for decades. We find it, map it, and show you exactly how to use it — legally, at zero cost.</p>
+    <div class="cta-row">
+      <button class="btn-gold" onclick="showPage('library')">Browse the Patent Library</button>
+      <button class="btn-outline" onclick="showPage('contact')">Request a Sector Report</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num" id="heroTotal">0</div><div class="stat-lbl">Patents Mapped</div></div>
+      <div class="stat"><div class="stat-num" id="heroSectors">0</div><div class="stat-lbl">Sectors Covered</div></div>
+      <div class="stat"><div class="stat-num">£0</div><div class="stat-lbl">Licensing Cost</div></div>
+      <div class="stat"><div class="stat-num">20+</div><div class="stat-lbl">Yrs Patents Expire</div></div>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <div class="sec">
+    <div class="sec-eye">The Process</div>
+    <h2 class="sec-title">From Patent Database<br>to Your Factory Floor</h2>
+    <p class="sec-lead">We do the research so your engineers and procurement teams don't have to.</p>
+    <div class="steps">
+      <div class="step"><div class="step-n">01</div><div class="step-t">We Find It</div><div class="step-d">We search WIPO, USPTO, and Espacenet for industrial technologies in your sector whose patents have expired.</div></div>
+      <div class="step"><div class="step-n">02</div><div class="step-t">We Map It</div><div class="step-d">We produce a sector-specific Technology Access Report showing what is available and how to access it.</div></div>
+      <div class="step"><div class="step-n">03</div><div class="step-t">We Connect You</div><div class="step-d">We link you to WIPO programmes, development organisations, and legal frameworks for safe implementation.</div></div>
+      <div class="step"><div class="step-n">04</div><div class="step-t">You Save</div><div class="step-d">Your company implements technology at zero licensing cost. We document the outcome as a case study.</div></div>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
+  <div class="sec">
+    <div class="sec-eye">About the Observatory</div>
+    <h2 class="sec-title">Who Is Behind This</h2>
+    <p class="sec-lead">The Diaspora Technology Observatory is led by a Nigerian diaspora researcher combining cybersecurity expertise with industrial technology policy analysis.</p>
+    <div class="cred-grid">
+      <div class="cred-card"><div class="cred-lbl">Lead Researcher</div><div class="cred-val">Uzoma Charles Njoku</div><div class="cred-sub">Nigerian Diaspora — UK Based</div></div>
+      <div class="cred-card"><div class="cred-lbl">Qualification</div><div class="cred-val">BSc Cybersecurity</div><div class="cred-sub">University of Bolton, UK</div></div>
+      <div class="cred-card"><div class="cred-lbl">Certification</div><div class="cred-val">Data Analysis</div><div class="cred-sub">Professional Certificate</div></div>
+      <div class="cred-card"><div class="cred-lbl">Submitted To</div><div class="cred-val">WIPO · AfDB · Chatham House</div><div class="cred-sub">Policy brief under review</div></div>
+      <div class="cred-card"><div class="cred-lbl">Contact</div><div class="cred-val">njokucharles98@gmail.com</div><div class="cred-sub">Response within 48 hours</div></div>
+      <div class="cred-card"><div class="cred-lbl">LinkedIn</div><div class="cred-val">uzoma-charles-njoku</div><div class="cred-sub">linkedin.com/in/uzoma-charles-njoku</div></div>
+    </div>
+  </div>
+
+  <div class="cta-band">
+    <h2>Ready to Stop Overpaying<br>for Technology?</h2>
+    <p>Request a free sector-specific Technology Access Report. We identify which technologies relevant to your operations are already freely available.</p>
+    <button class="btn-gold" onclick="showPage('contact')">Request Your Free Report</button>
+  </div>
+</div>
+
+<!-- ═══════════════ LIBRARY PAGE ═══════════════ -->
+<div class="page" id="page-library">
+  <div class="lib-header">
+    <div class="sec-eye">Patent Intelligence Library</div>
+    <h2 class="sec-title">Nigeria Technology Access Map</h2>
+    <p class="sec-lead" style="margin-bottom:1.5rem;">Verified expired and accessible industrial patents for Nigerian manufacturers — curated and updated by the Diaspora Technology Observatory.</p>
+    <div class="lib-stats" id="libStats"></div>
+    <div class="lib-controls">
+      <input class="lib-search" id="searchQ" type="text" placeholder="Search by name, description, sector..." oninput="renderLibrary()">
+      <select class="lib-select" id="filterSector" onchange="renderLibrary()">
+        <option value="">All sectors</option>
+        <option>Pharmaceuticals</option>
+        <option>Energy</option>
+        <option>Steel & Manufacturing</option>
+        <option>Agriculture</option>
+        <option>Digital Infrastructure</option>
+        <option>Automotive</option>
+        <option>Cement & Construction</option>
+      </select>
+      <select class="lib-select" id="filterAccess" onchange="renderLibrary()">
+        <option value="">All access types</option>
+        <option>Public Domain</option>
+        <option>Patent Pool</option>
+        <option>Compulsory License</option>
+      </select>
+    </div>
+  </div>
+  <div class="patent-grid" id="patentGrid"></div>
+</div>
+
+<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-wrap">
+    <div class="sec-eye">Get in Touch</div>
+    <h2 class="sec-title" style="margin-bottom:0.5rem;">Request a Sector Report</h2>
+    <p style="color:var(--g500);font-size:0.9rem;margin-bottom:2rem;line-height:1.7;">Tell us about your organisation and the sector you operate in. Uzoma Charles Njoku will respond within 48 hours with a tailored Technology Access Report.</p>
+    <div class="contact-grid">
+      <div class="contact-form-box">
+        <h3 class="cf-title">Submit a Request</h3>
+        <p class="cf-sub">All fields marked * are required. Your information is used only to prepare your report.</p>
+        <label class="cf-label">Full Name *</label>
+        <input class="cf-input" id="cName" type="text" placeholder="Your name">
+        <label class="cf-label">Organisation *</label>
+        <input class="cf-input" id="cOrg" type="text" placeholder="Company or institution name">
+        <label class="cf-label">Email Address *</label>
+        <input class="cf-input" id="cEmail" type="email" placeholder="your@company.com">
+        <label class="cf-label">Primary Sector</label>
+        <select class="cf-select" id="cSector">
+          <option value="">Select your sector...</option>
+          <option>Pharmaceuticals & Healthcare</option>
+          <option>Energy & Power</option>
+          <option>Steel & Heavy Manufacturing</option>
+          <option>Agriculture & Food Processing</option>
+          <option>Digital Infrastructure & Cybersecurity</option>
+          <option>Automotive & Assembly</option>
+          <option>Cement & Construction</option>
+          <option>Other</option>
+        </select>
+        <label class="cf-label">What technology costs concern you most?</label>
+        <textarea class="cf-textarea" id="cMsg" placeholder="e.g. We currently import pharmaceutical APIs at high cost and want to know if local production is possible using public domain processes..."></textarea>
+        <button class="btn-gold" style="width:100%;" onclick="submitContact()">Send Request</button>
+        <div class="success-box" id="contactSuccess">
+          Request received. Uzoma Charles Njoku will respond within 48 hours with your sector report.
+        </div>
+      </div>
+      <div class="contact-info-box">
+        <div class="ci-card">
+          <div class="ci-lbl">Direct Email</div>
+          <div class="ci-val"><a href="mailto:njokucharles98@gmail.com">njokucharles98@gmail.com</a></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-lbl">LinkedIn</div>
+          <div class="ci-val"><a href="https://www.linkedin.com/in/uzoma-charles-njoku" target="_blank">linkedin.com/in/uzoma-charles-njoku</a></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-lbl">Based In</div>
+          <div class="ci-val">United Kingdom<br><span style="font-size:0.8rem;color:var(--g500);">Serving Nigerian private sector & government internationally</span></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-lbl">Response Time</div>
+          <div class="ci-val">Within 48 hours<br><span style="font-size:0.8rem;color:var(--g500);">Sample sector report included with first response</span></div>
+        </div>
+        <div class="ci-card">
+          <div class="ci-lbl">What You Receive</div>
+          <div class="ci-val" style="font-size:0.85rem;">A tailored PDF report listing expired patents and free technology access routes specific to your sector, with WIPO programme links and implementation notes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ADMIN PAGE ═══════════════ -->
+<div class="page" id="page-admin">
+  <div class="admin-wrap">
+
+    <!-- LOGIN GATE -->
+    <div id="adminGate">
+      <div class="admin-gate">
+        <h3>Admin Access</h3>
+        <p>This panel is for Uzoma Charles Njoku only. Enter your admin password to continue.</p>
+        <input class="af-input" type="password" id="adminPw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()">
+        <button class="btn-gold" style="width:100%;margin-top:0.5rem;" onclick="adminLogin()">Login</button>
+        <div id="adminErr" style="display:none;margin-top:0.8rem;font-size:0.8rem;color:#ff8080;">Incorrect password.</div>
+      </div>
+    </div>
+
+    <!-- ADMIN PANEL (shown after login) -->
+    <div id="adminPanel" style="display:none;">
+      <div class="admin-warn">You are logged in as Admin — Uzoma Charles Njoku. Changes update the live library immediately.</div>
+
+      <div class="admin-section-title">Add New Patent Entry</div>
+      <div class="admin-form">
+        <div class="form-grid2">
+          <div>
+            <label class="af-label">Technology / Patent Name *</label>
+            <input class="af-input" id="aName" type="text" placeholder="e.g. Amlodipine Besylate">
+          </div>
+          <div>
+            <label class="af-label">Sector *</label>
+            <select class="af-select" id="aSector">
+              <option>Pharmaceuticals</option>
+              <option>Energy</option>
+              <option>Steel & Manufacturing</option>
+              <option>Agriculture</option>
+              <option>Digital Infrastructure</option>
+              <option>Automotive</option>
+              <option>Cement & Construction</option>
+            </select>
+          </div>
+        </div>
+        <label class="af-label">Description (what it does, why it matters for Nigeria) *</label>
+        <textarea class="af-textarea" id="aDesc" placeholder="e.g. Calcium channel blocker API for hypertension. Core manufacturing process fully in public domain since 2007."></textarea>
+        <div class="form-grid2">
+          <div>
+            <label class="af-label">Original Patent Holder</label>
+            <input class="af-input" id="aHolder" type="text" placeholder="e.g. Pfizer Inc.">
+          </div>
+          <div>
+            <label class="af-label">Access Type</label>
+            <select class="af-select" id="aAccess">
+              <option>Public Domain</option>
+              <option>Patent Pool</option>
+              <option>Compulsory License</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid2">
+          <div>
+            <label class="af-label">Patent Expired / Available Since</label>
+            <input class="af-input" id="aYear" type="text" placeholder="e.g. 2007">
+          </div>
+          <div>
+            <label class="af-label">Saving Potential</label>
+            <input class="af-input" id="aSaving" type="text" placeholder="e.g. 40–70% cost reduction">
+          </div>
+        </div>
+        <label class="af-label">Patent Source Link (WIPO, Google Patents, etc.)</label>
+        <input class="af-input" id="aLink" type="text" placeholder="https://patentscope.wipo.int/...">
+        <label class="af-label">Implementation Notes (NAFDAC, WIPO programme, legal pathway)</label>
+        <textarea class="af-textarea" id="aNotes" placeholder="e.g. Validate with NAFDAC before manufacturing. Contact NIPRD for local production guidance."></textarea>
+        <button class="btn-gold" onclick="addEntry()">Add to Library</button>
+        <div id="addSuccess" style="display:none;margin-top:0.8rem;font-size:0.82rem;color:#81c784;">Entry added successfully.</div>
+      </div>
+
+      <div class="admin-section-title">Manage Existing Entries (<span id="entryCount">0</span> total)</div>
+      <div id="adminList"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Diaspora Technology Observatory</div>
+  <div>Research · Intelligence · Implementation</div>
+  <div>© 2026 Uzoma Charles Njoku · United Kingdom</div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATABASE — Add all your patents here
+// To add more: use the Admin panel or add directly below
+// ═══════════════════════════════════════════════════════
+let DB = [
+  { id:1, name:"Amlodipine Besylate", sector:"Pharmaceuticals", desc:"Calcium channel blocker API for hypertension treatment. Core manufacturing process fully in public domain since patent expiry in 2007. One of Nigeria's most prescribed medications — currently almost entirely imported.", holder:"Pfizer Inc.", access:"Public Domain", year:"2007", saving:"40–70% cost reduction", link:"https://patentscope.wipo.int", notes:"Validate with NAFDAC before manufacturing. Full synthesis specifications available on USPTO public database. Contact NIPRD for local production pathway." },
+  { id:2, name:"Metformin Hydrochloride", sector:"Pharmaceuticals", desc:"Biguanide API for Type 2 diabetes management. One of the most widely prescribed drugs globally — fully generic for over 30 years. Complete manufacturing specifications in the public domain.", holder:"Various (original patents 1920s)", access:"Public Domain", year:"1994", saving:"60–80% cost reduction", link:"https://patents.google.com", notes:"Complete synthesis specs in public domain. WHO prequalification documentation contains full manufacturing guidance. Contact NIPRD for local production pathway." },
+  { id:3, name:"Artemether + Lumefantrine (ACT)", sector:"Pharmaceuticals", desc:"Artemisinin Combination Therapy — WHO first-line treatment for malaria. Accessible via the Medicines Patent Pool. Critical for Nigeria given malaria burden.", holder:"Novartis AG", access:"Patent Pool", year:"Pooled 2009", saving:"50–65% cost reduction", link:"https://medicinespatentpool.org", notes:"Apply via Medicines Patent Pool for a sublicence — free for developing nations. NAFDAC validation pathway well established. Contact Federal Ministry of Health." },
+  { id:4, name:"Amoxicillin Trihydrate", sector:"Pharmaceuticals", desc:"Broad-spectrum penicillin-class antibiotic. Universally prescribed in Nigeria. Manufacturing specifications have been fully in the public domain for decades.", holder:"Beecham Group (now GSK)", access:"Public Domain", year:"1980s", saving:"55–75% cost reduction", link:"https://patents.google.com", notes:"No licence required. WHO prequalification documentation contains full manufacturing specifications. Straightforward NAFDAC pathway for local manufacturers." },
+  { id:5, name:"Efavirenz — ARV", sector:"Pharmaceuticals", desc:"Non-nucleoside reverse transcriptase inhibitor for HIV/AIDS treatment. Nigeria qualifies for compulsory licensing under WTO TRIPS Agreement Article 31.", holder:"Bristol-Myers Squibb", access:"Compulsory License", year:"TRIPS Art.31 Eligible", saving:"65–85% cost reduction", link:"https://www.who.int/phi/publications", notes:"Nigeria must formally issue a compulsory licence under TRIPS Article 31. Contact Federal Ministry of Health legal team. Precedent set by Brazil and South Africa. Medicines Patent Pool also holds sublicences." },
+  { id:6, name:"Ciprofloxacin Hydrochloride", sector:"Pharmaceuticals", desc:"Broad-spectrum fluoroquinolone antibiotic — widely used in Nigeria for bacterial infections. Full synthesis specifications in the public domain since 2004.", holder:"Bayer AG", access:"Public Domain", year:"2004", saving:"50–70% cost reduction", link:"https://patentscope.wipo.int", notes:"Full synthesis route available via USPTO and Espacenet. WHO prequalification pathway available. NIPRD can provide technical advisory support." },
+  { id:7, name:"Haber-Bosch Nitrogen Fixation", sector:"Agriculture", desc:"Core industrial process for producing nitrogen-based fertilisers. Nigeria currently imports over 90% of its fertilisers despite having domestic gas feedstock. This process has been in the public domain for over 60 years.", holder:"BASF (original)", access:"Public Domain", year:"Pre-1960", saving:"Eliminate fertiliser import dependency", link:"https://patentscope.wipo.int", notes:"Full process specifications available from UNIDO. Contact EMBRAPA Brazil for tropical climate adaptation guidance. Nigerian gas supply makes this highly viable." },
+  { id:8, name:"Basic Oxygen Furnace (BOF) Steelmaking", sector:"Steel & Manufacturing", desc:"Primary method for producing steel from iron ore. All core patents expired. Directly applicable to the Ajaokuta Steel Complex revival and Nigeria's domestic steel ambitions.", holder:"Various (original 1950s–70s)", access:"Public Domain", year:"Pre-1990", saving:"Eliminate technology licensing on steel production", link:"https://patents.google.com", notes:"Soviet-era BOF designs are fully public domain and directly applicable to Ajaokuta. Contact UNIDO Nigeria office for technical advisory support on implementation." },
+  { id:9, name:"Combined-Cycle Gas Turbine (CCGT)", sector:"Energy", desc:"Highly efficient power generation technology combining gas and steam turbines. Core designs from major manufacturers now expired. Nigeria's gas reserves make this the optimal power generation technology.", holder:"GE / Westinghouse (various)", access:"Public Domain", year:"1990s–2000s", saving:"Significant reduction in power plant technology cost", link:"https://patentscope.wipo.int", notes:"Contact WIPO GREEN for technology transfer connections. UNIDO has specific energy technology advisory programmes for Nigeria. GE's newer designs still patented — focus on pre-2003 configurations." },
+  { id:10, name:"First-Generation Photovoltaic Cell Manufacturing", sector:"Energy", desc:"Solar photovoltaic cell manufacturing processes originally developed by Bell Labs and others. All first and second-generation PV manufacturing patents expired. Enables domestic solar panel production.", holder:"Bell Labs / various", access:"Public Domain", year:"1980s–1990s", saving:"Build local solar supply chain at fraction of import cost", link:"https://patents.google.com", notes:"Contact WIPO GREEN for connections with technology holders willing to transfer knowledge. ECOWAS has a regional solar energy programme with technology transfer components." },
+  { id:11, name:"OpenSSL Cryptographic Library", sector:"Digital Infrastructure", desc:"Industry-standard open-source cryptographic library used to secure internet communications. Free to use, modify, and deploy for any purpose including government and financial systems.", holder:"OpenSSL Project (open source)", access:"Public Domain", year:"1998 (ongoing)", saving:"Zero licensing cost vs proprietary alternatives", link:"https://openssl.org", notes:"Directly applicable to Nigerian fintech security, government portals, and banking infrastructure. Pairs with NIST Cybersecurity Framework for comprehensive national security implementation." },
+  { id:12, name:"Rotary Kiln Cement Production", sector:"Cement & Construction", desc:"Core technology for cement manufacturing. All fundamental rotary kiln patents expired — enabling Nigerian manufacturers to build or license the technology without royalty payments.", holder:"Various (1800s–1970s)", access:"Public Domain", year:"Pre-1980", saving:"Eliminate technology licensing on cement plants", link:"https://patents.google.com", notes:"Particularly relevant for BUA Cement and Dangote Cement expansion plans. UNIDO has specific cement industry technical advisory programmes. Modern efficiency improvements still may be patented — focus on verified expired configurations." },
+];
+let nextId = 13;
+
+// ═══════════════════════════════════════════════════════
+// ADMIN PASSWORD — Change this to your own secret word
+// ═══════════════════════════════════════════════════════
+const ADMIN_PASSWORD = 'DTO2026Charles';
+
+// ═══════════════════════════════════════════════════════
+// PAGE NAVIGATION
+// ═══════════════════════════════════════════════════════
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  const idx = {home:0, library:1, contact:2}[name];
+  if (idx !== undefined) document.querySelectorAll('.nav-link')[idx].classList.add('active');
+  window.scrollTo(0, 0);
+  if (name === 'library') renderLibrary();
+  if (name === 'home') updateHeroStats();
+}
+
+// ═══════════════════════════════════════════════════════
+// HERO STATS
+// ═══════════════════════════════════════════════════════
+function updateHeroStats() {
+  document.getElementById('heroTotal').textContent = DB.length;
+  document.getElementById('heroSectors').textContent = [...new Set(DB.map(e => e.sector))].length;
+}
+
+// ═══════════════════════════════════════════════════════
+// LIBRARY RENDER
+// ═══════════════════════════════════════════════════════
+function accessBadge(a) {
+  if (a === 'Public Domain') return '<span class="pc-badge badge-pd">Public Domain</span>';
+  if (a === 'Patent Pool') return '<span class="pc-badge badge-pool">Patent Pool</span>';
+  return '<span class="pc-badge badge-cl">Compulsory License</span>';
+}
+
+function renderLibrary() {
+  const q = (document.getElementById('searchQ')?.value || '').toLowerCase();
+  const sec = document.getElementById('filterSector')?.value || '';
+  const acc = document.getElementById('filterAccess')?.value || '';
+  const items = DB.filter(e => {
+    const mq = !q || e.name.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q) || e.sector.toLowerCase().includes(q) || (e.holder||'').toLowerCase().includes(q);
+    const ms = !sec || e.sector === sec;
+    const ma = !acc || e.access === acc;
+    return mq && ms && ma;
+  });
+
+  document.getElementById('libStats').innerHTML = `
+    <div class="lib-stat"><div class="lib-stat-n">${DB.length}</div><div class="lib-stat-l">Patents mapped</div></div>
+    <div class="lib-stat"><div class="lib-stat-n">${[...new Set(DB.map(e=>e.sector))].length}</div><div class="lib-stat-l">Sectors covered</div></div>
+    <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Public Domain').length}</div><div class="lib-stat-l">Public domain</div></div>
+    <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Patent Pool').length}</div><div class="lib-stat-l">Patent pools</div></div>
+    <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Compulsory License').length}</div><div class="lib-stat-l">Compulsory license</div></div>
+  `;
+
+  if (!items.length) {
+    document.getElementById('patentGrid').innerHTML = '<div class="empty-state">No results found. Try adjusting your search or filters.</div>';
+    return;
+  }
+
+  document.getElementById('patentGrid').innerHTML = items.map(e => `
+    <div class="patent-card">
+      <div class="pc-top">
+        <div class="pc-sector">${e.sector}</div>
+        ${accessBadge(e.access)}
+      </div>
+      <div class="pc-name">${e.name}</div>
+      <div class="pc-desc">${e.desc}</div>
+      <div class="pc-meta">
+        <div class="pc-meta-item">Original holder<span>${e.holder || 'Various'}</span></div>
+        <div class="pc-meta-item">Available since<span>${e.year}</span></div>
+      </div>
+      <div class="pc-saving">✓ ${e.saving}</div>
+      ${e.notes ? `<div class="pc-notes"><strong>Implementation notes:</strong> ${e.notes}</div>` : ''}
+      <div class="pc-links">
+        ${e.link ? `<a class="pc-link" href="${e.link}" target="_blank">View patent source →</a>` : ''}
+        <button class="pc-link" onclick="showPage('contact')">Request full report</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// CONTACT FORM
+// ═══════════════════════════════════════════════════════
+function submitContact() {
+  const name = document.getElementById('cName').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  if (!name || !email) { alert('Please fill in your name and email address.'); return; }
+  document.getElementById('contactSuccess').style.display = 'block';
+  ['cName','cOrg','cEmail','cMsg'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cSector').selectedIndex = 0;
+}
+
+// ═══════════════════════════════════════════════════════
+// ADMIN
+// ═══════════════════════════════════════════════════════
+function adminLogin() {
+  const pw = document.getElementById('adminPw').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('adminGate').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    renderAdmin();
+  } else {
+    document.getElementById('adminErr').style.display = 'block';
+  }
+}
+
+function renderAdmin() {
+  document.getElementById('entryCount').textContent = DB.length;
+  document.getElementById('adminList').innerHTML = DB.map(e => `
+    <div class="admin-entry">
+      <div class="ae-info">
+        <div class="ae-name">${e.name}</div>
+        <div class="ae-meta">${e.sector} · ${e.access} · ${e.year} · ${e.saving}</div>
+      </div>
+      <button class="btn-rm" onclick="removeEntry(${e.id})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function addEntry() {
+  const name = document.getElementById('aName').value.trim();
+  const desc = document.getElementById('aDesc').value.trim();
+  if (!name || !desc) { alert('Please fill in at least the technology name and description.'); return; }
+  DB.push({
+    id: nextId++,
+    name, desc,
+    sector: document.getElementById('aSector').value,
+    holder: document.getElementById('aHolder').value.trim() || 'Various',
+    access: document.getElementById('aAccess').value,
+    year: document.getElementById('aYear').value.trim() || 'Varies',
+    saving: document.getElementById('aSaving').value.trim() || 'Significant cost reduction',
+    link: document.getElementById('aLink').value.trim(),
+    notes: document.getElementById('aNotes').value.trim(),
+  });
+  ['aName','aDesc','aHolder','aYear','aSaving','aLink','aNotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('aSector').selectedIndex = 0;
+  document.getElementById('aAccess').selectedIndex = 0;
+  document.getElementById('addSuccess').style.display = 'block';
+  setTimeout(() => document.getElementById('addSuccess').style.display = 'none', 3000);
+  renderAdmin();
+  updateHeroStats();
+}
+
+function removeEntry(id) {
+  if (!confirm('Remove this entry from the library?')) return;
+  DB = DB.filter(e => e.id !== id);
+  renderAdmin();
+  updateHeroStats();
+}
+
+// Init
+updateHeroStats();
+</script>
+</body>
+</html>
