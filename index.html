@@ -24,7 +24,7 @@ body::before {
     repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,168,75,0.02) 60px, rgba(200,168,75,0.02) 61px),
     repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,168,75,0.02) 60px, rgba(200,168,75,0.02) 61px);
 }
-
+ 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -55,7 +55,7 @@ nav {
   font-family: 'DM Mono', monospace; letter-spacing: 0.08em; transition: all 0.15s;
 }
 .nav-admin-btn:hover { color: var(--gold); border-color: rgba(200,168,75,0.4); }
-
+ 
 /* ── TICKER ── */
 .ticker {
   position: relative; z-index: 1; margin-top: 64px;
@@ -67,11 +67,11 @@ nav {
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .t-item { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; color: var(--gold); }
 .t-sep { color: rgba(200,168,75,0.35); }
-
+ 
 /* ── PAGE SYSTEM ── */
 .page { display: none; position: relative; z-index: 1; }
 .page.active { display: block; }
-
+ 
 /* ── HERO ── */
 .hero {
   min-height: 90vh; display: flex; flex-direction: column;
@@ -96,13 +96,13 @@ h1.hero-title em { font-style: italic; color: var(--gold); }
 .hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(200,168,75,0.12); flex-wrap: wrap; justify-content: center; }
 .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
 .stat-lbl { font-size: 0.7rem; color: var(--g500); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
-
+ 
 /* ── SECTION ── */
 .sec { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
 .sec-eye { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
 .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
 .sec-lead { color: var(--g300); font-size: 1rem; line-height: 1.75; max-width: 580px; margin-bottom: 2.5rem; }
-
+ 
 /* ── HOW IT WORKS ── */
 .steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.12); border-radius: 6px; overflow: hidden; }
 .step { padding: 2.2rem 1.8rem; border-right: 1px solid rgba(200,168,75,0.1); text-align: center; }
@@ -110,7 +110,7 @@ h1.hero-title em { font-style: italic; color: var(--gold); }
 .step-n { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(200,168,75,0.1); line-height: 1; }
 .step-t { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin: 0.4rem 0; }
 .step-d { font-size: 0.82rem; color: var(--g500); line-height: 1.6; }
-
+ 
 /* ── LIBRARY PAGE ── */
 .lib-header { max-width: 1080px; margin: 0 auto; padding: 3rem 2rem 1rem; }
 .lib-controls { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
@@ -123,7 +123,7 @@ h1.hero-title em { font-style: italic; color: var(--gold); }
 .lib-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1rem; text-align: center; }
 .lib-stat-n { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); }
 .lib-stat-l { font-size: 0.68rem; color: var(--g500); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
-
+ 
 /* ── PATENT CARDS ── */
 .patent-grid { max-width: 1080px; margin: 0 auto; padding: 0 2rem 4rem; display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 1.2rem; }
 .patent-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.12); border-radius: 6px; padding: 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
@@ -147,14 +147,14 @@ h1.hero-title em { font-style: italic; color: var(--gold); }
 .pc-link { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(200,168,75,0.3); border-radius: 3px; padding: 0.3rem 0.7rem; text-decoration: none; transition: background 0.15s; cursor: pointer; background: none; }
 .pc-link:hover { background: rgba(200,168,75,0.1); }
 .empty-state { text-align: center; padding: 4rem 2rem; color: var(--g500); font-size: 0.95rem; }
-
+ 
 /* ── CREDENTIALS ── */
 .cred-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem; }
 .cred-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.3rem; }
 .cred-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
 .cred-val { font-size: 0.92rem; font-weight: 500; }
 .cred-sub { font-size: 0.75rem; color: var(--g500); margin-top: 0.15rem; }
-
+ 
 /* ── CONTACT PAGE ── */
 .contact-wrap { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -180,7 +180,7 @@ h1.hero-title em { font-style: italic; color: var(--gold); }
 .ci-val a { color: var(--gold); text-decoration: none; }
 .ci-val a:hover { text-decoration: underline; }
 .success-box { display: none; background: rgba(27,94,32,0.2); border: 1px solid rgba(27,94,32,0.4); border-radius: 6px; padding: 1.2rem; text-align: center; margin-top: 1rem; font-size: 0.88rem; color: #81c784; }
-
+ 
 /* ── ADMIN PAGE ── */
 .admin-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 5rem; }
 .admin-gate { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.2); border-radius: 8px; padding: 2.5rem; max-width: 420px; margin: 3rem auto; text-align: center; }
@@ -208,23 +208,23 @@ h1.hero-title em { font-style: italic; color: var(--gold); }
 .ae-meta { font-size: 0.75rem; color: var(--g500); margin-top: 0.2rem; }
 .btn-rm { background: none; border: 1px solid rgba(139,0,0,0.4); color: #ff8080; border-radius: 4px; padding: 0.4rem 0.8rem; font-size: 0.75rem; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
 .btn-rm:hover { background: rgba(139,0,0,0.15); }
-
+ 
 /* ── FOOTER ── */
 footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0.1); padding: 1.8rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--g500); }
 .footer-logo { font-family: 'Playfair Display', serif; font-size: 0.88rem; color: var(--white); }
-
+ 
 /* ── CTA BAND ── */
 .cta-band { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem; border-top: 1px solid rgba(200,168,75,0.1); }
 .cta-band h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,2.5vw,2rem); margin-bottom: 0.8rem; }
 .cta-band p { color: var(--g500); max-width: 440px; margin: 0 auto 2rem; font-size: 0.9rem; line-height: 1.7; }
-
+ 
 /* ── DIVIDER ── */
 .gold-line { border: none; border-top: 1px solid rgba(200,168,75,0.12); margin: 0; }
 @media(max-width:640px){ nav { padding: 0.8rem 1.2rem; } .nav-links .nav-link:not(.active) { display: none; } }
 </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <div class="nav-logo" onclick="showPage('home')">
@@ -238,7 +238,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
     <button class="nav-admin-btn" onclick="showPage('admin')">Admin</button>
   </div>
 </nav>
-
+ 
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
@@ -256,7 +256,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
     <span class="t-item">MANUFACTURING <span class="t-sep">◆</span> CNC DESIGNS: OPEN SOURCE</span>
   </div>
 </div>
-
+ 
 <!-- ═══════════════ HOME PAGE ═══════════════ -->
 <div class="page active" id="page-home">
   <div class="hero">
@@ -275,9 +275,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
       <div class="stat"><div class="stat-num">20+</div><div class="stat-lbl">Yrs Patents Expire</div></div>
     </div>
   </div>
-
+ 
   <hr class="gold-line">
-
+ 
   <div class="sec">
     <div class="sec-eye">The Process</div>
     <h2 class="sec-title">From Patent Database<br>to Your Factory Floor</h2>
@@ -289,9 +289,9 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
       <div class="step"><div class="step-n">04</div><div class="step-t">You Save</div><div class="step-d">Your company implements technology at zero licensing cost. We document the outcome as a case study.</div></div>
     </div>
   </div>
-
+ 
   <hr class="gold-line">
-
+ 
   <div class="sec">
     <div class="sec-eye">About the Observatory</div>
     <h2 class="sec-title">Who Is Behind This</h2>
@@ -305,14 +305,14 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
       <div class="cred-card"><div class="cred-lbl">LinkedIn</div><div class="cred-val">uzoma-charles-njoku</div><div class="cred-sub">linkedin.com/in/uzoma-charles-njoku</div></div>
     </div>
   </div>
-
+ 
   <div class="cta-band">
     <h2>Ready to Stop Overpaying<br>for Technology?</h2>
     <p>Request a free sector-specific Technology Access Report. We identify which technologies relevant to your operations are already freely available.</p>
     <button class="btn-gold" onclick="showPage('contact')">Request Your Free Report</button>
   </div>
 </div>
-
+ 
 <!-- ═══════════════ LIBRARY PAGE ═══════════════ -->
 <div class="page" id="page-library">
   <div class="lib-header">
@@ -342,7 +342,7 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
   </div>
   <div class="patent-grid" id="patentGrid"></div>
 </div>
-
+ 
 <!-- ═══════════════ CONTACT PAGE ═══════════════ -->
 <div class="page" id="page-contact">
   <div class="contact-wrap">
@@ -403,11 +403,11 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
     </div>
   </div>
 </div>
-
+ 
 <!-- ═══════════════ ADMIN PAGE ═══════════════ -->
 <div class="page" id="page-admin">
   <div class="admin-wrap">
-
+ 
     <!-- LOGIN GATE -->
     <div id="adminGate">
       <div class="admin-gate">
@@ -418,11 +418,11 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
         <div id="adminErr" style="display:none;margin-top:0.8rem;font-size:0.8rem;color:#ff8080;">Incorrect password.</div>
       </div>
     </div>
-
+ 
     <!-- ADMIN PANEL (shown after login) -->
     <div id="adminPanel" style="display:none;">
       <div class="admin-warn">You are logged in as Admin — Uzoma Charles Njoku. Changes update the live library immediately.</div>
-
+ 
       <div class="admin-section-title">Add New Patent Entry</div>
       <div class="admin-form">
         <div class="form-grid2">
@@ -476,21 +476,21 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
         <button class="btn-gold" onclick="addEntry()">Add to Library</button>
         <div id="addSuccess" style="display:none;margin-top:0.8rem;font-size:0.82rem;color:#81c784;">Entry added successfully.</div>
       </div>
-
+ 
       <div class="admin-section-title">Manage Existing Entries (<span id="entryCount">0</span> total)</div>
       <div id="adminList"></div>
     </div>
-
+ 
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Diaspora Technology Observatory</div>
   <div>Research · Intelligence · Implementation</div>
   <div>© 2026 Uzoma Charles Njoku · United Kingdom</div>
 </footer>
-
+ 
 <script>
 // ═══════════════════════════════════════════════════════
 // DATABASE — Add all your patents here
@@ -509,14 +509,22 @@ let DB = [
   { id:10, name:"First-Generation Photovoltaic Cell Manufacturing", sector:"Energy", desc:"Solar photovoltaic cell manufacturing processes originally developed by Bell Labs and others. All first and second-generation PV manufacturing patents expired. Enables domestic solar panel production.", holder:"Bell Labs / various", access:"Public Domain", year:"1980s–1990s", saving:"Build local solar supply chain at fraction of import cost", link:"https://patents.google.com", notes:"Contact WIPO GREEN for connections with technology holders willing to transfer knowledge. ECOWAS has a regional solar energy programme with technology transfer components." },
   { id:11, name:"OpenSSL Cryptographic Library", sector:"Digital Infrastructure", desc:"Industry-standard open-source cryptographic library used to secure internet communications. Free to use, modify, and deploy for any purpose including government and financial systems.", holder:"OpenSSL Project (open source)", access:"Public Domain", year:"1998 (ongoing)", saving:"Zero licensing cost vs proprietary alternatives", link:"https://openssl.org", notes:"Directly applicable to Nigerian fintech security, government portals, and banking infrastructure. Pairs with NIST Cybersecurity Framework for comprehensive national security implementation." },
   { id:12, name:"Rotary Kiln Cement Production", sector:"Cement & Construction", desc:"Core technology for cement manufacturing. All fundamental rotary kiln patents expired — enabling Nigerian manufacturers to build or license the technology without royalty payments.", holder:"Various (1800s–1970s)", access:"Public Domain", year:"Pre-1980", saving:"Eliminate technology licensing on cement plants", link:"https://patents.google.com", notes:"Particularly relevant for BUA Cement and Dangote Cement expansion plans. UNIDO has specific cement industry technical advisory programmes. Modern efficiency improvements still may be patented — focus on verified expired configurations." },
+  { id:13, name:"Sugarcane Ethanol & Sugar Refining Process", sector:"Agriculture", desc:"Industrial sugar refining and ethanol production from sugarcane. Core process patents expired. Nigeria imports over 1.7 million metric tonnes of sugar annually — all producible domestically using freely available processing technology. Directly relevant to BUA Sugar.", holder:"Various / EMBRAPA Brazil / Dedini Industries", access:"Public Domain", year:"Pre-1995", saving:"Eliminate sugar import dependency — save $800M+ annually", link:"https://patentscope.wipo.int", notes:"EMBRAPA Brazil shares sugarcane technology with Africa freely — contact embrapa.br/international. BUA Sugar Refinery in Port Harcourt is the primary domestic application. UNIDO has industrial sugar processing advisory programmes for developing nations." },
+  { id:14, name:"Edible Oil Refining — Palm & Soybean", sector:"Agriculture", desc:"Industrial processes for refining palm oil and soybean oil for food production. All core refining process patents expired. Nigeria is one of the world's largest palm oil producers yet imports refined edible oil. Directly applicable to BUA Foods and Dangote Foods divisions.", holder:"Alfa Laval / Lurgi (original patents)", access:"Public Domain", year:"Pre-1990", saving:"40–60% reduction in edible oil production technology cost", link:"https://patents.google.com", notes:"Full refining process specifications in public domain. Contact UNIDO Agro-Industries division. FAO TECA platform has validated edible oil processing technologies for developing nations. Strong NAFDAC pathway for food-grade production." },
+  { id:15, name:"Flour Milling — Roller Mill Process", sector:"Agriculture", desc:"Industrial wheat and grain flour milling using roller mill technology. Core machinery and process patents fully expired. Nigeria imports approximately $2 billion worth of wheat annually — milling technology is freely available for domestic processing operations.", holder:"Bühler Group / various (original patents)", access:"Public Domain", year:"Pre-1980", saving:"Reduce wheat processing technology acquisition cost by 50–70%", link:"https://patents.google.com", notes:"Bühler AG foundational roller mill patents fully expired. Full machinery specs via UNIDO industrial database. Dangote Flour Mills is a primary application. Contact Swiss Import Promotion Programme (SIPPO) for technology access support." },
+  { id:16, name:"Fluid Catalytic Cracking (FCC) — Petroleum Refining", sector:"Steel & Manufacturing", desc:"Core petroleum refining process converting crude oil fractions into petrol, diesel, and other products. Fundamental FCC patents from the 1940s–1970s are fully in the public domain. Nigeria exports crude and imports refined products — this technology gap costs billions annually.", holder:"Standard Oil / UOP (original 1940s–70s patents)", access:"Public Domain", year:"Pre-1980", saving:"Eliminate dependence on imported refined petroleum products", link:"https://patents.google.com", notes:"Foundational FCC process designs are public domain. Newer catalyst formulations may still be patented — focus on base process designs. Directly applicable to Dangote Refinery supply chain and NNPC expansion. Contact UNIDO Energy division." },
+  { id:17, name:"Internal Combustion Engine — 4-Stroke Assembly", sector:"Automotive", desc:"Fundamental four-stroke internal combustion engine design and assembly specifications. All core patents expired over 70 years ago. Complete manufacturing specifications freely available — applicable to Innoson's existing petrol and diesel vehicle manufacturing lines.", holder:"Otto / Benz / various (original 1800s–1950s)", access:"Public Domain", year:"Pre-1950", saving:"Zero licensing cost on core engine assembly technology", link:"https://patents.google.com", notes:"All foundational ICE patents fully expired. Manufacturing specs available via SAE International open publications. Directly applicable to Innoson Vehicle Manufacturing existing production lines." },
+  { id:18, name:"Compressed Natural Gas (CNG) Vehicle Conversion", sector:"Automotive", desc:"CNG fuel system components and vehicle conversion technology. Core patents from the 1980s–early 2000s now expired. Nigeria has significant natural gas reserves making CNG vehicles highly cost-effective. Directly applicable to Innoson's announced 2026 CNG expansion programme.", holder:"Various — Italian FIAT / New Zealand CNG industry (1980s–90s)", access:"Public Domain", year:"Pre-2005", saving:"Reduce CNG vehicle technology licensing cost by 60–80%", link:"https://patentscope.wipo.int", notes:"Italian CNG conversion system patents from 1980s–90s fully expired. Contact WIPO GREEN for technology transfer connections. Nigerian gas reserves make CNG production highly viable domestically. Directly relevant to Innoson's 2026 CNG expansion." },
+  { id:19, name:"Lead-Acid Battery Manufacturing", sector:"Automotive", desc:"Industrial lead-acid battery production technology. Core manufacturing processes fully in the public domain. Lead-acid batteries power every conventional vehicle in Nigeria — currently almost entirely imported. Domestic manufacturing would reduce vehicle running costs significantly.", holder:"Planté / Faure (original), various manufacturers", access:"Public Domain", year:"Pre-1970", saving:"Build domestic battery supply chain — reduce import dependency", link:"https://patents.google.com", notes:"Foundational lead-acid battery manufacturing specifications fully public domain. Contact UNIDO for industrial battery manufacturing advisory. Applicable to Innoson vehicle supply chain and broader automotive aftermarket." },
+  { id:20, name:"Tomato Paste & Food Preservation Processing", sector:"Agriculture", desc:"Industrial tomato processing, concentration, and preservation technology. Core canning and paste production patents fully expired. Nigeria produces 1.8 million tonnes of tomatoes annually but loses 40–50% to post-harvest spoilage due to lack of processing infrastructure. Directly relevant to Dangote Tomato Processing.", holder:"Various — Italian and US canning industry (original patents)", access:"Public Domain", year:"Pre-1980", saving:"Capture $500M+ in value currently lost to post-harvest spoilage", link:"https://patents.google.com", notes:"Full tomato processing and canning specifications in public domain. FAO TECA has validated preservation technologies for developing nations. Dangote Tomato Processing Plant in Kano is primary application. Contact UNIDO Agro-Industries for technical advisory support." },
 ];
-let nextId = 13;
-
+let nextId = 21;
+ 
 // ═══════════════════════════════════════════════════════
 // ADMIN PASSWORD — Change this to your own secret word
 // ═══════════════════════════════════════════════════════
 const ADMIN_PASSWORD = 'DTO2026Charles';
-
+ 
 // ═══════════════════════════════════════════════════════
 // PAGE NAVIGATION
 // ═══════════════════════════════════════════════════════
@@ -530,7 +538,7 @@ function showPage(name) {
   if (name === 'library') renderLibrary();
   if (name === 'home') updateHeroStats();
 }
-
+ 
 // ═══════════════════════════════════════════════════════
 // HERO STATS
 // ═══════════════════════════════════════════════════════
@@ -538,7 +546,7 @@ function updateHeroStats() {
   document.getElementById('heroTotal').textContent = DB.length;
   document.getElementById('heroSectors').textContent = [...new Set(DB.map(e => e.sector))].length;
 }
-
+ 
 // ═══════════════════════════════════════════════════════
 // LIBRARY RENDER
 // ═══════════════════════════════════════════════════════
@@ -547,7 +555,7 @@ function accessBadge(a) {
   if (a === 'Patent Pool') return '<span class="pc-badge badge-pool">Patent Pool</span>';
   return '<span class="pc-badge badge-cl">Compulsory License</span>';
 }
-
+ 
 function renderLibrary() {
   const q = (document.getElementById('searchQ')?.value || '').toLowerCase();
   const sec = document.getElementById('filterSector')?.value || '';
@@ -558,7 +566,7 @@ function renderLibrary() {
     const ma = !acc || e.access === acc;
     return mq && ms && ma;
   });
-
+ 
   document.getElementById('libStats').innerHTML = `
     <div class="lib-stat"><div class="lib-stat-n">${DB.length}</div><div class="lib-stat-l">Patents mapped</div></div>
     <div class="lib-stat"><div class="lib-stat-n">${[...new Set(DB.map(e=>e.sector))].length}</div><div class="lib-stat-l">Sectors covered</div></div>
@@ -566,12 +574,12 @@ function renderLibrary() {
     <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Patent Pool').length}</div><div class="lib-stat-l">Patent pools</div></div>
     <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Compulsory License').length}</div><div class="lib-stat-l">Compulsory license</div></div>
   `;
-
+ 
   if (!items.length) {
     document.getElementById('patentGrid').innerHTML = '<div class="empty-state">No results found. Try adjusting your search or filters.</div>';
     return;
   }
-
+ 
   document.getElementById('patentGrid').innerHTML = items.map(e => `
     <div class="patent-card">
       <div class="pc-top">
@@ -593,7 +601,7 @@ function renderLibrary() {
     </div>
   `).join('');
 }
-
+ 
 // ═══════════════════════════════════════════════════════
 // CONTACT FORM
 // ═══════════════════════════════════════════════════════
@@ -605,7 +613,7 @@ function submitContact() {
   ['cName','cOrg','cEmail','cMsg'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('cSector').selectedIndex = 0;
 }
-
+ 
 // ═══════════════════════════════════════════════════════
 // ADMIN
 // ═══════════════════════════════════════════════════════
@@ -619,7 +627,7 @@ function adminLogin() {
     document.getElementById('adminErr').style.display = 'block';
   }
 }
-
+ 
 function renderAdmin() {
   document.getElementById('entryCount').textContent = DB.length;
   document.getElementById('adminList').innerHTML = DB.map(e => `
@@ -632,7 +640,7 @@ function renderAdmin() {
     </div>
   `).join('');
 }
-
+ 
 function addEntry() {
   const name = document.getElementById('aName').value.trim();
   const desc = document.getElementById('aDesc').value.trim();
@@ -656,16 +664,17 @@ function addEntry() {
   renderAdmin();
   updateHeroStats();
 }
-
+ 
 function removeEntry(id) {
   if (!confirm('Remove this entry from the library?')) return;
   DB = DB.filter(e => e.id !== id);
   renderAdmin();
   updateHeroStats();
 }
-
+ 
 // Init
 updateHeroStats();
 </script>
 </body>
 </html>
+ 
