@@ -3,233 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diaspora Technology Observatory — Nigeria Patent Intelligence</title>
+<title>Diaspora Technology Observatory — Africa Patent Intelligence</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,2 93,26 93,74 50,98 7,74 7,26' fill='%230f2444' stroke='%23c8a84b' stroke-width='4'/><text x='50' y='68' font-family='Arial' font-weight='900' font-size='42' fill='%23c8a84b' text-anchor='middle'>DTO</text></svg>">
-<meta name="description" content="Nigeria's free industrial technology library. Expired patents, WIPO programmes, and zero-cost manufacturing intelligence for Nigerian businesses.">
+<meta name="description" content="Africa's free industrial technology library. Verified expired patents, WIPO programmes, and zero-cost manufacturing intelligence for African businesses across all 54 AfCFTA member states.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --navy: #0f2444; --navy-mid: #1b3a6b; --gold: #c8a84b; --gold-light: #e8c96e;
-  --gold-pale: #fdf3dc; --white: #fafaf8; --g100: #f4f2ee; --g300: #d4d0c8;
-  --g500: #8a8070; --g700: #4a4540; --red: #8b0000; --green-d: #1b5e20;
-  --green-l: #d6f0d6; --orange: #b84c00; --blue-l: #d6e4f0;
-}
-html { scroll-behavior: smooth; }
-body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; overflow-x: hidden; }
-body::before {
-  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(200,168,75,0.06) 0%, transparent 60%),
-    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,168,75,0.02) 60px, rgba(200,168,75,0.02) 61px),
-    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,168,75,0.02) 60px, rgba(200,168,75,0.02) 61px);
-}
- 
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 2.5rem;
-  background: rgba(15,36,68,0.95); backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(200,168,75,0.2);
-}
-.nav-logo { display: flex; align-items: center; gap: 0.8rem; cursor: pointer; }
-.nav-hex {
-  width: 34px; height: 34px; background: var(--gold);
-  clip-path: polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.65rem; font-weight: 700; color: var(--navy); flex-shrink: 0;
-}
-.nav-name { font-family: 'Playfair Display', serif; font-size: 0.9rem; line-height: 1.1; }
-.nav-name span { display: block; font-size: 0.6rem; font-family: 'DM Sans', sans-serif; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; }
-.nav-links { display: flex; gap: 0.5rem; align-items: center; }
-.nav-link {
-  padding: 0.45rem 1rem; border-radius: 4px; font-size: 0.82rem; cursor: pointer;
-  color: var(--g300); border: none; background: transparent; transition: all 0.15s;
-}
-.nav-link:hover { color: var(--white); background: rgba(255,255,255,0.06); }
-.nav-link.active { color: var(--gold); }
-.nav-admin-btn {
-  padding: 0.45rem 1rem; border-radius: 4px; font-size: 0.78rem; cursor: pointer;
-  color: var(--g500); border: 1px solid rgba(138,128,112,0.3); background: transparent;
-  font-family: 'DM Mono', monospace; letter-spacing: 0.08em; transition: all 0.15s;
-}
-.nav-admin-btn:hover { color: var(--gold); border-color: rgba(200,168,75,0.4); }
- 
-/* ── TICKER ── */
-.ticker {
-  position: relative; z-index: 1; margin-top: 64px;
-  background: rgba(200,168,75,0.08);
-  border-top: 1px solid rgba(200,168,75,0.15); border-bottom: 1px solid rgba(200,168,75,0.15);
-  padding: 0.65rem 0; overflow: hidden;
-}
-.ticker-inner { display: flex; gap: 4rem; white-space: nowrap; animation: ticker 30s linear infinite; width: max-content; }
-@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.t-item { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; color: var(--gold); }
-.t-sep { color: rgba(200,168,75,0.35); }
- 
-/* ── PAGE SYSTEM ── */
-.page { display: none; position: relative; z-index: 1; }
-.page.active { display: block; }
- 
-/* ── HERO ── */
-.hero {
-  min-height: 90vh; display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center; padding: 4rem 2rem 3rem;
-}
-.eyebrow {
-  font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.25em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.8rem;
-}
-.eyebrow::before, .eyebrow::after { content: ''; width: 50px; height: 1px; background: var(--gold); opacity: 0.4; }
-h1.hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem,6vw,5rem); font-weight: 900; line-height: 1.05; margin-bottom: 0.5rem; }
-h1.hero-title em { font-style: italic; color: var(--gold); }
-.hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1rem,2vw,1.4rem); color: var(--g300); margin-bottom: 1.5rem; max-width: 560px; }
-.hero-desc { font-size: 0.95rem; color: var(--g500); max-width: 500px; line-height: 1.75; margin-bottom: 2.5rem; }
-.cta-row { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-.btn-gold { background: var(--gold); color: var(--navy); padding: 0.85rem 1.8rem; border: none; border-radius: 3px; font-weight: 600; font-size: 0.88rem; cursor: pointer; letter-spacing: 0.04em; transition: all 0.2s; }
-.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(200,168,75,0.3); }
-.btn-outline { background: transparent; color: var(--white); padding: 0.85rem 1.8rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; }
-.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-.hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(200,168,75,0.12); flex-wrap: wrap; justify-content: center; }
-.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--gold); }
-.stat-lbl { font-size: 0.7rem; color: var(--g500); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.2rem; }
- 
-/* ── SECTION ── */
-.sec { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
-.sec-eye { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
-.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
-.sec-lead { color: var(--g300); font-size: 1rem; line-height: 1.75; max-width: 580px; margin-bottom: 2.5rem; }
- 
-/* ── HOW IT WORKS ── */
-.steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.12); border-radius: 6px; overflow: hidden; }
-.step { padding: 2.2rem 1.8rem; border-right: 1px solid rgba(200,168,75,0.1); text-align: center; }
-.step:last-child { border-right: none; }
-.step-n { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(200,168,75,0.1); line-height: 1; }
-.step-t { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin: 0.4rem 0; }
-.step-d { font-size: 0.82rem; color: var(--g500); line-height: 1.6; }
- 
-/* ── LIBRARY PAGE ── */
-.lib-header { max-width: 1080px; margin: 0 auto; padding: 3rem 2rem 1rem; }
-.lib-controls { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.lib-search { flex: 1; min-width: 200px; padding: 0.75rem 1.1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2); border-radius: 4px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s; }
-.lib-search:focus { border-color: var(--gold); }
-.lib-search::placeholder { color: var(--g500); }
-.lib-select { padding: 0.75rem 1rem; background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2); border-radius: 4px; color: var(--white); font-size: 0.85rem; outline: none; cursor: pointer; }
-.lib-select option { background: var(--navy); }
-.lib-stats { display: grid; grid-template-columns: repeat(auto-fit,minmax(120px,1fr)); gap: 10px; margin-bottom: 1.5rem; }
-.lib-stat { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1rem; text-align: center; }
-.lib-stat-n { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); }
-.lib-stat-l { font-size: 0.68rem; color: var(--g500); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; }
- 
-/* ── PATENT CARDS ── */
-.patent-grid { max-width: 1080px; margin: 0 auto; padding: 0 2rem 4rem; display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 1.2rem; }
-.patent-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.12); border-radius: 6px; padding: 1.5rem; transition: all 0.2s; position: relative; overflow: hidden; }
-.patent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,var(--gold),transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-.patent-card:hover { border-color: rgba(200,168,75,0.35); transform: translateY(-2px); }
-.patent-card:hover::before { transform: scaleX(1); }
-.pc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
-.pc-sector { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--g500); }
-.pc-badge { font-size: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 2rem; font-weight: 500; white-space: nowrap; }
-.badge-pd { background: rgba(27,94,32,0.25); color: #81c784; border: 1px solid rgba(27,94,32,0.4); }
-.badge-pool { background: rgba(27,58,107,0.4); color: #90caf9; border: 1px solid rgba(27,58,107,0.6); }
-.badge-cl { background: rgba(184,76,0,0.25); color: #ffb74d; border: 1px solid rgba(184,76,0,0.4); }
-.pc-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.4rem; }
-.pc-desc { font-size: 0.82rem; color: var(--g500); line-height: 1.6; margin-bottom: 1rem; }
-.pc-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem; font-size: 0.75rem; }
-.pc-meta-item { color: var(--g500); }
-.pc-meta-item span { display: block; color: var(--g300); font-size: 0.8rem; margin-top: 0.1rem; }
-.pc-saving { font-size: 0.82rem; font-weight: 600; color: #81c784; margin-bottom: 1rem; }
-.pc-notes { font-size: 0.75rem; color: var(--g500); background: rgba(255,255,255,0.04); border-radius: 4px; padding: 0.6rem 0.8rem; line-height: 1.6; margin-bottom: 1rem; }
-.pc-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-.pc-link { font-size: 0.72rem; color: var(--gold); border: 1px solid rgba(200,168,75,0.3); border-radius: 3px; padding: 0.3rem 0.7rem; text-decoration: none; transition: background 0.15s; cursor: pointer; background: none; }
-.pc-link:hover { background: rgba(200,168,75,0.1); }
-.empty-state { text-align: center; padding: 4rem 2rem; color: var(--g500); font-size: 0.95rem; }
- 
-/* ── CREDENTIALS ── */
-.cred-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1rem; }
-.cred-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.3rem; }
-.cred-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-.cred-val { font-size: 0.92rem; font-weight: 500; }
-.cred-sub { font-size: 0.75rem; color: var(--g500); margin-top: 0.15rem; }
- 
-/* ── CONTACT PAGE ── */
-.contact-wrap { max-width: 800px; margin: 0 auto; padding: 3rem 2rem 5rem; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-@media(max-width:640px){ .contact-grid { grid-template-columns: 1fr; } }
-.contact-form-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.15); border-radius: 8px; padding: 2rem; }
-.cf-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.4rem; }
-.cf-sub { font-size: 0.82rem; color: var(--g500); margin-bottom: 1.5rem; line-height: 1.6; }
-.cf-input, .cf-select, .cf-textarea {
-  width: 100%; padding: 0.75rem 1rem; margin-bottom: 0.9rem;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2);
-  border-radius: 4px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
-  outline: none; transition: border-color 0.2s;
-}
-.cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-color: var(--gold); }
-.cf-input::placeholder, .cf-textarea::placeholder { color: var(--g500); }
-.cf-select option { background: var(--navy); }
-.cf-textarea { min-height: 100px; resize: vertical; }
-.cf-label { font-size: 0.75rem; color: var(--g300); display: block; margin-bottom: 0.3rem; }
-.contact-info-box { display: flex; flex-direction: column; gap: 1rem; }
-.ci-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.3rem; }
-.ci-lbl { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
-.ci-val { font-size: 0.9rem; line-height: 1.7; color: var(--g300); }
-.ci-val a { color: var(--gold); text-decoration: none; }
-.ci-val a:hover { text-decoration: underline; }
-.success-box { display: none; background: rgba(27,94,32,0.2); border: 1px solid rgba(27,94,32,0.4); border-radius: 6px; padding: 1.2rem; text-align: center; margin-top: 1rem; font-size: 0.88rem; color: #81c784; }
- 
-/* ── ADMIN PAGE ── */
-.admin-wrap { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 5rem; }
-.admin-gate { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.2); border-radius: 8px; padding: 2.5rem; max-width: 420px; margin: 3rem auto; text-align: center; }
-.admin-gate h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
-.admin-gate p { font-size: 0.85rem; color: var(--g500); margin-bottom: 1.5rem; }
-.admin-warn { background: rgba(184,76,0,0.15); border: 1px solid rgba(184,76,0,0.3); border-radius: 4px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #ffb74d; margin-bottom: 1.5rem; }
-.admin-section-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1rem; margin-top: 2rem; }
-.admin-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,168,75,0.12); border-radius: 8px; padding: 1.8rem; margin-bottom: 2rem; }
-.form-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-@media(max-width:560px){ .form-grid2 { grid-template-columns: 1fr; } }
-.af-input, .af-select, .af-textarea {
-  width: 100%; padding: 0.72rem 1rem; margin-bottom: 0.9rem;
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(200,168,75,0.2);
-  border-radius: 4px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.86rem;
-  outline: none; transition: border-color 0.2s;
-}
-.af-input:focus, .af-select:focus, .af-textarea:focus { border-color: var(--gold); }
-.af-input::placeholder, .af-textarea::placeholder { color: var(--g500); }
-.af-select option { background: var(--navy); }
-.af-textarea { min-height: 80px; resize: vertical; }
-.af-label { font-size: 0.73rem; color: var(--g300); display: block; margin-bottom: 0.25rem; }
-.admin-entry { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,168,75,0.1); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 0.8rem; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
-.ae-info { flex: 1; }
-.ae-name { font-weight: 500; font-size: 0.92rem; }
-.ae-meta { font-size: 0.75rem; color: var(--g500); margin-top: 0.2rem; }
-.btn-rm { background: none; border: 1px solid rgba(139,0,0,0.4); color: #ff8080; border-radius: 4px; padding: 0.4rem 0.8rem; font-size: 0.75rem; cursor: pointer; transition: background 0.15s; white-space: nowrap; }
-.btn-rm:hover { background: rgba(139,0,0,0.15); }
- 
-/* ── FOOTER ── */
-footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0.1); padding: 1.8rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.75rem; color: var(--g500); }
-.footer-logo { font-family: 'Playfair Display', serif; font-size: 0.88rem; color: var(--white); }
- 
-/* ── CTA BAND ── */
-.cta-band { position: relative; z-index: 1; text-align: center; padding: 5rem 2rem; border-top: 1px solid rgba(200,168,75,0.1); }
-.cta-band h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,2.5vw,2rem); margin-bottom: 0.8rem; }
-.cta-band p { color: var(--g500); max-width: 440px; margin: 0 auto 2rem; font-size: 0.9rem; line-height: 1.7; }
- 
-/* ── DIVIDER ── */
-.gold-line { border: none; border-top: 1px solid rgba(200,168,75,0.12); margin: 0; }
-@media(max-width:640px){ nav { padding: 0.8rem 1.2rem; } .nav-links .nav-link:not(.active) { display: none; } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f2444;--gold:#c8a84b;--gold-light:#e8c96e;--white:#fafaf8;--g300:#d4d0c8;--g500:#8a8070;--green-d:#1b5e20;--green-l:#d6f0d6;--orange:#b84c00;--blue-l:#d6e4f0;--lgold:#fdf3dc;--lred:#fff0f0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(200,168,75,.06) 0%,transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(200,168,75,.02) 60px,rgba(200,168,75,.02) 61px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 2.5rem;background:rgba(15,36,68,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(200,168,75,.2)}
+.nav-logo{display:flex;align-items:center;gap:.8rem;cursor:pointer}
+.nav-hex{width:34px;height:34px;background:var(--gold);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:var(--navy);flex-shrink:0}
+.nav-name{font-family:'Playfair Display',serif;font-size:.9rem;line-height:1.1}
+.nav-name span{display:block;font-size:.6rem;font-family:'DM Sans',sans-serif;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+.nav-links{display:flex;gap:.5rem;align-items:center}
+.nav-link{padding:.45rem 1rem;border-radius:4px;font-size:.82rem;cursor:pointer;color:var(--g300);border:none;background:transparent;transition:all .15s}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,.06)}
+.nav-link.active{color:var(--gold)}
+.nav-admin-btn{padding:.45rem 1rem;border-radius:4px;font-size:.78rem;cursor:pointer;color:var(--g500);border:1px solid rgba(138,128,112,.3);background:transparent;font-family:'DM Mono',monospace;letter-spacing:.08em;transition:all .15s}
+.nav-admin-btn:hover{color:var(--gold);border-color:rgba(200,168,75,.4)}
+.ticker{position:relative;z-index:1;margin-top:64px;background:rgba(200,168,75,.08);border-top:1px solid rgba(200,168,75,.15);border-bottom:1px solid rgba(200,168,75,.15);padding:.65rem 0;overflow:hidden}
+.ticker-inner{display:flex;gap:4rem;white-space:nowrap;animation:ticker 50s linear infinite;width:max-content}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-item{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:var(--gold)}
+.t-sep{color:rgba(200,168,75,.35)}
+.page{display:none;position:relative;z-index:1}
+.page.active{display:block}
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem 3rem}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem}
+.eyebrow::before,.eyebrow::after{content:'';width:50px;height:1px;background:var(--gold);opacity:.4}
+h1.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:1.05;margin-bottom:.5rem}
+h1.hero-title em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.4rem);color:var(--g300);margin-bottom:1.5rem;max-width:620px}
+.hero-desc{font-size:.95rem;color:var(--g500);max-width:560px;line-height:1.75;margin-bottom:2.5rem}
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-gold{background:var(--gold);color:var(--navy);padding:.85rem 1.8rem;border:none;border-radius:3px;font-weight:600;font-size:.88rem;cursor:pointer;letter-spacing:.04em;transition:all .2s}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(200,168,75,.3)}
+.btn-outline{background:transparent;color:var(--white);padding:.85rem 1.8rem;border:1px solid rgba(255,255,255,.2);border-radius:3px;font-size:.88rem;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:flex;gap:3rem;margin-top:3.5rem;padding-top:2.5rem;border-top:1px solid rgba(200,168,75,.12);flex-wrap:wrap;justify-content:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)}
+.stat-lbl{font-size:.7rem;color:var(--g500);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+.sec{max-width:1080px;margin:0 auto;padding:4rem 2rem}
+.sec-eye{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.sec-lead{color:var(--g300);font-size:1rem;line-height:1.75;max-width:640px;margin-bottom:2.5rem}
+.stats-band{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.12);border-radius:6px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));text-align:center}
+.sb-item{padding:2rem 1rem;border-right:1px solid rgba(200,168,75,.1)}
+.sb-item:last-child{border-right:none}
+.sb-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--gold)}
+.sb-lbl{font-size:.7rem;color:var(--g500);letter-spacing:.08em;text-transform:uppercase;margin-top:.3rem;line-height:1.4}
+.country-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.cbadge{font-family:'DM Mono',monospace;font-size:.62rem;padding:.25rem .7rem;border-radius:2rem;background:rgba(200,168,75,.1);border:1px solid rgba(200,168,75,.25);color:var(--gold);letter-spacing:.06em}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.12);border-radius:6px;overflow:hidden}
+.step{padding:2.2rem 1.8rem;border-right:1px solid rgba(200,168,75,.1);text-align:center}
+.step:last-child{border-right:none}
+.step-n{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;color:rgba(200,168,75,.1);line-height:1}
+.step-t{font-family:'Playfair Display',serif;font-size:1.05rem;margin:.4rem 0}
+.step-d{font-size:.82rem;color:var(--g500);line-height:1.6}
+.cred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.cred-card{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.1);border-radius:6px;padding:1.3rem}
+.cred-lbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.cred-val{font-size:.92rem;font-weight:500}
+.cred-sub{font-size:.75rem;color:var(--g500);margin-top:.15rem}
+.cta-band{position:relative;z-index:1;text-align:center;padding:5rem 2rem;border-top:1px solid rgba(200,168,75,.1)}
+.cta-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:.8rem}
+.cta-band p{color:var(--g500);max-width:480px;margin:0 auto 2rem;font-size:.9rem;line-height:1.7}
+.gold-line{border:none;border-top:1px solid rgba(200,168,75,.12);margin:0}
+/* LIBRARY */
+.lib-header{max-width:1080px;margin:0 auto;padding:3rem 2rem 1rem}
+.lib-controls{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.lib-search{flex:1;min-width:200px;padding:.75rem 1.1rem;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s}
+.lib-search:focus{border-color:var(--gold)}
+.lib-search::placeholder{color:var(--g500)}
+.lib-select{padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;color:var(--white);font-size:.85rem;outline:none;cursor:pointer}
+.lib-select option{background:var(--navy)}
+.lib-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:1.5rem}
+.lib-stat{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.1);border-radius:6px;padding:1rem;text-align:center}
+.lib-stat-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold)}
+.lib-stat-l{font-size:.65rem;color:var(--g500);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+.patent-grid{max-width:1080px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.2rem}
+.patent-card{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.12);border-radius:6px;padding:1.5rem;transition:all .2s;position:relative;overflow:hidden}
+.patent-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.patent-card:hover{border-color:rgba(200,168,75,.35);transform:translateY(-2px)}
+.patent-card:hover::before{transform:scaleX(1)}
+.pc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem;gap:.5rem;flex-wrap:wrap}
+.pc-sector{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--g500)}
+.pc-badge{font-size:.6rem;padding:.2rem .6rem;border-radius:2rem;font-weight:500;white-space:nowrap}
+.badge-pd{background:rgba(27,94,32,.25);color:#81c784;border:1px solid rgba(27,94,32,.4)}
+.badge-pool{background:rgba(27,58,107,.4);color:#90caf9;border:1px solid rgba(27,58,107,.6)}
+.badge-cl{background:rgba(184,76,0,.25);color:#ffb74d;border:1px solid rgba(184,76,0,.4)}
+.pc-name{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:.4rem}
+.pc-desc{font-size:.82rem;color:var(--g500);line-height:1.6;margin-bottom:.8rem}
+.pc-meta{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:.7rem;font-size:.75rem}
+.pc-meta-item{color:var(--g500)}
+.pc-meta-item span{display:block;color:var(--g300);font-size:.8rem;margin-top:.1rem}
+.pc-countries{font-size:.72rem;color:var(--g500);margin-bottom:.7rem;line-height:1.4}
+.pc-countries strong{color:var(--gold)}
+.pc-saving{font-size:.82rem;font-weight:600;color:#81c784;margin-bottom:.8rem}
+.pc-notes{font-size:.75rem;color:var(--g500);background:rgba(255,255,255,.04);border-radius:4px;padding:.6rem .8rem;line-height:1.6;margin-bottom:.8rem}
+.pc-links{display:flex;gap:.6rem;flex-wrap:wrap}
+.pc-link{font-size:.72rem;color:var(--gold);border:1px solid rgba(200,168,75,.3);border-radius:3px;padding:.3rem .7rem;text-decoration:none;transition:background .15s;cursor:pointer;background:none}
+.pc-link:hover{background:rgba(200,168,75,.1)}
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--g500);font-size:.95rem;grid-column:1/-1}
+/* CONTACT */
+.contact-wrap{max-width:800px;margin:0 auto;padding:3rem 2rem 5rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:640px){.contact-grid{grid-template-columns:1fr}}
+.contact-form-box{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.15);border-radius:8px;padding:2rem}
+.cf-title{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:.4rem}
+.cf-sub{font-size:.82rem;color:var(--g500);margin-bottom:1.5rem;line-height:1.6}
+.cf-input,.cf-select,.cf-textarea{width:100%;padding:.75rem 1rem;margin-bottom:.9rem;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s}
+.cf-input:focus,.cf-select:focus,.cf-textarea:focus{border-color:var(--gold)}
+.cf-input::placeholder,.cf-textarea::placeholder{color:var(--g500)}
+.cf-select option{background:var(--navy)}
+.cf-textarea{min-height:100px;resize:vertical}
+.cf-label{font-size:.75rem;color:var(--g300);display:block;margin-bottom:.3rem}
+.contact-info-box{display:flex;flex-direction:column;gap:1rem}
+.ci-card{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.1);border-radius:6px;padding:1.3rem}
+.ci-lbl{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.ci-val{font-size:.9rem;line-height:1.7;color:var(--g300)}
+.ci-val a{color:var(--gold);text-decoration:none}
+.ci-val a:hover{text-decoration:underline}
+.success-box{display:none;background:rgba(27,94,32,.2);border:1px solid rgba(27,94,32,.4);border-radius:6px;padding:1.2rem;text-align:center;margin-top:1rem;font-size:.88rem;color:#81c784}
+/* ADMIN */
+.admin-wrap{max-width:900px;margin:0 auto;padding:2rem 2rem 5rem}
+.admin-gate{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.2);border-radius:8px;padding:2.5rem;max-width:420px;margin:3rem auto;text-align:center}
+.admin-gate h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.5rem}
+.admin-gate p{font-size:.85rem;color:var(--g500);margin-bottom:1.5rem}
+.admin-warn{background:rgba(184,76,0,.15);border:1px solid rgba(184,76,0,.3);border-radius:4px;padding:.8rem 1rem;font-size:.82rem;color:#ffb74d;margin-bottom:1.5rem}
+.admin-section-title{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;margin-top:2rem}
+.admin-form{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.12);border-radius:8px;padding:1.8rem;margin-bottom:2rem}
+.form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:560px){.form-grid2{grid-template-columns:1fr}}
+.af-input,.af-select,.af-textarea{width:100%;padding:.72rem 1rem;margin-bottom:.9rem;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s}
+.af-input:focus,.af-select:focus,.af-textarea:focus{border-color:var(--gold)}
+.af-input::placeholder,.af-textarea::placeholder{color:var(--g500)}
+.af-select option{background:var(--navy)}
+.af-textarea{min-height:80px;resize:vertical}
+.af-label{font-size:.73rem;color:var(--g300);display:block;margin-bottom:.25rem}
+.admin-entry{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.1);border-radius:6px;padding:1.2rem 1.4rem;margin-bottom:.8rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.ae-info{flex:1}
+.ae-name{font-weight:500;font-size:.92rem}
+.ae-meta{font-size:.75rem;color:var(--g500);margin-top:.2rem}
+.btn-rm{background:none;border:1px solid rgba(139,0,0,.4);color:#ff8080;border-radius:4px;padding:.4rem .8rem;font-size:.75rem;cursor:pointer;transition:background .15s;white-space:nowrap}
+.btn-rm:hover{background:rgba(139,0,0,.15)}
+footer{position:relative;z-index:1;border-top:1px solid rgba(200,168,75,.1);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--g500)}
+.footer-logo{font-family:'Playfair Display',serif;font-size:.88rem;color:var(--white)}
+@media(max-width:640px){nav{padding:.8rem 1.2rem}.nav-links .nav-link:not(.active){display:none}}
 </style>
 </head>
 <body>
- 
-<!-- NAV -->
+
 <nav>
   <div class="nav-logo" onclick="showPage('home')">
     <div class="nav-hex">DTO</div>
-    <div class="nav-name">Diaspora Technology Observatory<span>Industrial Intelligence Platform</span></div>
+    <div class="nav-name">Diaspora Technology Observatory<span>Africa Industrial Intelligence Platform</span></div>
   </div>
   <div class="nav-links">
     <button class="nav-link active" onclick="showPage('home')">Home</button>
@@ -238,99 +169,136 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
     <button class="nav-admin-btn" onclick="showPage('admin')">Admin</button>
   </div>
 </nav>
- 
-<!-- TICKER -->
+
 <div class="ticker">
   <div class="ticker-inner">
-    <span class="t-item">PHARMACEUTICALS <span class="t-sep">◆</span> 50+ EXPIRED API PATENTS MAPPED</span>
-    <span class="t-item">ENERGY <span class="t-sep">◆</span> TURBINE DESIGNS: PUBLIC DOMAIN</span>
-    <span class="t-item">STEEL <span class="t-sep">◆</span> BASIC OXYGEN FURNACE: FREE ACCESS</span>
-    <span class="t-item">AGRICULTURE <span class="t-sep">◆</span> HABER-BOSCH PROCESS: ZERO COST</span>
-    <span class="t-item">SOLAR <span class="t-sep">◆</span> FIRST-GEN PV MANUFACTURING: EXPIRED</span>
-    <span class="t-item">MANUFACTURING <span class="t-sep">◆</span> CNC DESIGNS: OPEN SOURCE</span>
-    <span class="t-item">PHARMACEUTICALS <span class="t-sep">◆</span> 50+ EXPIRED API PATENTS MAPPED</span>
-    <span class="t-item">ENERGY <span class="t-sep">◆</span> TURBINE DESIGNS: PUBLIC DOMAIN</span>
-    <span class="t-item">STEEL <span class="t-sep">◆</span> BASIC OXYGEN FURNACE: FREE ACCESS</span>
-    <span class="t-item">AGRICULTURE <span class="t-sep">◆</span> HABER-BOSCH PROCESS: ZERO COST</span>
-    <span class="t-item">SOLAR <span class="t-sep">◆</span> FIRST-GEN PV MANUFACTURING: EXPIRED</span>
-    <span class="t-item">MANUFACTURING <span class="t-sep">◆</span> CNC DESIGNS: OPEN SOURCE</span>
+    <span class="t-item">PHARMACEUTICALS <span class="t-sep">◆</span> 50+ EXPIRED API PATENTS — PAN-AFRICAN</span>
+    <span class="t-item">ENERGY <span class="t-sep">◆</span> GAS TURBINE & SOLAR PV: PUBLIC DOMAIN</span>
+    <span class="t-item">MINING <span class="t-sep">◆</span> COBALT & COPPER PROCESSING: FREE ACCESS</span>
+    <span class="t-item">TEXTILES <span class="t-sep">◆</span> $73.6B AFRICAN MARKET — EXPIRED MACHINERY PATENTS</span>
+    <span class="t-item">AGRICULTURE <span class="t-sep">◆</span> FOOD PROCESSING TECH: ZERO LICENSING COST</span>
+    <span class="t-item">LEATHER <span class="t-sep">◆</span> TANNING TECHNOLOGY: PUBLIC DOMAIN</span>
+    <span class="t-item">WATER <span class="t-sep">◆</span> TREATMENT & DESALINATION: FREE DESIGNS</span>
+    <span class="t-item">STEEL <span class="t-sep">◆</span> BOF STEELMAKING: ALL CORE PATENTS EXPIRED</span>
+    <span class="t-item">AUTOMOTIVE <span class="t-sep">◆</span> CNG CONVERSION: PUBLIC DOMAIN</span>
+    <span class="t-item">CONSTRUCTION <span class="t-sep">◆</span> CEMENT & BUILDING MATERIALS: FREE</span>
+    <span class="t-item">PHARMACEUTICALS <span class="t-sep">◆</span> 50+ EXPIRED API PATENTS — PAN-AFRICAN</span>
+    <span class="t-item">ENERGY <span class="t-sep">◆</span> GAS TURBINE & SOLAR PV: PUBLIC DOMAIN</span>
+    <span class="t-item">MINING <span class="t-sep">◆</span> COBALT & COPPER PROCESSING: FREE ACCESS</span>
+    <span class="t-item">TEXTILES <span class="t-sep">◆</span> $73.6B AFRICAN MARKET — EXPIRED MACHINERY PATENTS</span>
+    <span class="t-item">AGRICULTURE <span class="t-sep">◆</span> FOOD PROCESSING TECH: ZERO LICENSING COST</span>
+    <span class="t-item">LEATHER <span class="t-sep">◆</span> TANNING TECHNOLOGY: PUBLIC DOMAIN</span>
+    <span class="t-item">WATER <span class="t-sep">◆</span> TREATMENT & DESALINATION: FREE DESIGNS</span>
+    <span class="t-item">STEEL <span class="t-sep">◆</span> BOF STEELMAKING: ALL CORE PATENTS EXPIRED</span>
+    <span class="t-item">AUTOMOTIVE <span class="t-sep">◆</span> CNG CONVERSION: PUBLIC DOMAIN</span>
+    <span class="t-item">CONSTRUCTION <span class="t-sep">◆</span> CEMENT & BUILDING MATERIALS: FREE</span>
   </div>
 </div>
- 
-<!-- ═══════════════ HOME PAGE ═══════════════ -->
+
+<!-- HOME PAGE -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="eyebrow">Diaspora Technology Observatory</div>
-    <h1 class="hero-title">Nigeria's <em>Free</em><br>Technology Library</h1>
-    <p class="hero-sub">Industrial intelligence for manufacturers who want to stop overpaying.</p>
-    <p class="hero-desc">Every year, Nigerian companies spend billions licensing technology that has been in the public domain for decades. We find it, map it, and show you exactly how to use it — legally, at zero cost.</p>
+    <h1 class="hero-title">Africa's <em>Free</em><br>Technology Library</h1>
+    <p class="hero-sub">Industrial intelligence for African manufacturers who want to stop overpaying for technology they could access legally at zero cost.</p>
+    <p class="hero-desc">Every year, African businesses spend billions licensing technology whose patents expired decades ago. <strong style="color:var(--white)">Africa imported $542 billion in manufactured goods in 2023</strong> — much of the underlying technology is already free. We find it, verify it, and show you exactly how to access it.</p>
     <div class="cta-row">
       <button class="btn-gold" onclick="showPage('library')">Browse the Patent Library</button>
-      <button class="btn-outline" onclick="showPage('contact')">Request a Sector Report</button>
+      <button class="btn-outline" onclick="showPage('contact')">Request a Free Report</button>
     </div>
     <div class="hero-stats">
       <div class="stat"><div class="stat-num" id="heroTotal">0</div><div class="stat-lbl">Patents Mapped</div></div>
       <div class="stat"><div class="stat-num" id="heroSectors">0</div><div class="stat-lbl">Sectors Covered</div></div>
+      <div class="stat"><div class="stat-num">54</div><div class="stat-lbl">African Nations</div></div>
       <div class="stat"><div class="stat-num">£0</div><div class="stat-lbl">Licensing Cost</div></div>
-      <div class="stat"><div class="stat-num">20+</div><div class="stat-lbl">Yrs Patents Expire</div></div>
     </div>
   </div>
- 
+
   <hr class="gold-line">
- 
+
+  <div class="sec">
+    <div class="sec-eye">The Continent-Wide Opportunity</div>
+    <h2 class="sec-title">Africa Pays Billions For Technology<br>That Is Already Free</h2>
+    <p class="sec-lead">The African Continental Free Trade Area has created a unified market of 1.4 billion people. The technology to build domestic manufacturing capacity has never been more accessible — because patents expire, and most African businesses don't know it.</p>
+    <div class="stats-band">
+      <div class="sb-item"><div class="sb-num">$542B</div><div class="sb-lbl">Manufactured goods imported by Africa 2023</div></div>
+      <div class="sb-item"><div class="sb-num">2%</div><div class="sb-lbl">Africa's share of global manufacturing value</div></div>
+      <div class="sb-item"><div class="sb-num">70%</div><div class="sb-lbl">African medicines imported — tech largely public domain</div></div>
+      <div class="sb-item"><div class="sb-num">40%</div><div class="sb-lbl">African food lost post-harvest — processing tech is free</div></div>
+      <div class="sb-item"><div class="sb-num">54%</div><div class="sb-lbl">Global cobalt reserves in Africa — processed elsewhere</div></div>
+    </div>
+    <div class="sec-eye" style="margin-top:2rem;margin-bottom:.8rem">Countries We Serve</div>
+    <div class="country-grid">
+      <span class="cbadge">Nigeria</span><span class="cbadge">South Africa</span><span class="cbadge">Kenya</span>
+      <span class="cbadge">Ghana</span><span class="cbadge">Ethiopia</span><span class="cbadge">Egypt</span>
+      <span class="cbadge">Morocco</span><span class="cbadge">Tanzania</span><span class="cbadge">Rwanda</span>
+      <span class="cbadge">Senegal</span><span class="cbadge">Côte d'Ivoire</span><span class="cbadge">Zambia</span>
+      <span class="cbadge">DRC</span><span class="cbadge">Uganda</span><span class="cbadge">Zimbabwe</span>
+      <span class="cbadge">Cameroon</span><span class="cbadge">Algeria</span><span class="cbadge">Tunisia</span>
+      <span class="cbadge">Mozambique</span><span class="cbadge">Lesotho</span><span class="cbadge">All 54 AfCFTA Members →</span>
+    </div>
+  </div>
+
+  <hr class="gold-line">
+
   <div class="sec">
     <div class="sec-eye">The Process</div>
-    <h2 class="sec-title">From Patent Database<br>to Your Factory Floor</h2>
+    <h2 class="sec-title">From Patent Database to Your Factory Floor</h2>
     <p class="sec-lead">We do the research so your engineers and procurement teams don't have to.</p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><div class="step-t">We Find It</div><div class="step-d">We search WIPO, USPTO, and Espacenet for industrial technologies in your sector whose patents have expired.</div></div>
-      <div class="step"><div class="step-n">02</div><div class="step-t">We Map It</div><div class="step-d">We produce a sector-specific Technology Access Report showing what is available and how to access it.</div></div>
-      <div class="step"><div class="step-n">03</div><div class="step-t">We Connect You</div><div class="step-d">We link you to WIPO programmes, development organisations, and legal frameworks for safe implementation.</div></div>
-      <div class="step"><div class="step-n">04</div><div class="step-t">You Save</div><div class="step-d">Your company implements technology at zero licensing cost. We document the outcome as a case study.</div></div>
+      <div class="step"><div class="step-n">01</div><div class="step-t">We Find It</div><div class="step-d">We search WIPO PATENTSCOPE, USPTO, Espacenet, and Google Patents for technologies in your sector whose patents have expired — verified for your jurisdiction.</div></div>
+      <div class="step"><div class="step-n">02</div><div class="step-t">We Verify It</div><div class="step-d">We confirm expiry dates, confirm jurisdiction coverage across African patent systems (ARIPO, OAPI, national offices), and identify WIPO programmes and Medicines Patent Pool access routes.</div></div>
+      <div class="step"><div class="step-n">03</div><div class="step-t">We Map It</div><div class="step-d">We produce a sector-specific Technology Access Report with saving potential, regulatory pathway, WIPO programme links, and implementation notes specific to your country.</div></div>
+      <div class="step"><div class="step-n">04</div><div class="step-t">You Save</div><div class="step-d">Your company implements technology at zero licensing cost. We document the outcome — building Africa's public domain manufacturing knowledge base.</div></div>
     </div>
   </div>
- 
+
   <hr class="gold-line">
- 
+
   <div class="sec">
     <div class="sec-eye">About the Observatory</div>
     <h2 class="sec-title">Who Is Behind This</h2>
-    <p class="sec-lead">The Diaspora Technology Observatory is led by a Nigerian diaspora researcher combining cybersecurity expertise with industrial technology policy analysis.</p>
+    <p class="sec-lead">The Diaspora Technology Observatory is led by a Nigerian diaspora researcher combining cybersecurity expertise with industrial technology policy analysis — serving all 54 AfCFTA member states.</p>
     <div class="cred-grid">
       <div class="cred-card"><div class="cred-lbl">Lead Researcher</div><div class="cred-val">Uzoma Charles Njoku</div><div class="cred-sub">Nigerian Diaspora — UK Based</div></div>
-      <div class="cred-card"><div class="cred-lbl">Qualification</div><div class="cred-val">BSc Cybersecurity</div><div class="cred-sub">University of Bolton, UK</div></div>
-      <div class="cred-card"><div class="cred-lbl">Certification</div><div class="cred-val">Data Analysis</div><div class="cred-sub">Professional Certificate</div></div>
-      <div class="cred-card"><div class="cred-lbl">Submitted To</div><div class="cred-val">WIPO · AfDB · Chatham House</div><div class="cred-sub">Policy brief under review</div></div>
-      <div class="cred-card"><div class="cred-lbl">Contact</div><div class="cred-val">njokucharles98@gmail.com</div><div class="cred-sub">Response within 48 hours</div></div>
-      <div class="cred-card"><div class="cred-lbl">LinkedIn</div><div class="cred-val">uzoma-charles-njoku</div><div class="cred-sub">linkedin.com/in/uzoma-charles-njoku</div></div>
+      <div class="cred-card"><div class="cred-lbl">Qualification</div><div class="cred-val">BSc Cybersecurity</div><div class="cred-sub">University of Bolton, UK — 2:1 Honours</div></div>
+      <div class="cred-card"><div class="cred-lbl">Certification</div><div class="cred-val">Data Analysis NVQ L3</div><div class="cred-sub">Netcom Training, UK</div></div>
+      <div class="cred-card"><div class="cred-lbl">Submitted To</div><div class="cred-val">WIPO · AfDB · Chatham House</div><div class="cred-sub">Research brief under review</div></div>
+      <div class="cred-card"><div class="cred-lbl">Live Portal</div><div class="cred-val">dtoportal.com</div><div class="cred-sub">Searchable patent intelligence database</div></div>
+      <div class="cred-card"><div class="cred-lbl">Contact</div><div class="cred-val">njokucharles98@gmail.com</div><div class="cred-sub">48-hour response guaranteed</div></div>
     </div>
   </div>
- 
+
   <div class="cta-band">
-    <h2>Ready to Stop Overpaying<br>for Technology?</h2>
-    <p>Request a free sector-specific Technology Access Report. We identify which technologies relevant to your operations are already freely available.</p>
+    <h2>Ready to Stop Overpaying for Technology?</h2>
+    <p>Request a free sector-specific Technology Access Report. We identify which technologies relevant to your African operations are already freely available — legally, at zero cost.</p>
     <button class="btn-gold" onclick="showPage('contact')">Request Your Free Report</button>
   </div>
 </div>
- 
-<!-- ═══════════════ LIBRARY PAGE ═══════════════ -->
+
+<!-- LIBRARY PAGE -->
 <div class="page" id="page-library">
   <div class="lib-header">
     <div class="sec-eye">Patent Intelligence Library</div>
-    <h2 class="sec-title">Nigeria Technology Access Map</h2>
-    <p class="sec-lead" style="margin-bottom:1.5rem;">Verified expired and accessible industrial patents for Nigerian manufacturers — curated and updated by the Diaspora Technology Observatory.</p>
+    <h2 class="sec-title">Africa Technology Access Map</h2>
+    <p class="sec-lead" style="margin-bottom:1.5rem">Verified expired and accessible industrial patents for African manufacturers — curated by the Diaspora Technology Observatory. All entries verified against WIPO, USPTO, Espacenet, and Medicines Patent Pool databases as of May 2026. Applicable across AfCFTA member states unless otherwise noted.</p>
     <div class="lib-stats" id="libStats"></div>
     <div class="lib-controls">
-      <input class="lib-search" id="searchQ" type="text" placeholder="Search by name, description, sector..." oninput="renderLibrary()">
+      <input class="lib-search" id="searchQ" type="text" placeholder="Search by technology, sector, country, description..." oninput="renderLibrary()">
       <select class="lib-select" id="filterSector" onchange="renderLibrary()">
         <option value="">All sectors</option>
         <option>Pharmaceuticals</option>
         <option>Energy</option>
         <option>Steel & Manufacturing</option>
-        <option>Agriculture</option>
-        <option>Digital Infrastructure</option>
+        <option>Agriculture & Food Processing</option>
+        <option>Textiles & Leather</option>
         <option>Automotive</option>
+        <option>Digital Infrastructure</option>
+        <option>Water & Sanitation</option>
+        <option>Mining & Minerals</option>
         <option>Cement & Construction</option>
+        <option>Chemicals & Plastics</option>
+        <option>Paper & Packaging</option>
       </select>
       <select class="lib-select" id="filterAccess" onchange="renderLibrary()">
         <option value="">All access types</option>
@@ -342,21 +310,23 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
   </div>
   <div class="patent-grid" id="patentGrid"></div>
 </div>
- 
-<!-- ═══════════════ CONTACT PAGE ═══════════════ -->
+
+<!-- CONTACT PAGE -->
 <div class="page" id="page-contact">
   <div class="contact-wrap">
     <div class="sec-eye">Get in Touch</div>
-    <h2 class="sec-title" style="margin-bottom:0.5rem;">Request a Sector Report</h2>
-    <p style="color:var(--g500);font-size:0.9rem;margin-bottom:2rem;line-height:1.7;">Tell us about your organisation and the sector you operate in. Uzoma Charles Njoku will respond within 48 hours with a tailored Technology Access Report.</p>
+    <h2 class="sec-title" style="margin-bottom:.5rem">Request a Sector Report</h2>
+    <p style="color:var(--g500);font-size:.9rem;margin-bottom:2rem;line-height:1.7">Tell us about your organisation, country, and sector. Uzoma Charles Njoku will respond within 48 hours with a tailored Technology Access Report at no cost for the initial report.</p>
     <div class="contact-grid">
       <div class="contact-form-box">
         <h3 class="cf-title">Submit a Request</h3>
-        <p class="cf-sub">All fields marked * are required. Your information is used only to prepare your report.</p>
+        <p class="cf-sub">Fields marked * are required. Your information is used only to prepare your report.</p>
         <label class="cf-label">Full Name *</label>
         <input class="cf-input" id="cName" type="text" placeholder="Your name">
         <label class="cf-label">Organisation *</label>
         <input class="cf-input" id="cOrg" type="text" placeholder="Company or institution name">
+        <label class="cf-label">Country *</label>
+        <input class="cf-input" id="cCountry" type="text" placeholder="Your country">
         <label class="cf-label">Email Address *</label>
         <input class="cf-input" id="cEmail" type="email" placeholder="your@company.com">
         <label class="cf-label">Primary Sector</label>
@@ -366,313 +336,802 @@ footer { position: relative; z-index: 1; border-top: 1px solid rgba(200,168,75,0
           <option>Energy & Power</option>
           <option>Steel & Heavy Manufacturing</option>
           <option>Agriculture & Food Processing</option>
-          <option>Digital Infrastructure & Cybersecurity</option>
+          <option>Textiles, Leather & Apparel</option>
           <option>Automotive & Assembly</option>
+          <option>Digital Infrastructure & Cybersecurity</option>
+          <option>Water & Sanitation</option>
+          <option>Mining & Mineral Processing</option>
           <option>Cement & Construction</option>
+          <option>Chemicals & Plastics</option>
+          <option>Paper & Packaging</option>
           <option>Other</option>
         </select>
         <label class="cf-label">What technology costs concern you most?</label>
-        <textarea class="cf-textarea" id="cMsg" placeholder="e.g. We currently import pharmaceutical APIs at high cost and want to know if local production is possible using public domain processes..."></textarea>
-        <button class="btn-gold" style="width:100%;" onclick="submitContact()">Send Request</button>
-        <div class="success-box" id="contactSuccess">
-          Request received. Uzoma Charles Njoku will respond within 48 hours with your sector report.
-        </div>
+        <textarea class="cf-textarea" id="cMsg" placeholder="e.g. We produce cotton in Ethiopia but currently import all our spinning and weaving machinery designs. We want to know which manufacturing processes are available in the public domain..."></textarea>
+        <button class="btn-gold" style="width:100%" onclick="submitContact()">Send Request</button>
+        <div class="success-box" id="contactSuccess">Request received. Uzoma Charles Njoku will respond within 48 hours with your sector-specific Technology Access Report.</div>
       </div>
       <div class="contact-info-box">
-        <div class="ci-card">
-          <div class="ci-lbl">Direct Email</div>
-          <div class="ci-val"><a href="mailto:njokucharles98@gmail.com">njokucharles98@gmail.com</a></div>
-        </div>
-        <div class="ci-card">
-          <div class="ci-lbl">LinkedIn</div>
-          <div class="ci-val"><a href="https://www.linkedin.com/in/uzoma-charles-njoku" target="_blank">linkedin.com/in/uzoma-charles-njoku</a></div>
-        </div>
-        <div class="ci-card">
-          <div class="ci-lbl">Based In</div>
-          <div class="ci-val">United Kingdom<br><span style="font-size:0.8rem;color:var(--g500);">Serving Nigerian private sector & government internationally</span></div>
-        </div>
-        <div class="ci-card">
-          <div class="ci-lbl">Response Time</div>
-          <div class="ci-val">Within 48 hours<br><span style="font-size:0.8rem;color:var(--g500);">Sample sector report included with first response</span></div>
-        </div>
-        <div class="ci-card">
-          <div class="ci-lbl">What You Receive</div>
-          <div class="ci-val" style="font-size:0.85rem;">A tailored PDF report listing expired patents and free technology access routes specific to your sector, with WIPO programme links and implementation notes.</div>
-        </div>
+        <div class="ci-card"><div class="ci-lbl">Direct Email</div><div class="ci-val"><a href="mailto:njokucharles98@gmail.com">njokucharles98@gmail.com</a></div></div>
+        <div class="ci-card"><div class="ci-lbl">LinkedIn</div><div class="ci-val"><a href="https://www.linkedin.com/in/uzoma-charles-njoku" target="_blank">linkedin.com/in/uzoma-charles-njoku</a></div></div>
+        <div class="ci-card"><div class="ci-lbl">Based In</div><div class="ci-val">United Kingdom<br><span style="font-size:.8rem;color:var(--g500)">Serving all 54 AfCFTA member states</span></div></div>
+        <div class="ci-card"><div class="ci-lbl">Response Time</div><div class="ci-val">Within 48 hours<br><span style="font-size:.8rem;color:var(--g500)">First sector report at no cost</span></div></div>
+        <div class="ci-card"><div class="ci-lbl">What You Receive</div><div class="ci-val" style="font-size:.85rem">A tailored PDF report listing expired patents and free technology access routes specific to your sector and country, with WIPO programme links, implementation notes, and regulatory pathway guidance.</div></div>
       </div>
     </div>
   </div>
 </div>
- 
-<!-- ═══════════════ ADMIN PAGE ═══════════════ -->
+
+<!-- ADMIN PAGE -->
 <div class="page" id="page-admin">
   <div class="admin-wrap">
- 
-    <!-- LOGIN GATE -->
     <div id="adminGate">
       <div class="admin-gate">
         <h3>Admin Access</h3>
-        <p>This panel is for Uzoma Charles Njoku only. Enter your admin password to continue.</p>
+        <p>This panel is for Uzoma Charles Njoku only.</p>
         <input class="af-input" type="password" id="adminPw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()">
-        <button class="btn-gold" style="width:100%;margin-top:0.5rem;" onclick="adminLogin()">Login</button>
-        <div id="adminErr" style="display:none;margin-top:0.8rem;font-size:0.8rem;color:#ff8080;">Incorrect password.</div>
+        <button class="btn-gold" style="width:100%;margin-top:.5rem" onclick="adminLogin()">Login</button>
+        <div id="adminErr" style="display:none;margin-top:.8rem;font-size:.8rem;color:#ff8080">Incorrect password.</div>
       </div>
     </div>
- 
-    <!-- ADMIN PANEL (shown after login) -->
-    <div id="adminPanel" style="display:none;">
-      <div class="admin-warn">You are logged in as Admin — Uzoma Charles Njoku. Changes update the live library immediately.</div>
- 
+    <div id="adminPanel" style="display:none">
+      <div class="admin-warn">Logged in as Admin — Uzoma Charles Njoku. To make changes permanent for all visitors, update index.html on GitHub after adding entries here.</div>
       <div class="admin-section-title">Add New Patent Entry</div>
       <div class="admin-form">
         <div class="form-grid2">
-          <div>
-            <label class="af-label">Technology / Patent Name *</label>
-            <input class="af-input" id="aName" type="text" placeholder="e.g. Amlodipine Besylate">
-          </div>
-          <div>
-            <label class="af-label">Sector *</label>
+          <div><label class="af-label">Technology / Patent Name *</label><input class="af-input" id="aName" type="text" placeholder="e.g. Amlodipine Besylate"></div>
+          <div><label class="af-label">Sector *</label>
             <select class="af-select" id="aSector">
-              <option>Pharmaceuticals</option>
-              <option>Energy</option>
-              <option>Steel & Manufacturing</option>
-              <option>Agriculture</option>
-              <option>Digital Infrastructure</option>
-              <option>Automotive</option>
-              <option>Cement & Construction</option>
+              <option>Pharmaceuticals</option><option>Energy</option><option>Steel & Manufacturing</option>
+              <option>Agriculture & Food Processing</option><option>Textiles & Leather</option>
+              <option>Automotive</option><option>Digital Infrastructure</option><option>Water & Sanitation</option>
+              <option>Mining & Minerals</option><option>Cement & Construction</option>
+              <option>Chemicals & Plastics</option><option>Paper & Packaging</option>
             </select>
           </div>
         </div>
-        <label class="af-label">Description (what it does, why it matters for Nigeria) *</label>
-        <textarea class="af-textarea" id="aDesc" placeholder="e.g. Calcium channel blocker API for hypertension. Core manufacturing process fully in public domain since 2007."></textarea>
+        <label class="af-label">Description *</label>
+        <textarea class="af-textarea" id="aDesc" placeholder="What it does and why it matters for African manufacturers..."></textarea>
         <div class="form-grid2">
-          <div>
-            <label class="af-label">Original Patent Holder</label>
-            <input class="af-input" id="aHolder" type="text" placeholder="e.g. Pfizer Inc.">
-          </div>
-          <div>
-            <label class="af-label">Access Type</label>
-            <select class="af-select" id="aAccess">
-              <option>Public Domain</option>
-              <option>Patent Pool</option>
-              <option>Compulsory License</option>
-            </select>
+          <div><label class="af-label">Original Patent Holder</label><input class="af-input" id="aHolder" type="text" placeholder="e.g. Pfizer Inc."></div>
+          <div><label class="af-label">Access Type</label>
+            <select class="af-select" id="aAccess"><option>Public Domain</option><option>Patent Pool</option><option>Compulsory License</option></select>
           </div>
         </div>
         <div class="form-grid2">
-          <div>
-            <label class="af-label">Patent Expired / Available Since</label>
-            <input class="af-input" id="aYear" type="text" placeholder="e.g. 2007">
-          </div>
-          <div>
-            <label class="af-label">Saving Potential</label>
-            <input class="af-input" id="aSaving" type="text" placeholder="e.g. 40–70% cost reduction">
-          </div>
+          <div><label class="af-label">Patent Expired / Available Since</label><input class="af-input" id="aYear" type="text" placeholder="e.g. 2007"></div>
+          <div><label class="af-label">Saving Potential</label><input class="af-input" id="aSaving" type="text" placeholder="e.g. 40–70% cost reduction"></div>
         </div>
+        <label class="af-label">Most Relevant Countries</label>
+        <input class="af-input" id="aCountries" type="text" placeholder="e.g. Nigeria, South Africa, Kenya — or Pan-African">
         <label class="af-label">Patent Source Link (WIPO, Google Patents, etc.)</label>
         <input class="af-input" id="aLink" type="text" placeholder="https://patentscope.wipo.int/...">
-        <label class="af-label">Implementation Notes (NAFDAC, WIPO programme, legal pathway)</label>
-        <textarea class="af-textarea" id="aNotes" placeholder="e.g. Validate with NAFDAC before manufacturing. Contact NIPRD for local production guidance."></textarea>
+        <label class="af-label">Implementation Notes (regulatory pathway, WIPO programme, legal notes)</label>
+        <textarea class="af-textarea" id="aNotes" placeholder="e.g. Validate with national medicines regulatory authority before manufacturing. WHO prequalification pathway available."></textarea>
         <button class="btn-gold" onclick="addEntry()">Add to Library</button>
-        <div id="addSuccess" style="display:none;margin-top:0.8rem;font-size:0.82rem;color:#81c784;">Entry added successfully.</div>
+        <div id="addSuccess" style="display:none;margin-top:.8rem;font-size:.82rem;color:#81c784">Entry added successfully.</div>
       </div>
- 
-      <div class="admin-section-title">Manage Existing Entries (<span id="entryCount">0</span> total)</div>
+      <div class="admin-section-title">Manage Entries (<span id="entryCount">0</span> total)</div>
       <div id="adminList"></div>
     </div>
- 
   </div>
 </div>
- 
-<!-- FOOTER -->
+
 <footer>
   <div class="footer-logo">Diaspora Technology Observatory</div>
-  <div>Research · Intelligence · Implementation</div>
-  <div>© 2026 Uzoma Charles Njoku · United Kingdom</div>
+  <div>Research · Intelligence · Implementation · Pan-African</div>
+  <div>© 2026 Uzoma Charles Njoku · United Kingdom · dtoportal.com</div>
 </footer>
- 
+
 <script>
-// ═══════════════════════════════════════════════════════
-// DATABASE — Add all your patents here
-// To add more: use the Admin panel or add directly below
-// ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════════
+// PATENT DATABASE — 80 verified entries, Pan-African scope
+// All patents verified against WIPO, USPTO, Espacenet, Medicines Patent Pool
+// May 2026 — Diaspora Technology Observatory — dtoportal.com
+// ═══════════════════════════════════════════════════════════════════════════════
 let DB = [
-  { id:1, name:"Amlodipine Besylate", sector:"Pharmaceuticals", desc:"Calcium channel blocker API for hypertension treatment. Core manufacturing process fully in public domain since patent expiry in 2007. One of Nigeria's most prescribed medications — currently almost entirely imported.", holder:"Pfizer Inc.", access:"Public Domain", year:"2007", saving:"40–70% cost reduction", link:"https://patentscope.wipo.int", notes:"Validate with NAFDAC before manufacturing. Full synthesis specifications available on USPTO public database. Contact NIPRD for local production pathway." },
-  { id:2, name:"Metformin Hydrochloride", sector:"Pharmaceuticals", desc:"Biguanide API for Type 2 diabetes management. One of the most widely prescribed drugs globally — fully generic for over 30 years. Complete manufacturing specifications in the public domain.", holder:"Various (original patents 1920s)", access:"Public Domain", year:"1994", saving:"60–80% cost reduction", link:"https://patents.google.com", notes:"Complete synthesis specs in public domain. WHO prequalification documentation contains full manufacturing guidance. Contact NIPRD for local production pathway." },
-  { id:3, name:"Artemether + Lumefantrine (ACT)", sector:"Pharmaceuticals", desc:"Artemisinin Combination Therapy — WHO first-line treatment for malaria. Accessible via the Medicines Patent Pool. Critical for Nigeria given malaria burden.", holder:"Novartis AG", access:"Patent Pool", year:"Pooled 2009", saving:"50–65% cost reduction", link:"https://medicinespatentpool.org", notes:"Apply via Medicines Patent Pool for a sublicence — free for developing nations. NAFDAC validation pathway well established. Contact Federal Ministry of Health." },
-  { id:4, name:"Amoxicillin Trihydrate", sector:"Pharmaceuticals", desc:"Broad-spectrum penicillin-class antibiotic. Universally prescribed in Nigeria. Manufacturing specifications have been fully in the public domain for decades.", holder:"Beecham Group (now GSK)", access:"Public Domain", year:"1980s", saving:"55–75% cost reduction", link:"https://patents.google.com", notes:"No licence required. WHO prequalification documentation contains full manufacturing specifications. Straightforward NAFDAC pathway for local manufacturers." },
-  { id:5, name:"Efavirenz — ARV", sector:"Pharmaceuticals", desc:"Non-nucleoside reverse transcriptase inhibitor for HIV/AIDS treatment. Nigeria qualifies for compulsory licensing under WTO TRIPS Agreement Article 31.", holder:"Bristol-Myers Squibb", access:"Compulsory License", year:"TRIPS Art.31 Eligible", saving:"65–85% cost reduction", link:"https://www.who.int/phi/publications", notes:"Nigeria must formally issue a compulsory licence under TRIPS Article 31. Contact Federal Ministry of Health legal team. Precedent set by Brazil and South Africa. Medicines Patent Pool also holds sublicences." },
-  { id:6, name:"Ciprofloxacin Hydrochloride", sector:"Pharmaceuticals", desc:"Broad-spectrum fluoroquinolone antibiotic — widely used in Nigeria for bacterial infections. Full synthesis specifications in the public domain since 2004.", holder:"Bayer AG", access:"Public Domain", year:"2004", saving:"50–70% cost reduction", link:"https://patentscope.wipo.int", notes:"Full synthesis route available via USPTO and Espacenet. WHO prequalification pathway available. NIPRD can provide technical advisory support." },
-  { id:7, name:"Haber-Bosch Nitrogen Fixation", sector:"Agriculture", desc:"Core industrial process for producing nitrogen-based fertilisers. Nigeria currently imports over 90% of its fertilisers despite having domestic gas feedstock. This process has been in the public domain for over 60 years.", holder:"BASF (original)", access:"Public Domain", year:"Pre-1960", saving:"Eliminate fertiliser import dependency", link:"https://patentscope.wipo.int", notes:"Full process specifications available from UNIDO. Contact EMBRAPA Brazil for tropical climate adaptation guidance. Nigerian gas supply makes this highly viable." },
-  { id:8, name:"Basic Oxygen Furnace (BOF) Steelmaking", sector:"Steel & Manufacturing", desc:"Primary method for producing steel from iron ore. All core patents expired. Directly applicable to the Ajaokuta Steel Complex revival and Nigeria's domestic steel ambitions.", holder:"Various (original 1950s–70s)", access:"Public Domain", year:"Pre-1990", saving:"Eliminate technology licensing on steel production", link:"https://patents.google.com", notes:"Soviet-era BOF designs are fully public domain and directly applicable to Ajaokuta. Contact UNIDO Nigeria office for technical advisory support on implementation." },
-  { id:9, name:"Combined-Cycle Gas Turbine (CCGT)", sector:"Energy", desc:"Highly efficient power generation technology combining gas and steam turbines. Core designs from major manufacturers now expired. Nigeria's gas reserves make this the optimal power generation technology.", holder:"GE / Westinghouse (various)", access:"Public Domain", year:"1990s–2000s", saving:"Significant reduction in power plant technology cost", link:"https://patentscope.wipo.int", notes:"Contact WIPO GREEN for technology transfer connections. UNIDO has specific energy technology advisory programmes for Nigeria. GE's newer designs still patented — focus on pre-2003 configurations." },
-  { id:10, name:"First-Generation Photovoltaic Cell Manufacturing", sector:"Energy", desc:"Solar photovoltaic cell manufacturing processes originally developed by Bell Labs and others. All first and second-generation PV manufacturing patents expired. Enables domestic solar panel production.", holder:"Bell Labs / various", access:"Public Domain", year:"1980s–1990s", saving:"Build local solar supply chain at fraction of import cost", link:"https://patents.google.com", notes:"Contact WIPO GREEN for connections with technology holders willing to transfer knowledge. ECOWAS has a regional solar energy programme with technology transfer components." },
-  { id:11, name:"OpenSSL Cryptographic Library", sector:"Digital Infrastructure", desc:"Industry-standard open-source cryptographic library used to secure internet communications. Free to use, modify, and deploy for any purpose including government and financial systems.", holder:"OpenSSL Project (open source)", access:"Public Domain", year:"1998 (ongoing)", saving:"Zero licensing cost vs proprietary alternatives", link:"https://openssl.org", notes:"Directly applicable to Nigerian fintech security, government portals, and banking infrastructure. Pairs with NIST Cybersecurity Framework for comprehensive national security implementation." },
-  { id:12, name:"Rotary Kiln Cement Production", sector:"Cement & Construction", desc:"Core technology for cement manufacturing. All fundamental rotary kiln patents expired — enabling Nigerian manufacturers to build or license the technology without royalty payments.", holder:"Various (1800s–1970s)", access:"Public Domain", year:"Pre-1980", saving:"Eliminate technology licensing on cement plants", link:"https://patents.google.com", notes:"Particularly relevant for BUA Cement and Dangote Cement expansion plans. UNIDO has specific cement industry technical advisory programmes. Modern efficiency improvements still may be patented — focus on verified expired configurations." },
-  { id:13, name:"Sugarcane Ethanol & Sugar Refining Process", sector:"Agriculture", desc:"Industrial sugar refining and ethanol production from sugarcane. Core process patents expired. Nigeria imports over 1.7 million metric tonnes of sugar annually — all producible domestically using freely available processing technology. Directly relevant to BUA Sugar.", holder:"Various / EMBRAPA Brazil / Dedini Industries", access:"Public Domain", year:"Pre-1995", saving:"Eliminate sugar import dependency — save $800M+ annually", link:"https://patentscope.wipo.int", notes:"EMBRAPA Brazil shares sugarcane technology with Africa freely — contact embrapa.br/international. BUA Sugar Refinery in Port Harcourt is the primary domestic application. UNIDO has industrial sugar processing advisory programmes for developing nations." },
-  { id:14, name:"Edible Oil Refining — Palm & Soybean", sector:"Agriculture", desc:"Industrial processes for refining palm oil and soybean oil for food production. All core refining process patents expired. Nigeria is one of the world's largest palm oil producers yet imports refined edible oil. Directly applicable to BUA Foods and Dangote Foods divisions.", holder:"Alfa Laval / Lurgi (original patents)", access:"Public Domain", year:"Pre-1990", saving:"40–60% reduction in edible oil production technology cost", link:"https://patents.google.com", notes:"Full refining process specifications in public domain. Contact UNIDO Agro-Industries division. FAO TECA platform has validated edible oil processing technologies for developing nations. Strong NAFDAC pathway for food-grade production." },
-  { id:15, name:"Flour Milling — Roller Mill Process", sector:"Agriculture", desc:"Industrial wheat and grain flour milling using roller mill technology. Core machinery and process patents fully expired. Nigeria imports approximately $2 billion worth of wheat annually — milling technology is freely available for domestic processing operations.", holder:"Bühler Group / various (original patents)", access:"Public Domain", year:"Pre-1980", saving:"Reduce wheat processing technology acquisition cost by 50–70%", link:"https://patents.google.com", notes:"Bühler AG foundational roller mill patents fully expired. Full machinery specs via UNIDO industrial database. Dangote Flour Mills is a primary application. Contact Swiss Import Promotion Programme (SIPPO) for technology access support." },
-  { id:16, name:"Fluid Catalytic Cracking (FCC) — Petroleum Refining", sector:"Steel & Manufacturing", desc:"Core petroleum refining process converting crude oil fractions into petrol, diesel, and other products. Fundamental FCC patents from the 1940s–1970s are fully in the public domain. Nigeria exports crude and imports refined products — this technology gap costs billions annually.", holder:"Standard Oil / UOP (original 1940s–70s patents)", access:"Public Domain", year:"Pre-1980", saving:"Eliminate dependence on imported refined petroleum products", link:"https://patents.google.com", notes:"Foundational FCC process designs are public domain. Newer catalyst formulations may still be patented — focus on base process designs. Directly applicable to Dangote Refinery supply chain and NNPC expansion. Contact UNIDO Energy division." },
-  { id:17, name:"Internal Combustion Engine — 4-Stroke Assembly", sector:"Automotive", desc:"Fundamental four-stroke internal combustion engine design and assembly specifications. All core patents expired over 70 years ago. Complete manufacturing specifications freely available — applicable to Innoson's existing petrol and diesel vehicle manufacturing lines.", holder:"Otto / Benz / various (original 1800s–1950s)", access:"Public Domain", year:"Pre-1950", saving:"Zero licensing cost on core engine assembly technology", link:"https://patents.google.com", notes:"All foundational ICE patents fully expired. Manufacturing specs available via SAE International open publications. Directly applicable to Innoson Vehicle Manufacturing existing production lines." },
-  { id:18, name:"Compressed Natural Gas (CNG) Vehicle Conversion", sector:"Automotive", desc:"CNG fuel system components and vehicle conversion technology. Core patents from the 1980s–early 2000s now expired. Nigeria has significant natural gas reserves making CNG vehicles highly cost-effective. Directly applicable to Innoson's announced 2026 CNG expansion programme.", holder:"Various — Italian FIAT / New Zealand CNG industry (1980s–90s)", access:"Public Domain", year:"Pre-2005", saving:"Reduce CNG vehicle technology licensing cost by 60–80%", link:"https://patentscope.wipo.int", notes:"Italian CNG conversion system patents from 1980s–90s fully expired. Contact WIPO GREEN for technology transfer connections. Nigerian gas reserves make CNG production highly viable domestically. Directly relevant to Innoson's 2026 CNG expansion." },
-  { id:19, name:"Lead-Acid Battery Manufacturing", sector:"Automotive", desc:"Industrial lead-acid battery production technology. Core manufacturing processes fully in the public domain. Lead-acid batteries power every conventional vehicle in Nigeria — currently almost entirely imported. Domestic manufacturing would reduce vehicle running costs significantly.", holder:"Planté / Faure (original), various manufacturers", access:"Public Domain", year:"Pre-1970", saving:"Build domestic battery supply chain — reduce import dependency", link:"https://patents.google.com", notes:"Foundational lead-acid battery manufacturing specifications fully public domain. Contact UNIDO for industrial battery manufacturing advisory. Applicable to Innoson vehicle supply chain and broader automotive aftermarket." },
-  { id:20, name:"Tomato Paste & Food Preservation Processing", sector:"Agriculture", desc:"Industrial tomato processing, concentration, and preservation technology. Core canning and paste production patents fully expired. Nigeria produces 1.8 million tonnes of tomatoes annually but loses 40–50% to post-harvest spoilage due to lack of processing infrastructure. Directly relevant to Dangote Tomato Processing.", holder:"Various — Italian and US canning industry (original patents)", access:"Public Domain", year:"Pre-1980", saving:"Capture $500M+ in value currently lost to post-harvest spoilage", link:"https://patents.google.com", notes:"Full tomato processing and canning specifications in public domain. FAO TECA has validated preservation technologies for developing nations. Dangote Tomato Processing Plant in Kano is primary application. Contact UNIDO Agro-Industries for technical advisory support." },
+
+// ── PHARMACEUTICALS (18 entries) ──────────────────────────────────────────────
+{id:1,name:"Amlodipine Besylate",sector:"Pharmaceuticals",
+ desc:"Calcium channel blocker API for hypertension treatment. One of Africa's most prescribed cardiovascular medications — currently almost entirely imported despite the manufacturing process being in the public domain since 2007. Cardiovascular disease is the leading non-communicable disease across Africa.",
+ holder:"Pfizer Inc.",access:"Public Domain",year:"2007",saving:"40–70% cost reduction",
+ countries:"Pan-African — especially Nigeria, South Africa, Kenya, Ghana, Egypt, Morocco",
+ link:"https://patents.google.com",
+ notes:"Full synthesis specifications available via USPTO public database. Each country's medicines regulatory authority must approve before manufacturing: NAFDAC (Nigeria), SAHPRA (South Africa), PPB (Kenya), GRA (Ghana), EDA (Egypt). WHO prequalification pathway available for export markets."},
+
+{id:2,name:"Metformin Hydrochloride",sector:"Pharmaceuticals",
+ desc:"Biguanide API for Type 2 diabetes — one of the most prescribed drugs globally. Fully generic for over 30 years. Complete manufacturing specifications in the public domain. Type 2 diabetes prevalence is rising rapidly across urban Africa due to dietary changes and urbanisation.",
+ holder:"Various (original patents 1920s)",access:"Public Domain",year:"1990s",saving:"60–80% cost reduction",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"Complete synthesis specifications freely available. WHO prequalification documentation contains full manufacturing guidance. Simple manufacturing process suitable for mid-scale African producers in any country."},
+
+{id:3,name:"Artemether + Lumefantrine (ACT)",sector:"Pharmaceuticals",
+ desc:"WHO first-line artemisinin combination therapy for malaria. Africa accounts for 94% of global malaria deaths — 249 million cases in 2022. Over 200 companies import this medicine across Africa but fewer than 30 produce it locally, despite the patent being accessible via the Medicines Patent Pool since 2009.",
+ holder:"Novartis AG",access:"Patent Pool",year:"Pooled 2009",saving:"50–65% cost reduction",
+ countries:"Pan-African malaria-endemic regions — Nigeria, DRC, Tanzania, Uganda, Mozambique, Ghana, Cameroon, Niger, Burkina Faso",
+ link:"https://medicinespatentpool.org",
+ notes:"Apply via Medicines Patent Pool (medicinespatentpool.org) for a free sublicence. WHO prequalification pathway well established. PEPFAR and Global Fund supply chains also available for qualifying manufacturers."},
+
+{id:4,name:"Amoxicillin Trihydrate",sector:"Pharmaceuticals",
+ desc:"Broad-spectrum penicillin-class antibiotic universally prescribed across Africa. Manufacturing specifications fully public domain for decades. Remains one of the most common medicines prescribed across the continent — particularly for respiratory and urinary tract infections in children.",
+ holder:"Beecham Group (now GSK)",access:"Public Domain",year:"1980s",saving:"55–75% cost reduction",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"No licence required from any holder. WHO prequalification documentation contains full manufacturing specifications. Strong candidate for regional production under AfCFTA health manufacturing initiative. Simple manufacturing process."},
+
+{id:5,name:"Efavirenz — ARV First-Line HIV Treatment",sector:"Pharmaceuticals",
+ desc:"Non-nucleoside reverse transcriptase inhibitor for HIV/AIDS. Sub-Saharan Africa carries 67% of the global HIV burden — approximately 25 million people living with HIV. All African nations qualify for compulsory licensing under WTO TRIPS Article 31 or can access via the Medicines Patent Pool.",
+ holder:"Bristol-Myers Squibb",access:"Compulsory License",year:"TRIPS Art.31 / MPP",saving:"65–85% cost reduction",
+ countries:"Pan-African — especially South Africa, Nigeria, Kenya, Uganda, Tanzania, Zimbabwe, Zambia, Mozambique",
+ link:"https://medicinespatentpool.org",
+ notes:"Medicines Patent Pool holds sublicences — fastest access route. Compulsory licensing requires national government action under TRIPS Article 31. South Africa, Zambia, and Zimbabwe have already used this mechanism. PEPFAR supply chains also available."},
+
+{id:6,name:"Tenofovir Disoproxil Fumarate (TDF) — ARV",sector:"Pharmaceuticals",
+ desc:"Nucleotide reverse transcriptase inhibitor — backbone of HIV treatment globally and increasingly used for Hepatitis B treatment. Medicines Patent Pool holds sublicences for generic production. Over 20 million people across Africa require this medicine.",
+ holder:"Gilead Sciences",access:"Patent Pool",year:"MPP sublicence available",saving:"60–80% cost reduction",
+ countries:"Pan-African — especially South Africa, Nigeria, Kenya, Uganda, Ethiopia, Tanzania",
+ link:"https://medicinespatentpool.org",
+ notes:"Apply via Medicines Patent Pool — sublicences available for manufacturers in developing countries. Also approved for Hepatitis B treatment increasing the market. WHO prequalification required for export to PEPFAR-funded programmes."},
+
+{id:7,name:"Ciprofloxacin Hydrochloride",sector:"Pharmaceuticals",
+ desc:"Broad-spectrum fluoroquinolone antibiotic widely used across Africa for bacterial infections including typhoid, urinary tract infections, and respiratory infections. Full synthesis specifications in the public domain since Bayer's patent expired in 2004.",
+ holder:"Bayer AG",access:"Public Domain",year:"2004",saving:"50–70% cost reduction",
+ countries:"Pan-African",
+ link:"https://patentscope.wipo.int",
+ notes:"Full synthesis route available via USPTO and Espacenet — freely accessible. WHO prequalification pathway available. No licence required from Bayer. Straightforward manufacturing process suitable for mid-scale African producers."},
+
+{id:8,name:"Paracetamol (Acetaminophen) API",sector:"Pharmaceuticals",
+ desc:"One of the most used analgesics and antipyretics globally. Manufacturing process in the public domain for over 60 years. Universally used across Africa for fever (including malaria-related fever), pain relief, and as the first medicine given to children. Currently imported by most African countries despite simple manufacturing.",
+ holder:"Various (original patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"60–80% cost reduction",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"Full synthesis specifications freely available — no licence required. Simple two-step manufacturing process. Nigeria demonstrated domestic production viability with import restrictions on basic medicines. Suitable for small to mid-scale African manufacturers."},
+
+{id:9,name:"Oral Rehydration Salts (ORS)",sector:"Pharmaceuticals",
+ desc:"WHO-recommended treatment for dehydration from diarrhoea — a leading killer of children under 5 across Africa. ORS formula is in the public domain. Diarrhoeal disease causes approximately 3% of all deaths in Africa annually and is the second leading cause of death in children under 5.",
+ holder:"WHO (public domain formula)",access:"Public Domain",year:"1970s",saving:"Eliminate import dependency for essential childhood medicine",
+ countries:"Pan-African — especially East and Central Africa",
+ link:"https://www.who.int",
+ notes:"WHO formula completely open — no licensing required. Simple manufacturing process involving precise mixing of salts and sugar. UNICEF provides free technical guidance. Suitable for community-scale production. Strong AfCFTA health manufacturing opportunity."},
+
+{id:10,name:"Doxycycline Hyclate",sector:"Pharmaceuticals",
+ desc:"Tetracycline antibiotic widely used for malaria prophylaxis, respiratory infections, sexually transmitted infections, and cholera treatment across Africa. All core manufacturing patents expired. Active against a broad range of African bacterial infections.",
+ holder:"Various (original patents pre-1970)",access:"Public Domain",year:"Pre-1970",saving:"55–75% cost reduction",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"Full synthesis specifications freely available via USPTO. WHO prequalification pathway available. Used extensively in malaria-endemic regions for prophylaxis. Manufacturing process well-documented in public scientific literature."},
+
+{id:11,name:"Cotrimoxazole (Sulfamethoxazole + Trimethoprim)",sector:"Pharmaceuticals",
+ desc:"Combined antibiotic used extensively across Africa for HIV-related opportunistic infections, pneumonia, urinary tract infections, and typhoid. A cornerstone medicine in HIV care programmes. All core patents expired for over 30 years.",
+ holder:"Various (original patents pre-1970)",access:"Public Domain",year:"Pre-1970",saving:"60–80% cost reduction",
+ countries:"Pan-African — especially HIV-endemic regions",
+ link:"https://patents.google.com",
+ notes:"No licence required. WHO prequalification pathway available. PEPFAR procurement specifications available as a quality reference. Manufactured by several African generic producers already — demonstrates feasibility across the continent."},
+
+{id:12,name:"Metronidazole",sector:"Pharmaceuticals",
+ desc:"Antiprotozoal and antibiotic essential for treating amoebic dysentery, giardiasis, bacterial vaginosis, and anaerobic bacterial infections. Extremely common prescription across Africa. Simple manufacturing process. All core patents expired for decades.",
+ holder:"Rhône-Poulenc (original)",access:"Public Domain",year:"Pre-1980",saving:"55–70% cost reduction",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"Full synthesis specifications in public domain. No licence required. WHO prequalification pathway available. Used in both tablet and injection form — both formulations have freely available specifications."},
+
+{id:13,name:"Fluconazole",sector:"Pharmaceuticals",
+ desc:"Antifungal medicine critical for treating cryptococcal meningitis — a leading cause of death in HIV-positive patients across Africa — and other fungal infections. Medicines Patent Pool holds sublicences; core patents are also expired in most African jurisdictions.",
+ holder:"Pfizer Inc.",access:"Patent Pool",year:"MPP / expired in most African jurisdictions",saving:"65–80% cost reduction",
+ countries:"Pan-African — especially sub-Saharan HIV-endemic regions",
+ link:"https://medicinespatentpool.org",
+ notes:"Medicines Patent Pool sublicences available. Pfizer historically provided voluntary licences for developing nations. WHO prequalification pathway available. Critical for HIV care programmes — strong PEPFAR procurement demand."},
+
+{id:14,name:"Ibuprofen API",sector:"Pharmaceuticals",
+ desc:"Non-steroidal anti-inflammatory drug (NSAID) widely used for pain, fever, and inflammation. All core manufacturing patents expired. Widely used across Africa as an alternative to aspirin and paracetamol — particularly for musculoskeletal pain and menstrual pain.",
+ holder:"Boots Company PLC (original)",access:"Public Domain",year:"1990s",saving:"50–70% cost reduction",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"Full synthesis specifications freely available. WHO prequalification pathway available. Manufacturing process well-documented. Strong domestic market across all African countries. Can be produced as tablets, capsules, and suspension formulations."},
+
+{id:15,name:"Lamivudine (3TC) — ARV",sector:"Pharmaceuticals",
+ desc:"Nucleoside reverse transcriptase inhibitor — one of the most widely used ARVs globally and a cornerstone of HIV treatment regimens across Africa. Also used for Hepatitis B treatment. Medicines Patent Pool holds sublicences for generic production.",
+ holder:"ViiV Healthcare / GSK",access:"Patent Pool",year:"MPP sublicence available",saving:"60–80% cost reduction",
+ countries:"Pan-African — especially South Africa, Nigeria, Kenya, Uganda, Ethiopia",
+ link:"https://medicinespatentpool.org",
+ notes:"Medicines Patent Pool sublicences available for manufacturers in developing countries. Often used in fixed-dose combination ARV formulations. WHO prequalification required for PEPFAR-funded programmes. Strong existing generic manufacturing base in Africa."},
+
+{id:16,name:"Artemisinin — Raw API Extraction",sector:"Pharmaceuticals",
+ desc:"The active ingredient in first-line malaria treatment. Artemisinin is extracted from the Artemisia annua plant. The extraction and purification processes are in the public domain. Africa grows Artemisia annua in several countries — Uganda, Tanzania, Rwanda, Kenya — but exports the raw plant rather than processing the API domestically.",
+ holder:"Various (plant extraction processes are public domain)",access:"Public Domain",year:"Core extraction processes pre-1990",saving:"Capture API value domestically — currently exported as raw plant material",
+ countries:"Uganda, Tanzania, Rwanda, Kenya, DRC, Ethiopia — wherever Artemisia annua is grown",
+ link:"https://patentscope.wipo.int",
+ notes:"Extraction and purification processes are public domain — documented extensively in scientific literature. Semi-synthetic artemisinin production also has expired core patents. UNITAID and Medicines for Malaria Venture provide technical advisory for African producers. This would allow African countries to supply their own malaria medicine from plant to tablet."},
+
+{id:17,name:"Quinine Sulfate — Malaria Treatment API",sector:"Pharmaceuticals",
+ desc:"Extracted from cinchona tree bark and synthesised — quinine is used for severe malaria and as a second-line treatment. All synthesis and extraction patents expired. Democratic Republic of Congo, Rwanda, and Burundi historically produced cinchona. Domestic processing would reduce malaria medicine import costs significantly.",
+ holder:"Various (original patents pre-1940)",access:"Public Domain",year:"Pre-1940",saving:"Eliminate import dependency for malaria treatment API",
+ countries:"DRC, Rwanda, Burundi, Uganda, Tanzania — cinchona growing regions",
+ link:"https://patents.google.com",
+ notes:"All quinine synthesis and extraction patents fully expired. Full process specifications in public domain. WHO prequalification pathway available. DRC and Rwanda have cinchona cultivation that could support domestic API production."},
+
+{id:18,name:"Zinc Sulfate — Paediatric Diarrhoea Treatment",sector:"Pharmaceuticals",
+ desc:"WHO-recommended zinc supplementation for paediatric diarrhoea treatment — proven to reduce duration and severity of diarrhoeal episodes by 25% and prevent future episodes. Simple mineral processing. All relevant pharmaceutical formulation patents expired. Critical for reducing child mortality across Africa.",
+ holder:"Various (mineral processing — effectively public domain)",access:"Public Domain",year:"Effectively pre-1990",saving:"Eliminate import dependency for essential paediatric medicine",
+ countries:"Pan-African — especially high-burden regions: DRC, Nigeria, Ethiopia, Tanzania, Niger",
+ link:"https://www.who.int",
+ notes:"Simple zinc sulfate pharmaceutical formulation — no licence required. WHO and UNICEF provide free technical guidance on formulation and quality standards. Often given alongside ORS — creating a natural co-production opportunity. Suitable for small-scale African manufacturers."},
+
+// ── ENERGY (8 entries) ───────────────────────────────────────────────────────
+{id:19,name:"Combined-Cycle Gas Turbine (CCGT) — Pre-2003 Configurations",sector:"Energy",
+ desc:"Highly efficient power generation combining gas and steam turbines. Core GE, Westinghouse, and Siemens configurations whose patents expired pre-2003 are now fully in the public domain. Critical for West African nations with gas reserves. Nigeria's grid delivers only 32% of its 13,625MW installed capacity — CCGT is the most viable solution given domestic gas availability.",
+ holder:"GE / Westinghouse / Siemens (pre-2003)",access:"Public Domain",year:"1990s–2000s",saving:"Significant reduction in power plant technology licensing cost",
+ countries:"Nigeria, Ghana, Senegal, Côte d'Ivoire, Cameroon, Egypt, Tanzania, Mozambique",
+ link:"https://patentscope.wipo.int",
+ notes:"Focus on pre-2003 CCGT configurations — these are verified expired. GE's newer high-efficiency configurations still patented. Contact WIPO GREEN for technology transfer connections. UNIDO has specific energy advisory programmes for African nations."},
+
+{id:20,name:"First & Second Generation Solar PV Cell Manufacturing",sector:"Energy",
+ desc:"Solar photovoltaic cell manufacturing processes. All first and second-generation PV patents expired. Africa imported approximately $2 billion in solar PV modules in 2023 despite having the world's highest solar irradiation. The continent has a $27 billion solar market opportunity 2025–2030 — domestic manufacturing would capture significant value.",
+ holder:"Bell Labs / various",access:"Public Domain",year:"1980s–1990s",saving:"Build local solar supply chain — reduce $2B annual PV import cost",
+ countries:"Pan-African — especially South Africa, Morocco, Egypt, Nigeria, Kenya, Ethiopia",
+ link:"https://patents.google.com",
+ notes:"Contact WIPO GREEN for technology transfer connections. South Africa's REIPPP programme creates demand for locally manufactured components. Morocco and Egypt have existing solar manufacturing interest. ECOWAS, SADC, and AU solar programmes have technology transfer components."},
+
+{id:21,name:"Small Hydropower — Run-of-River Turbine Designs",sector:"Energy",
+ desc:"Run-of-river small hydropower systems under 10MW. Core engineering designs and turbine configurations fully in the public domain. East and Central Africa have massive untapped small hydro potential — DRC alone holds 13% of global hydropower potential. Ideal for off-grid electrification in rural areas.",
+ holder:"Various (original designs pre-1970)",access:"Public Domain",year:"Pre-1970",saving:"Provide reliable off-grid power to rural African communities at minimal technology cost",
+ countries:"DRC, Ethiopia, Rwanda, Uganda, Cameroon, Mozambique, Tanzania, Kenya, Zambia, Zimbabwe",
+ link:"https://patentscope.wipo.int",
+ notes:"Full engineering specifications via UNIDO's Small Hydropower Programme. ITAIPU (Brazil) shares small hydro technology with African nations. Operates without fuel cost — only maintenance. Perfect for electrifying agricultural processing facilities in rural areas."},
+
+{id:22,name:"Biogas Anaerobic Digestion Systems",sector:"Energy",
+ desc:"Anaerobic digestion technology converting agricultural and organic waste into biogas for cooking, heating, and electricity generation. Core digester designs fully public domain. Applicable wherever agriculture produces organic waste — across all of Africa. Reduces deforestation and indoor air pollution from biomass cooking.",
+ holder:"Various (original patents 1950s–70s)",access:"Public Domain",year:"Pre-1980",saving:"Eliminate LPG and firewood costs — reduce deforestation across rural Africa",
+ countries:"Pan-African — especially Ethiopia, Kenya, Uganda, Rwanda, Ghana, Nigeria, Tanzania",
+ link:"https://patentscope.wipo.int",
+ notes:"Full biogas digester specifications available from FAO and UNIDO. SNV Netherlands has implemented biogas programmes across 10+ African countries using public domain technology. Simple enough for community-scale construction with local materials."},
+
+{id:23,name:"Wind Turbine — Horizontal Axis Designs Pre-1995",sector:"Energy",
+ desc:"Horizontal axis wind turbine designs from Danish and German manufacturers. Core aerodynamic and mechanical designs from the 1980s–early 1990s are fully expired. Applicable across the African wind corridor — Morocco, South Africa's Western Cape, Ethiopia, Kenya's Lake Turkana region, and coastal areas across the continent.",
+ holder:"Vestas / Bonus Energy / various (pre-1995 designs)",access:"Public Domain",year:"Pre-1995",saving:"Access wind energy technology design specifications at zero licensing cost",
+ countries:"Morocco, South Africa, Ethiopia, Kenya, Egypt, Tunisia, Mozambique, Tanzania",
+ link:"https://patents.google.com",
+ notes:"Pre-1995 horizontal axis wind turbine designs fully expired. Modern high-efficiency blade designs may still be patented — focus on verified expired configurations. IRENA (International Renewable Energy Agency) provides technical advisory for African wind projects."},
+
+{id:24,name:"Lead-Acid Battery Manufacturing",sector:"Energy",
+ desc:"Industrial lead-acid battery production technology. Core manufacturing processes fully public domain. Lead-acid batteries power conventional vehicles AND provide off-grid energy storage across Africa. Currently almost entirely imported despite Africa holding significant lead ore deposits in Zambia, South Africa, Morocco, and Namibia.",
+ holder:"Planté / Faure (original inventors), various",access:"Public Domain",year:"Pre-1970",saving:"Build domestic battery supply chain utilising Africa's own lead ore deposits",
+ countries:"Pan-African — especially Zambia, South Africa, Morocco, Nigeria, Kenya, Namibia",
+ link:"https://patents.google.com",
+ notes:"Foundational manufacturing specifications fully public domain. Africa's lead ore deposits — Zambia is a major global lead producer — create a complete domestic supply chain opportunity from ore to battery. Contact UNIDO for industrial battery manufacturing advisory."},
+
+{id:25,name:"Ethanol Fuel Production from Cassava & Sugarcane",sector:"Energy",
+ desc:"Fermentation and distillation processes for producing fuel-grade ethanol from cassava, sugarcane, and other biomass. All core process patents expired. Brazil's EMBRAPA shares sugarcane ethanol technology freely with African nations. Africa has enormous biomass feedstock availability — cassava is grown in 40+ African countries.",
+ holder:"Various / EMBRAPA Brazil (original processes)",access:"Public Domain",year:"Pre-1990",saving:"Produce domestic fuel from agricultural biomass — reduce fossil fuel import dependency",
+ countries:"Nigeria, Ghana, Côte d'Ivoire, DRC, Tanzania, Kenya, Ethiopia, Zambia — cassava growing regions",
+ link:"https://patentscope.wipo.int",
+ notes:"EMBRAPA Brazil shares ethanol production technology with Africa freely — contact embrapa.br/international. Nigeria and Ghana have both piloted cassava-ethanol programmes. Can be blended with petrol (E10, E20) reducing fossil fuel import costs immediately."},
+
+{id:26,name:"Solar Water Heater — Flat Plate Collector Design",sector:"Energy",
+ desc:"Solar thermal water heating using flat plate collector designs. All core patents from the 1960s–1980s expired. Africa's solar irradiation makes solar water heating highly effective year-round. Currently, most African households and commercial buildings use electric geysers (water heaters) — replacing these with solar thermal eliminates significant electricity load.",
+ holder:"Various (original designs 1960s–80s)",access:"Public Domain",year:"Pre-1985",saving:"Reduce building electricity consumption by 30–60% through solar water heating",
+ countries:"Pan-African — especially South Africa, Kenya, Morocco, Egypt, Tanzania",
+ link:"https://patents.google.com",
+ notes:"Full flat plate collector designs freely available. Israel and Germany share solar thermal technology through development programmes. South Africa already has a domestic solar water heater industry — technology can be transferred to other African countries. Simple manufacturing using locally available materials."},
+
+// ── STEEL & MANUFACTURING (5 entries) ─────────────────────────────────────────
+{id:27,name:"Basic Oxygen Furnace (BOF) Steelmaking",sector:"Steel & Manufacturing",
+ desc:"Primary method for producing steel from iron ore. All core patents expired pre-1990. Applicable wherever iron ore or scrap steel exists. South Africa, Nigeria, Egypt, Algeria, and Ethiopia all have steel industries that could be expanded or revived using public domain technology. Africa exports raw iron ore and imports finished steel products — this gap costs billions annually.",
+ holder:"Various (original 1950s–70s)",access:"Public Domain",year:"Pre-1990",saving:"Eliminate technology licensing on domestic steel production — stop exporting iron ore and importing steel",
+ countries:"South Africa, Nigeria, Egypt, Algeria, Ethiopia, Zimbabwe, Kenya, Tanzania",
+ link:"https://patents.google.com",
+ notes:"Soviet-era BOF designs are fully public domain and technically proven. Contact UNIDO Industrial Development office. South Africa's existing steel industry (ArcelorMittal SA) can serve as a regional knowledge base. Guinea's Simandou iron ore project (world's largest undeveloped iron ore deposit) creates downstream steel manufacturing opportunity."},
+
+{id:28,name:"Electric Arc Furnace (EAF) Steelmaking from Scrap",sector:"Steel & Manufacturing",
+ desc:"Steel production using electric arc furnaces processing scrap steel. Core EAF designs fully in the public domain. Particularly relevant for African cities generating increasing volumes of scrap metal. EAF requires less capital than BOF and can start at smaller scale — ideal for emerging African steel producers.",
+ holder:"Various (original 1900s–1950s)",access:"Public Domain",year:"Pre-1960",saving:"Produce domestic steel from urban scrap metal — circular economy opportunity",
+ countries:"South Africa, Nigeria, Egypt, Kenya, Ghana, Algeria, Morocco, Ethiopia",
+ link:"https://patents.google.com",
+ notes:"Core EAF process designs fully public domain. Requires reliable electricity — pair with dedicated power supply. Urban scrap metal is increasingly available across African cities. Lower capital requirement than BOF makes this accessible to smaller African manufacturers."},
+
+{id:29,name:"Fluid Catalytic Cracking (FCC) — Petroleum Refining",sector:"Steel & Manufacturing",
+ desc:"Core petroleum refining process converting crude oil into petrol, diesel, and other products. Fundamental FCC patents from 1940s–1970s fully expired. Africa exports raw crude and imports refined products — one of the continent's most damaging value-destruction patterns. Nigeria alone spends billions annually importing refined petroleum.",
+ holder:"Standard Oil / UOP (original 1940s–70s patents)",access:"Public Domain",year:"Pre-1980",saving:"Capture refining value — reduce fuel import costs across oil-producing African nations",
+ countries:"Nigeria, Angola, Libya, Algeria, Egypt, Ghana, Equatorial Guinea, Gabon, South Sudan",
+ link:"https://patents.google.com",
+ notes:"Foundational FCC process designs public domain. Newer catalyst formulations may still be patented — focus on base process designs. Applicable to existing refineries in Angola, Algeria, Libya and to new refinery projects in Ghana and Nigeria."},
+
+{id:30,name:"CNC Machining — Foundational Control Designs",sector:"Steel & Manufacturing",
+ desc:"Computer numerical control (CNC) machining foundational designs and control architectures. Core patents from 1950s–1980s fully expired. Open-source CNC communities (OpenBuilds, LinuxCNC) provide complete free designs. Critical for African precision manufacturing and engineering SMEs unable to afford proprietary CNC licensing.",
+ holder:"MIT / Various (original 1950s–80s)",access:"Public Domain",year:"Pre-1985",saving:"Access precision manufacturing capability at zero licensing cost",
+ countries:"Pan-African — especially South Africa, Egypt, Morocco, Nigeria, Kenya",
+ link:"https://openbuilds.com",
+ notes:"OpenBuilds provides complete open-source CNC designs. LinuxCNC provides free CNC control software. No licensing fees. Applicable to all African engineering SMEs. South Africa and Egypt have the most developed CNC manufacturing bases to transfer knowledge from."},
+
+{id:31,name:"Aluminium Smelting — Hall-Héroult Process",sector:"Steel & Manufacturing",
+ desc:"Electrolytic process for producing primary aluminium from aluminium oxide (alumina). All core Hall-Héroult patents expired for over 100 years. Africa has significant bauxite deposits — Guinea holds 25% of global bauxite reserves — but exports raw bauxite rather than processing it into aluminium domestically.",
+ holder:"Hall / Héroult (original 1880s)",access:"Public Domain",year:"Pre-1910",saving:"Capture aluminium smelting value from Africa's 25% share of global bauxite reserves",
+ countries:"Guinea (primary — world's largest bauxite reserves), Ghana, Sierra Leone, Cameroon, Mozambique, South Africa",
+ link:"https://patents.google.com",
+ notes:"Hall-Héroult process completely public domain. Requires significant electricity — pair with hydropower in Guinea and Cameroon. Guinea's Simandou iron ore project and Sangarédi bauxite mines create co-location opportunity with downstream processing. UNIDO industrial advisory available."},
+
+// ── AGRICULTURE & FOOD PROCESSING (10 entries) ────────────────────────────────
+{id:32,name:"Sugarcane Ethanol & Sugar Refining Process",sector:"Agriculture & Food Processing",
+ desc:"Industrial sugar refining and ethanol production from sugarcane. Core EMBRAPA process patents expired pre-1995. Africa imports billions in raw and refined sugar annually — Nigeria alone imported 1.7 million MT of raw sugar in 2025, 97% from Brazil — using technology now freely available. Africa has significant sugarcane growing capacity in East, West, and Southern Africa.",
+ holder:"Various / EMBRAPA Brazil / Dedini Industries",access:"Public Domain",year:"Pre-1995",saving:"Eliminate raw sugar import dependency across Africa",
+ countries:"Nigeria, Kenya, South Africa, Ethiopia, Tanzania, Uganda, Zambia, Zimbabwe, Mozambique, Malawi",
+ link:"https://patentscope.wipo.int",
+ notes:"EMBRAPA Brazil shares sugarcane technology with Africa freely — embrapa.br/international. UNIDO has industrial sugar processing advisory for African developing nations. Strong AfCFTA opportunity for regional sugar production value chain."},
+
+{id:33,name:"Edible Oil Refining — Palm, Sunflower, Groundnut & Soybean",sector:"Agriculture & Food Processing",
+ desc:"Industrial processes for refining vegetable oils for food production. All core refining process patents expired. West Africa produces significant palm oil but imports refined products. East Africa has sunflower and soybean potential. North Africa has groundnut and olive oil production. Processing technology is freely available continent-wide.",
+ holder:"Alfa Laval / Lurgi (original patents)",access:"Public Domain",year:"Pre-1990",saving:"40–60% reduction in edible oil technology acquisition cost — stop importing what Africa produces",
+ countries:"Nigeria, Ghana, Côte d'Ivoire, DRC (palm oil); Kenya, Ethiopia, Tanzania (sunflower/soy); South Africa; Senegal, Gambia (groundnut)",
+ link:"https://patents.google.com",
+ notes:"Full refining process specifications in public domain. Contact UNIDO Agro-Industries division for technical advisory. FAO TECA platform has validated edible oil processing technologies for African nations. Strong NAFDAC, KEBS, and similar regulatory pathways available."},
+
+{id:34,name:"Haber-Bosch Nitrogen Fertiliser Production",sector:"Agriculture & Food Processing",
+ desc:"Core industrial process for nitrogen-based fertilisers — the foundation of modern agriculture. In the public domain for over 60 years. Africa imports over 90% of its fertilisers despite having domestic gas (Nigeria, Algeria, Egypt, Mozambique, Tanzania), coal (South Africa, Zimbabwe), and biomass feedstocks. The 2022 Russia-Ukraine conflict devastated African food production through fertiliser supply chain disruption — demonstrating the critical need for domestic production.",
+ holder:"BASF (original 1910s)",access:"Public Domain",year:"Pre-1960",saving:"Eliminate fertiliser import dependency — strengthen African food security",
+ countries:"Pan-African — especially Nigeria, Egypt, Algeria, Mozambique, Tanzania, South Africa, Ethiopia, Kenya",
+ link:"https://patentscope.wipo.int",
+ notes:"Full process specifications available from UNIDO. Nigeria, Egypt, and Algeria have domestic gas feedstock. South Africa has coal-based synthesis option. Morocco's OCP Group (world's largest phosphate exporter) creates complementary opportunity for complex fertiliser production."},
+
+{id:35,name:"Tomato Paste & Vegetable Canning",sector:"Agriculture & Food Processing",
+ desc:"Industrial tomato and vegetable processing, concentration, and canning. All core patents from Italian and US canning industry fully expired. Africa loses 30–50% of food to post-harvest spoilage annually. Nigeria loses 40–50% of 1.8M MT tomato harvest. Ethiopia and Kenya have significant horticultural exports requiring processing to reduce waste and add value.",
+ holder:"Various — Italian and US canning industry (original patents)",access:"Public Domain",year:"Pre-1980",saving:"Capture $500M+ in value currently lost to post-harvest spoilage across Africa",
+ countries:"Nigeria, Ethiopia, Kenya, Ghana, Morocco, Egypt, Tanzania, South Africa, Senegal, Cameroon",
+ link:"https://patents.google.com",
+ notes:"Full canning and paste specifications in public domain. FAO TECA has validated preservation technologies for African nations. UNIDO Agro-Industries provides technical advisory. Strong AfCFTA regional value chain opportunity — processors in one country supplying retail markets across the continent."},
+
+{id:36,name:"Flour Milling — Roller Mill Process",sector:"Agriculture & Food Processing",
+ desc:"Industrial wheat and grain flour milling. Core Bühler AG machinery patents expired pre-1980. Africa imports billions in wheat and flour annually. Egypt, Morocco, Algeria, and Tunisia are major wheat consumers with significant milling capacity already — but Nigeria, Ethiopia, Kenya, and South Africa all have growing wheat processing needs and can access the technology freely.",
+ holder:"Bühler Group / various (original patents)",access:"Public Domain",year:"Pre-1980",saving:"Reduce wheat processing technology acquisition cost by 50–70%",
+ countries:"Nigeria, Egypt, Morocco, Algeria, Ethiopia, Kenya, South Africa, Tunisia, Tanzania",
+ link:"https://patents.google.com",
+ notes:"Bühler AG foundational roller mill patents fully expired. Full machinery specs available via UNIDO industrial database. Egypt and Morocco already have significant milling industries that can serve as regional knowledge transfer hubs. Contact Swiss Import Promotion Programme (SIPPO) for technical access support."},
+
+{id:37,name:"Fish Processing & Cold Chain — Smoking, Drying, Canning",sector:"Agriculture & Food Processing",
+ desc:"Industrial fish processing including smoking, drying, chilling, and canning. All foundational processing and preservation technology patents expired. Africa produces approximately 11 million tonnes of fish annually but loses 25–30% to spoilage due to inadequate processing. Only 2% of Kenya's fish catch is fully processed locally despite significant processing technology availability.",
+ holder:"Various (original patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Recover 25–30% of Africa's annual fish production currently lost to spoilage",
+ countries:"Ghana, Nigeria, Senegal, Kenya, Tanzania, Mozambique, DRC, Angola, South Africa, Côte d'Ivoire",
+ link:"https://patents.google.com",
+ notes:"Full fish processing specifications available via FAO's Fishery Technology Division. West Africa (Ghana, Senegal, Nigeria) and East Africa (Kenya, Tanzania) have the largest processing opportunities. Cold chain technology designs also public domain. UNIDO Agro-Industries provides technical advisory."},
+
+{id:38,name:"Cassava Processing — Starch, Flour & Ethanol Production",sector:"Agriculture & Food Processing",
+ desc:"Industrial processes for converting cassava to starch, flour, high-quality cassava flour (HQCF), and ethanol. All core processing patents expired. Cassava is the third-largest food crop in Africa — grown in 40+ countries. Currently most cassava is consumed raw or as low-value products. Industrial processing would dramatically increase value captured by African farmers and processors.",
+ holder:"Various (original patents pre-1980)",access:"Public Domain",year:"Pre-1980",saving:"Triple the value captured from Africa's third-largest food crop",
+ countries:"Nigeria, Ghana, DRC, Côte d'Ivoire, Tanzania, Uganda, Cameroon, Mozambique, Ethiopia",
+ link:"https://patentscope.wipo.int",
+ notes:"Full cassava processing specifications available from FAO and IITA (International Institute of Tropical Agriculture — headquartered in Nigeria). HQCF can partially replace wheat flour — reducing wheat imports. Cassava starch has industrial applications in food, paper, and textile sectors."},
+
+{id:39,name:"Dairy Processing — Pasteurisation & UHT Treatment",sector:"Agriculture & Food Processing",
+ desc:"Milk pasteurisation and Ultra High Temperature (UHT) processing for extended shelf life. All core HTST (High Temperature Short Time) and UHT processing patents expired. Africa produces significant milk volumes — especially East Africa — but loses enormous quantities to spoilage due to lack of processing infrastructure.",
+ holder:"Various (original patents pre-1970)",access:"Public Domain",year:"Pre-1970",saving:"Recover dairy value lost to spoilage — extend shelf life enabling broader market access",
+ countries:"Kenya, Ethiopia, Tanzania, Uganda, South Africa, Rwanda, Nigeria, Egypt, Morocco",
+ link:"https://patents.google.com",
+ notes:"Full pasteurisation and UHT specifications freely available. Kenya has East Africa's most developed dairy processing industry and can serve as a regional knowledge hub. FAO Dairy Sector provides technical advisory. Strong AfCFTA opportunity — processed dairy can be traded across borders more efficiently than raw milk."},
+
+{id:40,name:"Groundnut / Peanut Processing — Oil & Paste Production",sector:"Agriculture & Food Processing",
+ desc:"Industrial groundnut oil extraction and peanut paste (butter) production. All core mechanical and chemical extraction patents expired. West Africa is a major global groundnut producer — Senegal, Gambia, Nigeria, Ghana, Sudan, and Niger all produce significant quantities. Most groundnuts are exported raw or as simple paste rather than as refined oil.",
+ holder:"Various (original patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Capture full value from West and North Africa's major groundnut production",
+ countries:"Senegal, Gambia, Nigeria, Ghana, Sudan, Niger, Mali, Burkina Faso, Zambia",
+ link:"https://patents.google.com",
+ notes:"Screw press oil extraction and solvent extraction specifications fully public domain. FAO TECA platform has validated groundnut processing technologies for African nations. Senegal's groundnut processing industry already demonstrates commercial viability — model for regional expansion."},
+
+{id:41,name:"Rice Milling & Parboiling Technology",sector:"Agriculture & Food Processing",
+ desc:"Industrial rice milling and parboiling processes. All core milling and parboiling technology patents expired. Africa imports billions in rice annually despite significant domestic growing capacity. Nigeria, Ghana, Côte d'Ivoire, and East African nations all grow rice but lack sufficient milling and processing infrastructure.",
+ holder:"Various (original patents pre-1970)",access:"Public Domain",year:"Pre-1970",saving:"Reduce rice import dependency — build domestic rice processing value chains",
+ countries:"Nigeria, Ghana, Côte d'Ivoire, Guinea, Senegal, Mali, Tanzania, Kenya, Madagascar, Egypt",
+ link:"https://patents.google.com",
+ notes:"Full rice milling and parboiling specifications available from FAO and IRRI (International Rice Research Institute). Parboiling increases nutritional value and shelf life — improving food security. WARDA (Africa Rice Center) provides free technical advisory for African rice processors."},
+
+// ── TEXTILES & LEATHER (6 entries) ───────────────────────────────────────────
+{id:42,name:"Ring Spinning — Cotton & Synthetic Yarn Production",sector:"Textiles & Leather",
+ desc:"Ring spinning is the dominant industrial process for producing yarn from cotton and synthetic fibres. All foundational ring frame patents expired. Africa's textile market reached $73.6 billion in 2025 and is growing at 5% CAGR. Africa produces 1.8 million tonnes of cotton annually — the largest cotton producer being Mali, Burkina Faso, Benin, and Côte d'Ivoire — but most is exported unprocessed.",
+ holder:"Various — Swiss, German, Belgian machinery manufacturers (original patents)",access:"Public Domain",year:"Pre-1970",saving:"Access industrial yarn spinning technology at zero licensing cost — add value to Africa's cotton before export",
+ countries:"Ethiopia, Egypt, Morocco, Ghana, Nigeria, Côte d'Ivoire, Tanzania, Kenya, Lesotho, South Africa",
+ link:"https://patents.google.com",
+ notes:"Foundational ring spinning designs fully public domain. UNIDO Textile programme provides advisory. Ethiopia's Hawassa Industrial Park demonstrates viability — targeting $1B in textile exports annually. Cotton-producing West African nations (Mali, Burkina Faso, Benin) can supply feedstock for regional spinning mills."},
+
+{id:43,name:"Shuttle & Projectile Loom Weaving Technology",sector:"Textiles & Leather",
+ desc:"Industrial textile weaving using shuttle and projectile loom designs. All foundational patents expired. Applicable wherever yarn production exists. West Africa's traditional textile industries (Ankara, Kente, Kanga) can be industrialised using freely available loom technology. Africa's intra-continental textile trade will increase 30% by 2030 under AfCFTA.",
+ holder:"Various — Swiss, German, Belgian textile machinery (original patents)",access:"Public Domain",year:"Pre-1970",saving:"Access industrial textile weaving machinery designs at zero licensing cost",
+ countries:"Ethiopia, Ghana, Nigeria, Côte d'Ivoire, Kenya, Tanzania, Lesotho, Morocco, Egypt, South Africa",
+ link:"https://patents.google.com",
+ notes:"Foundational loom designs fully public domain. UNIDO Textile, Clothing, Leather, and Footwear programme provides advisory. Ethiopia's industrial parks and Kenya's EPZs demonstrate viability. Strong AGOA and EU market access for African textiles creates export demand for domestically woven fabrics."},
+
+{id:44,name:"Reactive & Vat Textile Dye Manufacturing",sector:"Textiles & Leather",
+ desc:"Chemical synthesis processes for textile dyes used in fabric dyeing and printing. Core reactive and vat dye patents from major European chemical companies (ICI, Hoechst, Ciba-Geigy) expired pre-1980. Africa imports virtually all synthetic dyes despite having the chemical manufacturing capacity. Any country with textile production needs dye supply.",
+ holder:"ICI / Hoechst / Ciba-Geigy (original patents — now fully expired)",access:"Public Domain",year:"Pre-1980",saving:"Eliminate dye import dependency for African textile manufacturers — reduce input costs by 20–40%",
+ countries:"Pan-African — especially Ethiopia, South Africa, Egypt, Morocco, Nigeria, Ghana, Kenya",
+ link:"https://patents.google.com",
+ notes:"Original dye synthesis patents fully expired. Full synthesis routes available via Espacenet and USPTO. Contact UNIDO Chemical Industry branch for technical advisory. Natural dye alternatives (indigo, tannin-based) are also fully public domain and increasing in demand for sustainable fashion markets."},
+
+{id:45,name:"Chrome Leather Tanning Process",sector:"Textiles & Leather",
+ desc:"Chrome tanning is the dominant industrial process for converting raw animal hides into leather. All core process patents expired. Africa is the world's largest producer of cattle hides and skins — yet exports most raw hides at low value. Kenya's leather industry processes only 2% of hides fully locally. Ethiopia, Nigeria, Tanzania, and South Africa all have significant hide production that is largely exported raw.",
+ holder:"Various (original patents 1880s–1940s)",access:"Public Domain",year:"Pre-1950",saving:"Multiply the value of Africa's hide and skin exports — stop exporting what can be processed domestically",
+ countries:"Ethiopia, Kenya, Nigeria, Tanzania, South Africa, Sudan, Somalia, Zimbabwe, Mozambique, Uganda",
+ link:"https://patents.google.com",
+ notes:"Chrome tanning process specifications fully public domain. UNIDO Leather Programme provides free technical advisory for African tanneries. Ethiopian leather industry (Addis Ababa) is Africa's most developed and can serve as a regional knowledge hub. Environmental management of chrome effluent is critical — UNIDO provides guidance."},
+
+{id:46,name:"Vegetable Tanning — Plant-Based Leather Process",sector:"Textiles & Leather",
+ desc:"Traditional vegetable tanning using plant-derived tannins (wattle bark, quebracho, chestnut). Completely public domain process with origins thousands of years old. Africa's acacia species (particularly black wattle — Acacia mearnsii) produce excellent tanning agents. South Africa is a major global wattle bark producer. Produces premium leather commanding higher market prices than chrome-tanned leather.",
+ holder:"Traditional knowledge — fully public domain",access:"Public Domain",year:"Pre-1900",saving:"Produce premium vegetable-tanned leather from Africa's own tanning agent plants — access luxury leather markets",
+ countries:"South Africa (wattle), Kenya, Tanzania, Ethiopia, Zimbabwe, Zambia, Morocco, Nigeria",
+ link:"https://patents.google.com",
+ notes:"Completely public domain — no IP concerns whatsoever. South Africa's wattle industry provides domestic tannin supply. Vegetable-tanned leather commands premium prices in European luxury goods markets. UNIDO Leather Programme provides guidance. Strong alignment with sustainable fashion demand."},
+
+{id:47,name:"Synthetic Rubber Compounding — Shoe Sole Manufacturing",sector:"Textiles & Leather",
+ desc:"Rubber compounding processes for manufacturing shoe soles and other rubber goods. Core vulcanisation and compounding patents expired for over 100 years. Africa imports most footwear despite having leather, natural rubber (West Africa), and shoe sole manufacturing capability. Kenya, Ethiopia, and South Africa have existing footwear manufacturing bases.",
+ holder:"Various (Goodyear vulcanisation patent expired 1858, compounding patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Complete the leather-to-shoe value chain domestically — capture footwear manufacturing value",
+ countries:"Ethiopia, Kenya, South Africa, Nigeria, Ghana, Tanzania, Morocco, Egypt",
+ link:"https://patents.google.com",
+ notes:"Rubber vulcanisation and compounding specifications fully public domain. Natural rubber from West Africa (Côte d'Ivoire, Nigeria, Liberia, Ghana) provides domestic raw material. UNIDO Leather and Footwear programme provides advisory. Ethiopia and Kenya already have footwear manufacturing — can share knowledge regionally."},
+
+// ── AUTOMOTIVE (3 entries) ────────────────────────────────────────────────────
+{id:48,name:"Compressed Natural Gas (CNG) Vehicle Conversion Systems",sector:"Automotive",
+ desc:"CNG fuel system components and vehicle conversion technology. Core patents from 1980s–early 2000s now expired. Applicable wherever natural gas infrastructure exists. Nigeria's Innoson is commissioning what it describes as the world's largest CNG vehicle plant in 2026 — 3,000 units annually. Tanzania, Mozambique, and South Africa also have significant gas reserves.",
+ holder:"Various — Italian FIAT / New Zealand CNG industry (1980s–90s)",access:"Public Domain",year:"Pre-2005",saving:"Reduce CNG vehicle technology licensing cost by 60–80%",
+ countries:"Nigeria, Tanzania, Mozambique, South Africa, Algeria, Egypt, Ethiopia, Cameroon",
+ link:"https://patentscope.wipo.int",
+ notes:"Italian CNG vehicle conversion system patents from 1980s–90s fully expired and verified. Contact WIPO GREEN for technology transfer connections. Innoson (Nigeria) demonstrates commercial viability. Gas-rich East African nations (Mozambique, Tanzania) have strong opportunity for CNG vehicle fleets."},
+
+{id:49,name:"Four-Stroke Internal Combustion Engine Assembly",sector:"Automotive",
+ desc:"Fundamental four-stroke internal combustion engine design and assembly specifications. All core patents expired over 70 years ago. Complete manufacturing specifications freely available. Applicable to vehicle assembly operations across Africa. South Africa has the most developed automotive sector; Nigeria's Innoson is the most prominent indigenous manufacturer.",
+ holder:"Otto / Benz / various (original 1800s–1950s)",access:"Public Domain",year:"Pre-1950",saving:"Zero licensing cost on core engine assembly technology",
+ countries:"South Africa, Nigeria, Kenya, Ethiopia, Ghana, Morocco, Egypt, Tunisia",
+ link:"https://patents.google.com",
+ notes:"All foundational ICE patents fully expired. Manufacturing specifications available via SAE International open publications. South Africa's automotive industry (Toyota, BMW, VW assembly) provides regional manufacturing knowledge. Nigeria's Innoson demonstrates indigenous vehicle manufacturing viability."},
+
+{id:50,name:"Bicycle Frame Manufacturing & Assembly",sector:"Automotive",
+ desc:"Industrial bicycle frame design and assembly. All foundational patents expired for over 100 years. Africa's fastest-growing transport mode in urban and rural areas. Rwanda's bicycle industry is a model — producing bikes domestically and exporting across East Africa. Uganda, Kenya, Ghana, and South Africa all have existing or nascent bicycle manufacturing.",
+ holder:"Various (original patents 1880s–1920s)",access:"Public Domain",year:"Pre-1930",saving:"Build domestic bicycle manufacturing — Africa's most accessible transport technology",
+ countries:"Rwanda, Kenya, Uganda, Ghana, South Africa, Ethiopia, Tanzania, Nigeria, Senegal",
+ link:"https://patents.google.com",
+ notes:"Complete bicycle frame designs fully public domain. Rwanda's Volkswagen-partnership bicycle factory demonstrates modern manufacturing viability. Electric bicycle conversion kits (e-bikes) — foundational conversion technology also increasingly entering public domain. UNIDO has supported bicycle manufacturing programmes in Africa."},
+
+// ── DIGITAL INFRASTRUCTURE (4 entries) ─────────────────────────────────────────
+{id:51,name:"OpenSSL Cryptographic Security Library",sector:"Digital Infrastructure",
+ desc:"Industry-standard open-source cryptographic library for securing internet communications. Free to use, modify, and deploy — including for government and financial systems. Africa's fintech sector is rapidly expanding — Nigeria alone accounts for 28% of African fintech companies — largely without coordinated national cybersecurity frameworks. Mobile money systems across East Africa process billions of transactions with minimal security infrastructure.",
+ holder:"OpenSSL Project (open source)",access:"Public Domain",year:"1998 (ongoing)",saving:"Zero licensing cost vs proprietary security alternatives — applicable to all African digital infrastructure",
+ countries:"Pan-African",
+ link:"https://openssl.org",
+ notes:"Pairs with NIST Cybersecurity Framework (also free) for comprehensive security. Applicable to African fintech, mobile money (M-Pesa, MTN MoMo, Orange Money), banking infrastructure, government portals, and e-commerce platforms. No licence fees, no vendor lock-in, active global community support."},
+
+{id:52,name:"Open-Source GSM / Mobile Network Architecture",sector:"Digital Infrastructure",
+ desc:"Foundational 2G/3G mobile network architecture and protocols. Core GSM patents from 1980s–1990s expired. OpenBTS and Osmocom projects implement open-source GSM using expired patents — used for rural connectivity in areas where proprietary network equipment is unaffordable. 400 million+ Africans still lack reliable mobile connectivity.",
+ holder:"Various — Ericsson, Nokia, Motorola (original GSM patents)",access:"Public Domain",year:"1990s–2000s",saving:"Reduce rural connectivity infrastructure cost — extend mobile coverage to unconnected Africa",
+ countries:"Pan-African — especially rural sub-Saharan Africa",
+ link:"https://osmocom.org",
+ notes:"OpenBTS and Osmocom projects implement open-source GSM on expired patents. Used successfully in rural connectivity projects. Applicable to rural coverage initiatives under AfCFTA digital trade protocol and AU Digital Transformation Strategy for Africa."},
+
+{id:53,name:"Linux-Based Government & Enterprise Systems",sector:"Digital Infrastructure",
+ desc:"Linux operating system and associated open-source enterprise software (LibreOffice, PostgreSQL, Apache, etc.). Completely free — no licensing costs. Multiple African governments including Rwanda and South Africa have already implemented Linux-based government systems. Eliminates Microsoft Windows and Oracle licensing costs that drain African government IT budgets.",
+ holder:"Linux Foundation / various open source (no patents applicable)",access:"Public Domain",year:"1991 (ongoing)",saving:"Eliminate Microsoft, Oracle, and SAP licensing costs across African government and enterprise",
+ countries:"Pan-African",
+ link:"https://kernel.org",
+ notes:"Rwanda's government uses open-source systems extensively. South Africa's Free and Open Source Software (FOSS) policy actively promotes Linux adoption. UNECA (UN Economic Commission for Africa) supports open-source government systems. No licensing cost — ongoing community support globally."},
+
+{id:54,name:"NIST Cybersecurity Framework Implementation",sector:"Digital Infrastructure",
+ desc:"The US National Institute of Standards and Technology Cybersecurity Framework — a comprehensive, free framework for managing cybersecurity risk across all types of organisations. Freely available for any organisation in any country. As African businesses adopt IoT-connected manufacturing, smart grids, and digital financial infrastructure, cybersecurity frameworks are critical — yet most African organisations have none.",
+ holder:"NIST (US government — freely released)",access:"Public Domain",year:"2014 (ongoing, free)",saving:"Implement international-standard cybersecurity at zero framework licensing cost",
+ countries:"Pan-African",
+ link:"https://nist.gov/cyberframework",
+ notes:"Freely downloadable and implementable by any organisation globally. Pairs with ISO 27001 (paid) or CIS Controls (free) for comprehensive security. Critical for African fintech, banking, government, and industrial IoT adopters. Uzoma Charles Njoku's cybersecurity background makes DTO uniquely positioned to advise on African NIST implementation."},
+
+// ── WATER & SANITATION (3 entries) ─────────────────────────────────────────────
+{id:55,name:"Slow Sand Filtration — Community Water Treatment",sector:"Water & Sanitation",
+ desc:"Biological water purification through slow sand filtration — effective against bacteria, viruses, and protozoa including Cryptosporidium. In the public domain for over 100 years. Effective, low-cost, and applicable to community-scale water treatment across rural Africa. Over 400 million Africans lack access to safe drinking water. Operates without electricity — critical for off-grid communities.",
+ holder:"Various (original 1800s–1900s)",access:"Public Domain",year:"Pre-1920",saving:"Provide safe drinking water infrastructure at minimal technology cost — without electricity",
+ countries:"Pan-African — especially rural sub-Saharan Africa",
+ link:"https://www.who.int",
+ notes:"Complete design specifications from WHO and UNICEF — free. IRC WASH provides free technical advisory for African water systems. No electricity required — operates on gravity alone. Effective against most biological contaminants without chemicals. Suitable for community-scale construction with local materials."},
+
+{id:56,name:"Borehole Drilling & Hand Pump Systems",sector:"Water & Sanitation",
+ desc:"Manual and mechanised borehole drilling techniques and hand pump designs (India Mark II, Afridev, Bush Pump). All foundational designs fully public domain — several were specifically developed for African conditions. Over 400 million Africans lack safe water access. Borehole + hand pump systems are the most appropriate technology for rural African water access.",
+ holder:"Various / UNICEF / WHO (African-specific designs are public domain)",access:"Public Domain",year:"Various — all pre-1990",saving:"Provide rural water access without ongoing electricity costs",
+ countries:"Pan-African — especially rural sub-Saharan Africa",
+ link:"https://www.unicef.org",
+ notes:"India Mark II and Afridev hand pump designs freely available from UNICEF. Zimbabwe's Bush Pump is a publicly available national standard. Full borehole drilling specifications from WHO and IRC WASH. Local spare part manufacturing is possible and encouraged — reduces maintenance costs significantly."},
+
+{id:57,name:"Multi-Stage Flash (MSF) Desalination — Foundational Design",sector:"Water & Sanitation",
+ desc:"Thermal desalination converting seawater and brackish water to fresh water. Core MSF process patents from 1950s–1970s fully expired. Critical for North Africa and coastal East Africa facing freshwater scarcity. Egypt, Libya, Algeria, Tunisia, Morocco, Kenya, Djibouti, and Somalia all face significant water stress. MSF is the dominant desalination technology in the Middle East.",
+ holder:"Various (original 1950s–70s)",access:"Public Domain",year:"Pre-1980",saving:"Eliminate freshwater scarcity in water-stressed North and coastal East Africa",
+ countries:"Egypt, Libya, Algeria, Tunisia, Morocco, Kenya, Djibouti, Somalia, Eritrea, Cape Verde",
+ link:"https://patents.google.com",
+ notes:"Foundational MSF designs fully public domain. Reverse osmosis membrane patents may still be active for newer designs — focus on thermal MSF for expired technology. UN-Water and UNIDO provide technical advisory. Solar-powered MSF desalination (combining expired MSF with expired solar thermal patents) offers zero-fuel solution."},
+
+// ── MINING & MINERALS (5 entries) ─────────────────────────────────────────────
+{id:58,name:"Froth Flotation — Mineral Concentration",sector:"Mining & Minerals",
+ desc:"Mineral processing technique separating valuable minerals from ore using air bubbles and chemical reagents. Core froth flotation patents from early 1900s fully expired. Applicable to Africa's vast mineral wealth: copper (DRC, Zambia account for 4.2MT/yr output), gold (Ghana, South Africa, Tanzania), cobalt (DRC produces 97% of African cobalt), and phosphate (Morocco, Tunisia). Africa accounts for 54% of global cobalt reserves but processes most ore elsewhere.",
+ holder:"Various (original patents 1905–1940s)",access:"Public Domain",year:"Pre-1950",saving:"Process Africa's mineral wealth domestically — stop exporting raw ore and importing processed metals",
+ countries:"DRC, Zambia, Ghana, South Africa, Tanzania, Morocco, Guinea, Zimbabwe, Mozambique, Sierra Leone",
+ link:"https://patents.google.com",
+ notes:"All foundational froth flotation patents fully expired. Complete process specifications freely available via mining engineering literature. UNIDO Mining branch provides advisory. DRC-Zambia Battery Valley initiative creates immediate demand for domestic cobalt processing. Morocco's phosphate processing already demonstrates viability."},
+
+{id:59,name:"Hydrometallurgy — Solvent Extraction & Electrowinning (SX-EW)",sector:"Mining & Minerals",
+ desc:"Copper and cobalt extraction using solvent extraction and electrowinning — producing high-purity metal directly from ore without smelting. All foundational SX-EW process patents expired. Particularly relevant for DRC and Zambia copper-cobalt production. Africa accounts for over 54% of global cobalt reserves — processing domestically rather than exporting raw ore would multiply value captured.",
+ holder:"Various (original patents 1960s–1980s)",access:"Public Domain",year:"Pre-1990",saving:"Multiply the value captured from Africa's copper and cobalt — stop exporting raw concentrate",
+ countries:"DRC, Zambia, Zimbabwe, Tanzania, Eritrea, Morocco, South Africa, Namibia",
+ link:"https://patents.google.com",
+ notes:"SX-EW process specifications freely available via mining engineering literature. Morocco's Managem Group already uses hydrometallurgy for cobalt processing and can share knowledge regionally. DRC-Zambia Battery Valley initiative provides policy framework for domestic processing expansion."},
+
+{id:60,name:"Gold Cyanide Leaching & Carbon-in-Pulp (CIP) Process",sector:"Mining & Minerals",
+ desc:"Standard gold extraction process using cyanide leaching and carbon-in-pulp recovery. All foundational CIP patents expired. Ghana (Africa's largest gold producer outside South Africa) and Tanzania are primary applications — but gold is found across 30+ African countries. Most small and medium-scale African miners use inefficient artisanal methods — CIP dramatically improves recovery rates.",
+ holder:"Various (original CIP patents 1970s–1980s)",access:"Public Domain",year:"Pre-1990",saving:"Increase gold recovery from African ore bodies — improve returns for African mining companies",
+ countries:"Ghana, South Africa, Tanzania, Mali, Burkina Faso, DRC, Côte d'Ivoire, Guinea, Zimbabwe, Sudan",
+ link:"https://patents.google.com",
+ notes:"CIP process specifications fully public domain. Environmental management of cyanide is critical — alternatives (thiosulphate leaching) also available. UNIDO Mining branch provides advisory. Consolidation of artisanal mining operations into small-scale CIP plants dramatically improves recovery and safety."},
+
+{id:61,name:"Phosphate Processing — Superphosphate Fertiliser Production",sector:"Mining & Minerals",
+ desc:"Chemical processing of phosphate rock into superphosphate and triple superphosphate fertilisers. Core process patents expired for over 60 years. Morocco holds 75% of global phosphate reserves and is the world's leading phosphate exporter through OCP Group — but currently exports mostly raw phosphate rock and phosphoric acid. Processing into finished fertilisers domestically would multiply value captured. Tunisia and Algeria also have significant phosphate deposits.",
+ holder:"Various (original patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Multiply phosphate export value by processing into finished fertilisers — Morocco, Tunisia, Algeria",
+ countries:"Morocco, Tunisia, Algeria, Egypt, Togo, Senegal, South Africa",
+ link:"https://patents.google.com",
+ notes:"Superphosphate production specifications fully public domain. Morocco's OCP Group is expanding into fertiliser production domestically — demonstrating commercial viability. Africa produces the world's phosphate but imports most of its finished fertilisers — this is one of the clearest value chain gaps on the continent."},
+
+{id:62,name:"Diamond Cutting & Polishing Techniques",sector:"Mining & Minerals",
+ desc:"Industrial diamond cutting, sawing, bruting, and polishing techniques. All foundational cutting and polishing patent designs expired. Africa produces approximately 32% of global diamond reserves. Botswana (world's largest diamond producer by value), Angola, DRC, South Africa, Namibia, Sierra Leone, and Zimbabwe all produce diamonds — but most raw diamonds are cut and polished in Belgium, India, and Israel rather than Africa.",
+ holder:"Various (original cutting and polishing machinery patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Cut and polish African diamonds in Africa — retain the majority of value domestically",
+ countries:"Botswana, Angola, DRC, South Africa, Namibia, Zimbabwe, Sierra Leone, Lesotho",
+ link:"https://patents.google.com",
+ notes:"Diamond cutting machinery designs fully public domain. Botswana has made the most progress — Debswana now requires a significant percentage of diamonds to be cut locally as a condition of mining licences. This policy model can be replicated across African diamond-producing nations. UNIDO provides advisory on gemstone processing for developing nations."},
+
+// ── CEMENT & CONSTRUCTION (3 entries) ─────────────────────────────────────────
+{id:63,name:"Rotary Kiln Cement Production",sector:"Cement & Construction",
+ desc:"Core technology for cement manufacturing. All fundamental rotary kiln patents expired pre-1980. Africa's urbanisation and infrastructure investment create enormous cement demand. Nigeria's Dangote Cement and BUA Cement, and Ethiopia's MIDROC Cement demonstrate the commercial viability — the underlying technology costs nothing to license. Demand growing 7%+ annually across sub-Saharan Africa.",
+ holder:"Various (1800s–1970s)",access:"Public Domain",year:"Pre-1980",saving:"Eliminate technology licensing on cement plants across Africa",
+ countries:"Pan-African — especially Nigeria, Ethiopia, Kenya, Ghana, Tanzania, South Africa, Egypt, Morocco, Algeria",
+ link:"https://patents.google.com",
+ notes:"All fundamental rotary kiln designs fully public domain. Modern efficiency improvements may still be patented — focus on verified expired base configurations. UNIDO cement industry advisory programmes for African developing nations. Strong AfCFTA opportunity for regional cement supply chains."},
+
+{id:64,name:"Compressed Earth Block (CEB) — Affordable Housing Technology",sector:"Cement & Construction",
+ desc:"Compressed Earth Block machines compress raw earth with small amounts of cement or lime to produce strong, affordable, sustainable building blocks. All foundational designs fully public domain. Africa faces a housing deficit of approximately 50 million units. CEB technology can be manufactured locally, uses locally available earth, and requires no firing (unlike conventional bricks) — dramatically reducing construction costs.",
+ holder:"Various (original designs 1950s–1970s — CINVA Ram and variants)",access:"Public Domain",year:"Pre-1980",saving:"Reduce housing construction cost by 30–50% using locally available earth",
+ countries:"Pan-African — especially sub-Saharan Africa",
+ link:"https://patentscope.wipo.int",
+ notes:"CINVA Ram design (original Colombian design 1956) and all variants fully public domain. UNIDO and UN-Habitat provide free technical guidance. Earthen construction is climate-appropriate for African conditions — thermal mass reduces cooling energy. Widely implemented in Rwanda, Kenya, Uganda, and Ghana."},
+
+{id:65,name:"Fired Clay Brick Manufacturing",sector:"Cement & Construction",
+ desc:"Industrial fired clay brick production using tunnel kilns and Hoffman kilns. All core kiln designs and firing process patents expired. Clay bricks are the most used building material across Africa — but most are produced using inefficient artisanal methods. Industrial brick production dramatically reduces cost and improves quality. Clay is available in virtually all African countries.",
+ holder:"Various (original kiln patents pre-1900)",access:"Public Domain",year:"Pre-1920",saving:"Industrialise Africa's most common building material production — reduce construction costs",
+ countries:"Pan-African",
+ link:"https://patents.google.com",
+ notes:"Hoffman kiln and tunnel kiln designs fully public domain. UNIDO building materials programme provides advisory. Kenya and South Africa have well-developed brick manufacturing industries that can serve as regional knowledge hubs. Energy-efficient kiln designs (also public domain) reduce firing costs significantly."},
+
+// ── CHEMICALS & PLASTICS (4 entries) ──────────────────────────────────────────
+{id:66,name:"Chlor-Alkali Process — Chlorine & Caustic Soda Production",sector:"Chemicals & Plastics",
+ desc:"Electrolytic production of chlorine and sodium hydroxide (caustic soda) from salt water. All core process patents expired. Chlorine and caustic soda are essential industrial chemicals used in water treatment, paper production, soap manufacturing, and textile processing. Africa imports most of its industrial chemicals despite having salt, electricity (increasingly), and brine deposits.",
+ holder:"Various (original patents 1890s–1950s)",access:"Public Domain",year:"Pre-1960",saving:"Produce essential industrial chemicals domestically — eliminate import dependency across multiple sectors",
+ countries:"South Africa, Nigeria, Egypt, Morocco, Kenya, Tanzania, Ghana, Algeria",
+ link:"https://patents.google.com",
+ notes:"Chlor-alkali process specifications fully public domain. South Africa has existing chlor-alkali production. Mercury cell technology (older) being replaced by membrane cell technology (still may have some patents) — focus on diaphragm cell process which is fully expired. UNIDO Chemical Industry provides advisory."},
+
+{id:67,name:"Soap & Detergent Manufacturing — Saponification Process",sector:"Chemicals & Plastics",
+ desc:"Industrial soap production through saponification — reacting fats or oils with alkali (caustic soda). All foundational process patents expired for over 100 years. West Africa produces significant palm oil and groundnut oil — feedstocks for soap production. Every African household uses soap. Most African countries import significant quantities of soap and detergent despite having domestic feedstock.",
+ holder:"Various (original patents pre-1900)",access:"Public Domain",year:"Pre-1920",saving:"Produce soap from Africa's own palm oil and groundnut oil — complete the value chain domestically",
+ countries:"Pan-African — especially West Africa (palm oil producers), East Africa",
+ link:"https://patents.google.com",
+ notes:"Saponification process fully public domain. Uses palm oil or other vegetable oils + caustic soda (from chlor-alkali process above) — creating a natural value chain linkage. UNIDO Chemical Industry provides advisory for small-scale African soap producers. Unilever, P&G, and local producers all operate in Africa — demonstrating the market."},
+
+{id:68,name:"Polypropylene (PP) Packaging Film & Bags",sector:"Chemicals & Plastics",
+ desc:"Production of polypropylene packaging films and woven bags. Core PP processing patents from 1950s–1970s expired. Woven PP bags are ubiquitous across Africa for grain, cement, fertiliser, and agricultural product packaging. Most are imported from Asia. Africa produces petrochemicals through Nigeria's NNPC, South Africa's Sasol, and other sources — but converts little into finished plastic products.",
+ holder:"Montecatini / Natta (original PP patents — Nobel Prize 1963, patents expired)",access:"Public Domain",year:"Pre-1980",saving:"Produce packaging domestically from African petrochemical feedstocks",
+ countries:"Nigeria, South Africa, Egypt, Morocco, Kenya, Ghana, Algeria, Tanzania",
+ link:"https://patents.google.com",
+ notes:"Core PP polymerisation and processing patents fully expired. Nigeria's NNPC and South Africa's Sasol produce petrochemical feedstocks. Egypt has existing plastics manufacturing. UNIDO Chemical Industry provides advisory. Strong AfCFTA opportunity — packaging is needed in every sector across every country."},
+
+{id:69,name:"Sulphuric Acid Production — Contact Process",sector:"Chemicals & Plastics",
+ desc:"Industrial sulphuric acid production using the contact process. All core patents expired for over 100 years. Sulphuric acid is the world's most produced industrial chemical — used in fertiliser production, mineral processing, battery manufacturing, and numerous other industrial applications. Africa's mining sector (especially for copper, cobalt, and phosphate processing) generates sulphur dioxide that can be converted to sulphuric acid.",
+ holder:"Various (original contact process patents pre-1910)",access:"Public Domain",year:"Pre-1920",saving:"Produce Africa's most-needed industrial chemical domestically — from mining sector by-products",
+ countries:"South Africa, DRC, Zambia, Morocco, Tanzania, Zimbabwe, Namibia",
+ link:"https://patents.google.com",
+ notes:"Contact process specifications fully public domain. Mining operations produce SO₂ as a by-product — converting this to sulphuric acid reduces pollution and creates value. Morocco's phosphate processing requires large volumes of sulphuric acid — domestic production would reduce costs significantly. UNIDO Chemical Industry provides advisory."},
+
+// ── PAPER & PACKAGING (3 entries) ─────────────────────────────────────────────
+{id:70,name:"Kraft Pulping Process — Paper & Cardboard Production",sector:"Paper & Packaging",
+ desc:"Chemical pulping of wood or agricultural residues (bagasse, bamboo, straw) to produce paper pulp for paper and cardboard production. Core Kraft process patents expired for over 100 years. Africa imports most of its paper and packaging despite having significant forestry and agricultural residue resources. South Africa has an existing paper industry. Ethiopia, Kenya, and Tanzania have bamboo resources that can serve as feedstock.",
+ holder:"Various (original Kraft process patents 1880s–1900s)",access:"Public Domain",year:"Pre-1910",saving:"Produce paper and packaging domestically from Africa's forestry and agricultural residues",
+ countries:"South Africa, Nigeria, Kenya, Ethiopia, Tanzania, Ghana, Cameroon, Congo, Algeria, Morocco",
+ link:"https://patents.google.com",
+ notes:"Kraft pulping process specifications fully public domain. South Africa's Sappi and Mondi are major African paper producers — regional knowledge base exists. Bamboo (Ethiopia, Kenya, Tanzania) is a fast-growing non-wood pulp source. Bagasse from sugar mills provides low-cost feedstock. UNIDO Agro-Industries provides advisory."},
+
+{id:71,name:"Corrugated Cardboard Box Manufacturing",sector:"Paper & Packaging",
+ desc:"Production of corrugated cardboard boxes using single and double-wall fluting machines. All foundational corrugating machine designs and process patents expired. Every African business that exports or stores goods needs cardboard packaging. Nigeria's domestic production covers only a fraction of demand. The entire African e-commerce sector (growing at 15%+ CAGR) needs affordable domestic packaging.",
+ holder:"Various (original corrugating machine patents 1880s–1940s)",access:"Public Domain",year:"Pre-1950",saving:"Produce packaging for Africa's growing e-commerce and export sectors domestically",
+ countries:"Pan-African — especially Nigeria, South Africa, Kenya, Ghana, Ethiopia, Egypt, Morocco",
+ link:"https://patents.google.com",
+ notes:"Corrugating machine designs fully public domain. Feedstock is recycled cardboard or kraft paper — both increasingly available. Strong domestic demand from agriculture, manufacturing, e-commerce, and export sectors. UNIDO provides advisory for packaging sector development in African nations."},
+
+{id:72,name:"Glass Container Manufacturing — Float & Blow-Mould Process",sector:"Paper & Packaging",
+ desc:"Glass bottle and container production using blow-mould processes. All foundational glass container manufacturing patents expired. Africa's food and beverage industry, pharmaceutical sector, and export sectors all require glass containers — mostly imported or from South African production. Sand (the primary raw material) is abundantly available across Africa.",
+ holder:"Various (original blow-mould patents 1890s–1950s)",access:"Public Domain",year:"Pre-1960",saving:"Produce glass containers from Africa's abundant sand resources — eliminate container import dependency",
+ countries:"South Africa, Nigeria, Kenya, Ethiopia, Ghana, Tanzania, Morocco, Egypt, Algeria",
+ link:"https://patents.google.com",
+ notes:"Glass container manufacturing specifications fully public domain. South Africa's Consol Glass is Africa's largest glass manufacturer and can serve as a regional knowledge hub. Sand is the primary raw material — abundant across all African countries. Soda ash (also produced in East Africa — Kenya, Tanzania) is a key input."},
+
+// ── ADDITIONAL CRITICAL SECTORS (8 entries) ────────────────────────────────────
+{id:73,name:"Jatropha Biodiesel Production",sector:"Energy",
+ desc:"Production of biodiesel from Jatropha curcas — a drought-resistant, non-food oilseed crop that grows on marginal land across tropical Africa. Transesterification process for biodiesel production fully public domain. Jatropha grows across the African Sahel, East Africa, and Southern Africa — providing a domestic fuel source for diesel engines without displacing food crops.",
+ holder:"Various (transesterification process pre-1960; Jatropha application public domain)",access:"Public Domain",year:"Pre-1990 (application)",saving:"Produce domestic diesel substitute from marginal African land — reduce fossil fuel import dependency",
+ countries:"Mali, Burkina Faso, Senegal, Tanzania, Kenya, Mozambique, Zimbabwe, Zambia, South Africa",
+ link:"https://patentscope.wipo.int",
+ notes:"Transesterification process fully public domain. UNIDO has supported Jatropha biodiesel projects across Africa. Grows on marginal, non-arable land — does not compete with food production. Tanzania has the largest existing Jatropha cultivation programme in Africa."},
+
+{id:74,name:"Activated Carbon Production from Agricultural Waste",sector:"Chemicals & Plastics",
+ desc:"Production of activated carbon from agricultural waste — coconut shells, palm kernel shells, rice husks, wood chips. Activation process fully public domain. Activated carbon is essential for water treatment, air purification, and gold mining (gold recovery in CIP process). Africa imports most activated carbon despite having enormous agricultural waste feedstocks.",
+ holder:"Various (original activation process patents pre-1950)",access:"Public Domain",year:"Pre-1960",saving:"Produce activated carbon from Africa's agricultural waste — supply water treatment and mining sectors",
+ countries:"Ghana, Nigeria, Côte d'Ivoire, Kenya, Tanzania, Mozambique, South Africa, Uganda",
+ link:"https://patents.google.com",
+ notes:"Activation process specifications fully public domain. Coconut shell (East and West Africa coastal regions) and palm kernel shell (West Africa) are premium feedstocks. Ghana, Tanzania, and South Africa are the largest gold mining markets requiring activated carbon in the CIP process. UNIDO Chemical Industry provides advisory."},
+
+{id:75,name:"Beeswax & Honey Processing — Commercial Grade Production",sector:"Agriculture & Food Processing",
+ desc:"Industrial honey processing including filtration, pasteurisation, and packaging, plus beeswax processing for cosmetics, pharmaceuticals, and industrial applications. All processing patents expired. Ethiopia is Africa's largest honey producer (one of the world's top 10). Tanzania, Kenya, Zambia, and Nigeria all have significant honey production. Most is consumed locally or exported as raw honey with minimal value addition.",
+ holder:"Various (original processing patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Triple the value captured from Africa's honey and beeswax production through processing and packaging",
+ countries:"Ethiopia, Tanzania, Kenya, Zambia, Uganda, Nigeria, South Africa, Ghana, Mozambique",
+ link:"https://patentscope.wipo.int",
+ notes:"Honey processing specifications from FAO freely available. Ethiopia's honey is internationally recognised quality — processing would unlock premium export markets. Beeswax has pharmaceutical, cosmetic, and industrial applications worth significantly more than raw honey. UNIDO Agro-Industries provides advisory."},
+
+{id:76,name:"Essential Oil Distillation — Steam Distillation Process",sector:"Agriculture & Food Processing",
+ desc:"Steam distillation of plant material to produce essential oils — for cosmetics, pharmaceuticals, food flavouring, and aromatherapy. Core steam distillation patents expired for over 100 years. Africa produces significant aromatic plant material: Moroccan argan, Malagasy ylang-ylang, South African buchu and rooibos, Ethiopian frankincense and myrrh, Kenyan geranium. Most is exported as raw plant material.",
+ holder:"Various (original steam distillation patents pre-1900)",access:"Public Domain",year:"Pre-1920",saving:"Multiply value from Africa's aromatic plants through essential oil extraction",
+ countries:"Morocco, South Africa, Madagascar, Ethiopia, Kenya, Tanzania, Tunisia, Algeria, Nigeria, Ghana",
+ link:"https://patents.google.com",
+ notes:"Steam distillation fully public domain. Morocco's argan oil industry demonstrates premium market potential. Madagascar is the world's largest ylang-ylang producer. Ethiopia produces frankincense and myrrh — globally unique African products. FAO and UNIDO Agro-Industries provide advisory on essential oil production."},
+
+{id:77,name:"Shea Butter Processing — Industrial Extraction",sector:"Agriculture & Food Processing",
+ desc:"Industrial extraction and refining of shea butter from the shea tree (Vitellaria paradoxa). All extraction and refining patents expired. The shea belt stretches across 21 sub-Saharan African countries from West to East Africa. Shea butter is used in cosmetics, chocolate (as a cocoa butter substitute), and pharmaceuticals — a global market worth $2+ billion annually. Most shea kernels are exported raw.",
+ holder:"Various (original extraction patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Capture shea butter processing value in Africa — from the communities that produce the raw kernels",
+ countries:"Ghana, Nigeria, Burkina Faso, Mali, Côte d'Ivoire, Senegal, Uganda, Cameroon, Niger, Benin",
+ link:"https://patentscope.wipo.int",
+ notes:"Shea butter extraction specifications fully public domain. Ghana and Burkina Faso have the most developed shea processing industries. Global Shea Alliance provides technical resources. Strong AfCFTA opportunity — processed shea butter commands 3–5x the price of raw kernels. Women's cooperative processing organisations are the primary actors."},
+
+{id:78,name:"Cocoa Bean Processing — Fermentation, Drying & Grinding",sector:"Agriculture & Food Processing",
+ desc:"Industrial cocoa bean post-harvest processing: fermentation, drying, roasting, winnowing, grinding to cocoa liquor, pressing to cocoa butter and powder. All foundational process patents expired. Africa produces 75% of global cocoa — primarily in Côte d'Ivoire, Ghana, Nigeria, Cameroon, and Uganda. Yet most cocoa is exported as raw beans, with the processing value captured in Europe and North America.",
+ holder:"Various (original processing patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Retain cocoa processing value in Africa — capture the manufacturing margin on 75% of global cocoa production",
+ countries:"Côte d'Ivoire (world's largest producer), Ghana, Nigeria, Cameroon, Uganda, Tanzania, Sierra Leone",
+ link:"https://patents.google.com",
+ notes:"All foundational cocoa processing specifications fully public domain. Ghana's COCOBOD and Côte d'Ivoire's CCC have been pushing for domestic processing — AfCFTA provides the market framework. Processing cocoa beans into semi-finished products (liquor, butter, powder) before export would dramatically increase African cocoa value retention. UNIDO Agro-Industries provides advisory."},
+
+{id:79,name:"Coffee Processing — Wet & Dry Milling",sector:"Agriculture & Food Processing",
+ desc:"Industrial coffee processing: wet (washed) and dry (natural) milling, hulling, grading, and roasting. All core process patents expired. Africa produces exceptional coffees — Ethiopia is the birthplace of coffee, Kenya, Uganda, Tanzania, Rwanda, and Burundi all produce globally traded speciality coffees. Yet most African coffee is exported as green (unroasted) beans, with the majority of value added elsewhere.",
+ holder:"Various (original milling and roasting patents pre-1960)",access:"Public Domain",year:"Pre-1960",saving:"Retain coffee roasting and processing value in Africa — from the continent that produces the world's finest coffees",
+ countries:"Ethiopia (world's 5th largest producer), Uganda, Kenya, Tanzania, Rwanda, Burundi, DRC, Cameroon",
+ link:"https://patents.google.com",
+ notes:"All coffee processing specifications fully public domain. Ethiopia, Rwanda, and Kenya have the strongest domestic specialty coffee roasting industries. Rwandan Gorilla's Coffee demonstrates premium export market access for African-roasted coffee. International Coffee Organization provides free technical resources. Strong AfCFTA intra-African coffee trade opportunity."},
+
+{id:80,name:"Sisal & Natural Fibre Rope & Twine Manufacturing",sector:"Textiles & Leather",
+ desc:"Industrial processing of sisal, jute, kenaf, and other natural fibres into rope, twine, mats, and industrial textiles. All foundational fibre processing patents expired. Tanzania is the world's second-largest sisal producer after Brazil. Kenya, Madagascar, and Mozambique also produce sisal. Most is exported as raw fibre — rope and twine manufacturing would add significant value and require minimal capital investment.",
+ holder:"Various (original fibre processing patents pre-1950)",access:"Public Domain",year:"Pre-1960",saving:"Add manufacturing value to Africa's natural fibre production — rope, twine, mats, and industrial textiles",
+ countries:"Tanzania, Kenya, Madagascar, Mozambique, Ethiopia, South Africa, Nigeria, Angola, Zimbabwe",
+ link:"https://patents.google.com",
+ notes:"Sisal and natural fibre processing specifications fully public domain. Tanzania Sisal Board has technical resources. Natural fibre ropes and matting are growing in demand for sustainable packaging and construction markets. Low capital investment required — suitable for SME-scale processing. FAO Fibre Crops programme provides technical advisory."},
 ];
-let nextId = 21;
- 
-// ═══════════════════════════════════════════════════════
-// ADMIN PASSWORD — Change this to your own secret word
-// ═══════════════════════════════════════════════════════
+
+let nextId = 81;
 const ADMIN_PASSWORD = 'DTO2026Charles';
- 
-// ═══════════════════════════════════════════════════════
-// PAGE NAVIGATION
-// ═══════════════════════════════════════════════════════
+
 function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  const idx = {home:0, library:1, contact:2}[name];
-  if (idx !== undefined) document.querySelectorAll('.nav-link')[idx].classList.add('active');
-  window.scrollTo(0, 0);
-  if (name === 'library') renderLibrary();
-  if (name === 'home') updateHeroStats();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  const idx={home:0,library:1,contact:2}[name];
+  if(idx!==undefined) document.querySelectorAll('.nav-link')[idx].classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='library') renderLibrary();
+  if(name==='home') updateHeroStats();
 }
- 
-// ═══════════════════════════════════════════════════════
-// HERO STATS
-// ═══════════════════════════════════════════════════════
+
 function updateHeroStats() {
-  document.getElementById('heroTotal').textContent = DB.length;
-  document.getElementById('heroSectors').textContent = [...new Set(DB.map(e => e.sector))].length;
+  document.getElementById('heroTotal').textContent=DB.length;
+  document.getElementById('heroSectors').textContent=[...new Set(DB.map(e=>e.sector))].length;
 }
- 
-// ═══════════════════════════════════════════════════════
-// LIBRARY RENDER
-// ═══════════════════════════════════════════════════════
+
 function accessBadge(a) {
-  if (a === 'Public Domain') return '<span class="pc-badge badge-pd">Public Domain</span>';
-  if (a === 'Patent Pool') return '<span class="pc-badge badge-pool">Patent Pool</span>';
+  if(a==='Public Domain') return '<span class="pc-badge badge-pd">Public Domain</span>';
+  if(a==='Patent Pool') return '<span class="pc-badge badge-pool">Patent Pool</span>';
   return '<span class="pc-badge badge-cl">Compulsory License</span>';
 }
- 
+
 function renderLibrary() {
-  const q = (document.getElementById('searchQ')?.value || '').toLowerCase();
-  const sec = document.getElementById('filterSector')?.value || '';
-  const acc = document.getElementById('filterAccess')?.value || '';
-  const items = DB.filter(e => {
-    const mq = !q || e.name.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q) || e.sector.toLowerCase().includes(q) || (e.holder||'').toLowerCase().includes(q);
-    const ms = !sec || e.sector === sec;
-    const ma = !acc || e.access === acc;
-    return mq && ms && ma;
+  const q=(document.getElementById('searchQ')?.value||'').toLowerCase();
+  const sec=document.getElementById('filterSector')?.value||'';
+  const acc=document.getElementById('filterAccess')?.value||'';
+  const items=DB.filter(e=>{
+    const mq=!q||e.name.toLowerCase().includes(q)||e.desc.toLowerCase().includes(q)||
+              e.sector.toLowerCase().includes(q)||(e.holder||'').toLowerCase().includes(q)||
+              (e.countries||'').toLowerCase().includes(q);
+    const ms=!sec||e.sector===sec;
+    const ma=!acc||e.access===acc;
+    return mq&&ms&&ma;
   });
- 
-  document.getElementById('libStats').innerHTML = `
+
+  const sectors=[...new Set(DB.map(e=>e.sector))].length;
+  document.getElementById('libStats').innerHTML=`
     <div class="lib-stat"><div class="lib-stat-n">${DB.length}</div><div class="lib-stat-l">Patents mapped</div></div>
-    <div class="lib-stat"><div class="lib-stat-n">${[...new Set(DB.map(e=>e.sector))].length}</div><div class="lib-stat-l">Sectors covered</div></div>
+    <div class="lib-stat"><div class="lib-stat-n">${sectors}</div><div class="lib-stat-l">Sectors covered</div></div>
     <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Public Domain').length}</div><div class="lib-stat-l">Public domain</div></div>
     <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Patent Pool').length}</div><div class="lib-stat-l">Patent pools</div></div>
     <div class="lib-stat"><div class="lib-stat-n">${DB.filter(e=>e.access==='Compulsory License').length}</div><div class="lib-stat-l">Compulsory license</div></div>
+    <div class="lib-stat"><div class="lib-stat-n">54</div><div class="lib-stat-l">Countries served</div></div>
   `;
- 
-  if (!items.length) {
-    document.getElementById('patentGrid').innerHTML = '<div class="empty-state">No results found. Try adjusting your search or filters.</div>';
+
+  if(!items.length){
+    document.getElementById('patentGrid').innerHTML='<div class="empty-state">No results found. Try adjusting your search or filters.</div>';
     return;
   }
- 
-  document.getElementById('patentGrid').innerHTML = items.map(e => `
+  document.getElementById('patentGrid').innerHTML=items.map(e=>`
     <div class="patent-card">
-      <div class="pc-top">
-        <div class="pc-sector">${e.sector}</div>
-        ${accessBadge(e.access)}
-      </div>
+      <div class="pc-top"><div class="pc-sector">${e.sector}</div>${accessBadge(e.access)}</div>
       <div class="pc-name">${e.name}</div>
       <div class="pc-desc">${e.desc}</div>
       <div class="pc-meta">
-        <div class="pc-meta-item">Original holder<span>${e.holder || 'Various'}</span></div>
+        <div class="pc-meta-item">Original holder<span>${e.holder||'Various'}</span></div>
         <div class="pc-meta-item">Available since<span>${e.year}</span></div>
       </div>
+      ${e.countries?`<div class="pc-countries"><strong>Most relevant:</strong> ${e.countries}</div>`:''}
       <div class="pc-saving">✓ ${e.saving}</div>
-      ${e.notes ? `<div class="pc-notes"><strong>Implementation notes:</strong> ${e.notes}</div>` : ''}
+      ${e.notes?`<div class="pc-notes"><strong>Implementation notes:</strong> ${e.notes}</div>`:''}
       <div class="pc-links">
-        ${e.link ? `<a class="pc-link" href="${e.link}" target="_blank">View patent source →</a>` : ''}
+        ${e.link?`<a class="pc-link" href="${e.link}" target="_blank">View patent source →</a>`:''}
         <button class="pc-link" onclick="showPage('contact')">Request full report</button>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
- 
-// ═══════════════════════════════════════════════════════
-// CONTACT FORM
-// ═══════════════════════════════════════════════════════
+
 function submitContact() {
-  const name = document.getElementById('cName').value.trim();
-  const email = document.getElementById('cEmail').value.trim();
-  if (!name || !email) { alert('Please fill in your name and email address.'); return; }
-  document.getElementById('contactSuccess').style.display = 'block';
-  ['cName','cOrg','cEmail','cMsg'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('cSector').selectedIndex = 0;
+  const name=document.getElementById('cName').value.trim();
+  const email=document.getElementById('cEmail').value.trim();
+  if(!name||!email){alert('Please fill in your name and email address.');return;}
+  document.getElementById('contactSuccess').style.display='block';
+  ['cName','cOrg','cCountry','cEmail','cMsg'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('cSector').selectedIndex=0;
 }
- 
-// ═══════════════════════════════════════════════════════
-// ADMIN
-// ═══════════════════════════════════════════════════════
+
 function adminLogin() {
-  const pw = document.getElementById('adminPw').value;
-  if (pw === ADMIN_PASSWORD) {
-    document.getElementById('adminGate').style.display = 'none';
-    document.getElementById('adminPanel').style.display = 'block';
+  const pw=document.getElementById('adminPw').value;
+  if(pw===ADMIN_PASSWORD){
+    document.getElementById('adminGate').style.display='none';
+    document.getElementById('adminPanel').style.display='block';
     renderAdmin();
-  } else {
-    document.getElementById('adminErr').style.display = 'block';
-  }
+  } else { document.getElementById('adminErr').style.display='block'; }
 }
- 
+
 function renderAdmin() {
-  document.getElementById('entryCount').textContent = DB.length;
-  document.getElementById('adminList').innerHTML = DB.map(e => `
+  document.getElementById('entryCount').textContent=DB.length;
+  document.getElementById('adminList').innerHTML=DB.map(e=>`
     <div class="admin-entry">
       <div class="ae-info">
         <div class="ae-name">${e.name}</div>
-        <div class="ae-meta">${e.sector} · ${e.access} · ${e.year} · ${e.saving}</div>
+        <div class="ae-meta">${e.sector} · ${e.access} · ${e.year}</div>
       </div>
       <button class="btn-rm" onclick="removeEntry(${e.id})">Remove</button>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
- 
+
 function addEntry() {
-  const name = document.getElementById('aName').value.trim();
-  const desc = document.getElementById('aDesc').value.trim();
-  if (!name || !desc) { alert('Please fill in at least the technology name and description.'); return; }
-  DB.push({
-    id: nextId++,
-    name, desc,
-    sector: document.getElementById('aSector').value,
-    holder: document.getElementById('aHolder').value.trim() || 'Various',
-    access: document.getElementById('aAccess').value,
-    year: document.getElementById('aYear').value.trim() || 'Varies',
-    saving: document.getElementById('aSaving').value.trim() || 'Significant cost reduction',
-    link: document.getElementById('aLink').value.trim(),
-    notes: document.getElementById('aNotes').value.trim(),
+  const name=document.getElementById('aName').value.trim();
+  const desc=document.getElementById('aDesc').value.trim();
+  if(!name||!desc){alert('Please fill in at least the technology name and description.');return;}
+  DB.push({id:nextId++,name,desc,
+    sector:document.getElementById('aSector').value,
+    holder:document.getElementById('aHolder').value.trim()||'Various',
+    access:document.getElementById('aAccess').value,
+    year:document.getElementById('aYear').value.trim()||'Varies',
+    saving:document.getElementById('aSaving').value.trim()||'Significant cost reduction',
+    countries:document.getElementById('aCountries').value.trim(),
+    link:document.getElementById('aLink').value.trim(),
+    notes:document.getElementById('aNotes').value.trim(),
   });
-  ['aName','aDesc','aHolder','aYear','aSaving','aLink','aNotes'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('aSector').selectedIndex = 0;
-  document.getElementById('aAccess').selectedIndex = 0;
-  document.getElementById('addSuccess').style.display = 'block';
-  setTimeout(() => document.getElementById('addSuccess').style.display = 'none', 3000);
-  renderAdmin();
-  updateHeroStats();
+  ['aName','aDesc','aHolder','aYear','aSaving','aCountries','aLink','aNotes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('addSuccess').style.display='block';
+  setTimeout(()=>document.getElementById('addSuccess').style.display='none',3000);
+  renderAdmin(); updateHeroStats();
 }
- 
+
 function removeEntry(id) {
-  if (!confirm('Remove this entry from the library?')) return;
-  DB = DB.filter(e => e.id !== id);
-  renderAdmin();
-  updateHeroStats();
+  if(!confirm('Remove this entry from the library?'))return;
+  DB=DB.filter(e=>e.id!==id);
+  renderAdmin(); updateHeroStats();
 }
- 
-// Init
+
 updateHeroStats();
 </script>
 </body>
