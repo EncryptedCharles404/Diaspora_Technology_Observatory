@@ -33,8 +33,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .nav-link{padding:.45rem 1rem;border-radius:4px;font-size:.82rem;cursor:pointer;color:var(--g300);border:none;background:transparent;transition:all .15s;font-family:'DM Sans',sans-serif}
 .nav-link:hover{color:var(--white);background:rgba(255,255,255,.06)}
 .nav-link.active{color:var(--gold)}
-.nav-admin-btn{padding:.45rem 1rem;border-radius:4px;font-size:.78rem;cursor:pointer;color:var(--g500);border:1px solid rgba(138,128,112,.3);background:transparent;font-family:'DM Mono',monospace;letter-spacing:.08em;transition:all .15s}
-.nav-admin-btn:hover{color:var(--gold);border-color:rgba(200,168,75,.4)}
+
 /* mobile hamburger */
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.4rem;border:none;background:transparent}
 .nav-hamburger span{width:22px;height:2px;background:var(--g300);border-radius:2px;transition:all .2s}
@@ -215,33 +214,7 @@ h1.hero-title em{font-style:italic;color:var(--gold)}
 .form-status.error{background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.4);color:#ff8080;display:block}
 .form-status.loading{background:rgba(200,168,75,.1);border:1px solid rgba(200,168,75,.25);color:var(--gold);display:block}
 
-/* ── ADMIN ── */
-.admin-wrap{max-width:900px;margin:0 auto;padding:2rem 2rem 5rem}
-.admin-gate{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.2);border-radius:8px;padding:2.5rem;max-width:420px;margin:3rem auto;text-align:center}
-.admin-gate h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.5rem}
-.admin-gate p{font-size:.85rem;color:var(--g500);margin-bottom:1.5rem}
-.admin-warn{background:rgba(184,76,0,.15);border:1px solid rgba(184,76,0,.3);border-radius:4px;padding:.8rem 1rem;font-size:.82rem;color:#ffb74d;margin-bottom:1.5rem}
-.admin-section-title{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem;margin-top:2rem}
-.admin-form{background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.12);border-radius:8px;padding:1.8rem;margin-bottom:2rem}
-.form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.af-input,.af-select,.af-textarea{width:100%;padding:.72rem 1rem;margin-bottom:.9rem;background:rgba(255,255,255,.06);border:1px solid rgba(200,168,75,.2);border-radius:4px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s}
-.af-input:focus,.af-select:focus,.af-textarea:focus{border-color:var(--gold)}
-.af-input::placeholder,.af-textarea::placeholder{color:var(--g500)}
-.af-select option{background:var(--navy)}
-.af-textarea{min-height:80px;resize:vertical}
-.af-label{font-size:.73rem;color:var(--g300);display:block;margin-bottom:.25rem}
-.admin-entry{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.1);border-radius:6px;padding:1.2rem 1.4rem;margin-bottom:.8rem;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
-.ae-info{flex:1}
-.ae-name{font-weight:500;font-size:.92rem}
-.ae-meta{font-size:.75rem;color:var(--g500);margin-top:.2rem}
-.btn-rm{background:none;border:1px solid rgba(139,0,0,.4);color:#ff8080;border-radius:4px;padding:.4rem .8rem;font-size:.75rem;cursor:pointer;transition:background .15s;white-space:nowrap;font-family:'DM Sans',sans-serif}
-.btn-rm:hover{background:rgba(139,0,0,.15)}
 
-/* ── WAITLIST SUBMISSIONS PANEL ── */
-.waitlist-entries{margin-top:1rem}
-.we-item{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,75,.1);border-radius:4px;padding:.8rem 1rem;margin-bottom:.5rem;font-size:.82rem;display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
-.we-email{color:var(--g300)}
-.we-date{color:var(--g500);font-size:.72rem}
 
 /* ── FOOTER ── */
 footer{position:relative;z-index:1;border-top:1px solid rgba(200,168,75,.1);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.75rem;color:var(--g500)}
@@ -285,7 +258,6 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(200,168,75,.1);padd
     <button class="nav-link" onclick="showPage('library')">Patent Library</button>
     <button class="nav-link" onclick="showPage('pricing')">Pricing</button>
     <button class="nav-link" onclick="showPage('contact')">Request Report</button>
-    <button class="nav-admin-btn" onclick="showPage('admin')">Admin</button>
   </div>
   <button class="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -296,7 +268,6 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(200,168,75,.1);padd
   <button class="nav-link" onclick="showPage('library');closeMobileMenu()">Patent Library</button>
   <button class="nav-link" onclick="showPage('pricing');closeMobileMenu()">Pricing</button>
   <button class="nav-link" onclick="showPage('contact');closeMobileMenu()">Request Report</button>
-  <button class="nav-admin-btn" style="text-align:left;margin-top:.5rem" onclick="showPage('admin');closeMobileMenu()">Admin</button>
 </div>
 
 <!-- ── TICKER ── -->
@@ -665,66 +636,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(200,168,75,.1);padd
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════════ ADMIN PAGE -->
-<div class="page" id="page-admin">
-  <div class="admin-wrap">
-    <div id="adminGate">
-      <div class="admin-gate">
-        <h3>Admin Access</h3>
-        <p>This panel is for Uzoma Charles Njoku only.</p>
-        <input class="af-input" type="password" id="adminPw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()">
-        <button class="btn-gold" style="width:100%;margin-top:.5rem" onclick="adminLogin()">Login</button>
-        <div id="adminErr" style="display:none;margin-top:.8rem;font-size:.8rem;color:#ff8080">Incorrect password.</div>
-      </div>
-    </div>
-    <div id="adminPanel" style="display:none">
-      <div class="admin-warn">⚠ Logged in as Admin — Uzoma Charles Njoku. Changes here are session-only. To make them permanent, update index.html on your hosting platform after adding entries.</div>
 
-      <!-- Waitlist viewers -->
-      <div class="admin-section-title">Waitlist Signups (<span id="waitlistCount">0</span>)</div>
-      <div id="waitlistEntries" class="waitlist-entries"></div>
-
-      <div class="admin-section-title">Add New Patent Entry</div>
-      <div class="admin-form">
-        <div class="form-grid2">
-          <div><label class="af-label">Technology / Patent Name *</label><input class="af-input" id="aName" type="text" placeholder="e.g. Amlodipine Besylate"></div>
-          <div><label class="af-label">Sector *</label>
-            <select class="af-select" id="aSector">
-              <option>Pharmaceuticals</option><option>Energy</option><option>Steel & Manufacturing</option>
-              <option>Agriculture & Food Processing</option><option>Textiles & Leather</option>
-              <option>Automotive</option><option>Digital Infrastructure</option><option>Water & Sanitation</option>
-              <option>Mining & Minerals</option><option>Cement & Construction</option>
-              <option>Chemicals & Plastics</option><option>Paper & Packaging</option>
-            </select>
-          </div>
-        </div>
-        <label class="af-label">Description *</label>
-        <textarea class="af-textarea" id="aDesc" placeholder="What it does and why it matters for African manufacturers..."></textarea>
-        <div class="form-grid2">
-          <div><label class="af-label">Original Patent Holder</label><input class="af-input" id="aHolder" type="text" placeholder="e.g. Pfizer Inc."></div>
-          <div><label class="af-label">Access Type</label>
-            <select class="af-select" id="aAccess"><option>Public Domain</option><option>Patent Pool</option><option>Compulsory License</option></select>
-          </div>
-        </div>
-        <div class="form-grid2">
-          <div><label class="af-label">Patent Expired / Available Since</label><input class="af-input" id="aYear" type="text" placeholder="e.g. 2007"></div>
-          <div><label class="af-label">Saving Potential</label><input class="af-input" id="aSaving" type="text" placeholder="e.g. 40–70% cost reduction"></div>
-        </div>
-        <label class="af-label">Most Relevant Countries</label>
-        <input class="af-input" id="aCountries" type="text" placeholder="e.g. Nigeria, South Africa, Kenya — or Pan-African">
-        <label class="af-label">Patent Source Link (WIPO, Google Patents, etc.)</label>
-        <input class="af-input" id="aLink" type="text" placeholder="https://patentscope.wipo.int/...">
-        <label class="af-label">Implementation Notes</label>
-        <textarea class="af-textarea" id="aNotes" placeholder="Regulatory pathway, WIPO programme, legal notes..."></textarea>
-        <button class="btn-gold" onclick="addEntry()">Add to Library</button>
-        <div id="addSuccess" style="display:none;margin-top:.8rem;font-size:.82rem;color:#81c784">✓ Entry added successfully.</div>
-      </div>
-
-      <div class="admin-section-title">Manage Entries (<span id="entryCount">0</span> total)</div>
-      <div id="adminList"></div>
-    </div>
-  </div>
-</div>
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -733,8 +645,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(200,168,75,.1);padd
     <button onclick="showPage('library')">Patent Library</button>
     <button onclick="showPage('pricing')">Pricing</button>
     <button onclick="showPage('contact')">Contact</button>
-  </div>
-  <div>© 2026 Uzoma Charles Njoku · United Kingdom · dtoportal.com</div>
+  </div>  <div>© 2026 Uzoma Charles Njoku · United Kingdom · dtoportal.com</div>
 </footer>
 
 <script>
@@ -824,11 +735,9 @@ let DB = [
 {id:80,name:"Sisal & Natural Fibre Rope & Twine Manufacturing",sector:"Textiles & Leather",desc:"Industrial processing of sisal, jute, kenaf, and other natural fibres into rope, twine, mats, and industrial textiles. Tanzania is the world's second-largest sisal producer after Brazil.",holder:"Various (original fibre processing patents pre-1950)",access:"Public Domain",year:"Pre-1960",saving:"Add manufacturing value to Africa's natural fibre production",countries:"Tanzania, Kenya, Madagascar, Mozambique, Ethiopia, South Africa, Nigeria, Angola, Zimbabwe",link:"https://patents.google.com",notes:"Natural fibre ropes and matting are growing in demand for sustainable packaging and construction markets."},
 ];
 
-let nextId = 81;
-// NOTE: Change this password before deploying. Do not use a password you use elsewhere.
-const ADMIN_HASH = 'DTO2026Charles';
 
-// ─── Waitlist storage (session only — displayed in admin panel)
+
+// ─── Waitlist storage (session only)
 let waitlistEmails = [];
 
 // ─── Page routing
@@ -865,7 +774,7 @@ function joinWaitlist(inputId, msgId) {
   const msg = document.getElementById(msgId);
   const email = (input.value||'').trim();
   if(!email || !email.includes('@')) { input.style.borderColor='#ff8080'; setTimeout(()=>input.style.borderColor='',2000); return; }
-  // Save to session list (shown in admin panel)
+  // Save to session list
   if(!waitlistEmails.find(e=>e.email===email)) {
     waitlistEmails.push({email, date: new Date().toLocaleDateString('en-GB')});
   }
@@ -979,72 +888,6 @@ function renderLibrary() {
         <button class="pc-link" onclick="showPage('contact')">Request full report</button>
       </div>
     </div>`).join('');
-}
-
-// ─── Admin
-function adminLogin() {
-  const pw = document.getElementById('adminPw').value;
-  if(pw === ADMIN_HASH){
-    document.getElementById('adminGate').style.display='none';
-    document.getElementById('adminPanel').style.display='block';
-    renderAdmin();
-  } else {
-    document.getElementById('adminErr').style.display='block';
-  }
-}
-
-function renderAdmin() {
-  document.getElementById('entryCount').textContent = DB.length;
-  document.getElementById('waitlistCount').textContent = waitlistEmails.length;
-
-  // Waitlist
-  const we = document.getElementById('waitlistEntries');
-  if(waitlistEmails.length === 0){
-    we.innerHTML = '<div style="font-size:.82rem;color:var(--g500);padding:.8rem 0">No waitlist signups yet this session.</div>';
-  } else {
-    we.innerHTML = waitlistEmails.map(e=>`
-      <div class="we-item">
-        <span class="we-email">${e.email}</span>
-        <span class="we-date">${e.date}</span>
-      </div>`).join('');
-  }
-
-  // Patent entries
-  document.getElementById('adminList').innerHTML=DB.map(e=>`
-    <div class="admin-entry">
-      <div class="ae-info">
-        <div class="ae-name">${e.name}</div>
-        <div class="ae-meta">${e.sector} · ${e.access} · ${e.year}</div>
-      </div>
-      <button class="btn-rm" onclick="removeEntry(${e.id})">Remove</button>
-    </div>`).join('');
-}
-
-function addEntry() {
-  const name=document.getElementById('aName').value.trim();
-  const desc=document.getElementById('aDesc').value.trim();
-  if(!name||!desc){alert('Please fill in at least the technology name and description.');return;}
-  DB.push({id:nextId++,name,desc,
-    sector:document.getElementById('aSector').value,
-    holder:document.getElementById('aHolder').value.trim()||'Various',
-    access:document.getElementById('aAccess').value,
-    year:document.getElementById('aYear').value.trim()||'Varies',
-    saving:document.getElementById('aSaving').value.trim()||'Significant cost reduction',
-    countries:document.getElementById('aCountries').value.trim(),
-    link:document.getElementById('aLink').value.trim(),
-    notes:document.getElementById('aNotes').value.trim(),
-  });
-  ['aName','aDesc','aHolder','aYear','aSaving','aCountries','aLink','aNotes'].forEach(id=>document.getElementById(id).value='');
-  const s=document.getElementById('addSuccess');
-  s.style.display='block';
-  setTimeout(()=>s.style.display='none',3000);
-  renderAdmin(); updateHeroStats();
-}
-
-function removeEntry(id) {
-  if(!confirm('Remove this entry from the library?'))return;
-  DB=DB.filter(e=>e.id!==id);
-  renderAdmin(); updateHeroStats();
 }
 
 // ─── Init
