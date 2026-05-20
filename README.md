@@ -108,9 +108,7 @@ The DTO finds it, verifies it, and shows manufacturers exactly how to access it 
 
 All 54 AfCFTA member states. Primary outreach currently focused on Nigeria, Ghana, Kenya, South Africa, Ethiopia, Egypt, Morocco, and Rwanda.
 
----
 
-*© 2026 Uzoma Charles Njoku — Diaspora Technology Observatory — United Kingdom*
 ---
 
 *© 2026 Uzoma Charles Njoku — Diaspora Technology Observatory — United Kingdom*
