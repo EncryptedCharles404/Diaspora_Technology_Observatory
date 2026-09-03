@@ -20,7 +20,7 @@ export default function AdminDashboard({ navigate }) {
   const [editing, setEditing] = useState(null)
   const [search,  setSearch]  = useState('')
   const [sector,  setSector]  = useState('')
-  const [saving,  setSaving]  = useState(false)
+  const [sort,    setSort]    = useState('newest') // newest | az
   const [loading, setLoading] = useState(true)
   const [toast,   setToast]   = useState(null)
   const [confirm, setConfirm] = useState(null)
@@ -78,9 +78,9 @@ export default function AdminDashboard({ navigate }) {
 
   const filtered = patents.filter(p => {
     const q = search.toLowerCase()
-    return (!q || p.name.toLowerCase().includes(q) || p.sector.toLowerCase().includes(q))
+    return (!q || p.name.toLowerCase().includes(q) || p.sector.toLowerCase().includes(q) || (p.countries||'').toLowerCase().includes(q) || (Array.isArray(p.tags) && p.tags.some(t => t.toLowerCase().includes(q))))
         && (!sector || p.sector === sector)
-  })
+  }).sort((a, b) => sort === 'newest' ? new Date(b.created_at) - new Date(a.created_at) : a.name.localeCompare(b.name))
   const sectors = [...new Set(patents.map(p => p.sector))].sort()
   const stats = {
     total: patents.length,
@@ -160,6 +160,10 @@ export default function AdminDashboard({ navigate }) {
               <select value={sector} onChange={e => setSector(e.target.value)} style={{ padding: '.75rem 1rem', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(200,168,75,.2)', borderRadius: 4, color: 'var(--white)', fontFamily: "'DM Sans',sans-serif", fontSize: '.85rem', outline: 'none' }}>
                 <option value="">All sectors</option>
                 {sectors.map(s => <option key={s}>{s}</option>)}
+              </select>
+              <select value={sort} onChange={e => setSort(e.target.value)} style={{ padding: '.75rem 1rem', background: 'rgba(200,168,75,.1)', border: '1px solid rgba(200,168,75,.3)', borderRadius: 4, color: 'var(--gold)', fontFamily: "'DM Sans',sans-serif", fontSize: '.85rem', outline: 'none', cursor: 'pointer' }}>
+                <option value="newest" style={{background:'#0f2444',color:'#fafaf8'}}>Newest first</option>
+                <option value="az" style={{background:'#0f2444',color:'#fafaf8'}}>A → Z</option>
               </select>
               <button className="btn btn-gold" onClick={() => setView('add')}>+ Add Entry</button>
             </div>
