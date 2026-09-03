@@ -1,0 +1,28 @@
+-- ══════════════════════════════════════════════════════════
+-- CREATE YOUR ADMIN ACCOUNT
+-- ══════════════════════════════════════════════════════════
+-- EASIEST METHOD (recommended):
+--
+-- 1. Supabase dashboard → Authentication → Users
+-- 2. Click "Add User"  →  "Create new user"
+-- 3. Email: hello@dtoportal.com  (or any email you own)
+-- 4. Password: choose something strong — 16+ chars
+-- 5. Tick "Auto Confirm User"
+-- 6. Click Create User
+--
+-- That account can now log in at dtoportal.com/#admin
+-- ══════════════════════════════════════════════════════════
+
+-- After creating your account, copy your user ID from the
+-- Users list and run this to confirm it:
+-- SELECT id, email, created_at FROM auth.users;
+
+-- ══════════════════════════════════════════════════════════
+-- SECURITY CHECKLIST:
+-- ✓ Password NOT in any code file
+-- ✓ Password NOT in GitHub
+-- ✓ Admin route NOT linked from public nav
+-- ✓ Supabase RLS blocks unauthenticated writes
+-- ✓ Supabase locks accounts after repeated failed logins
+-- ✓ Session expires automatically (Supabase default: 1 hour)
+-- ══════════════════════════════════════════════════════════

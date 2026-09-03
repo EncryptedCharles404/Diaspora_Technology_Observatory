@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block the admin route from search engines
+Disallow: /#admin
+
+Sitemap: https://dtoportal.com/sitemap.xml
